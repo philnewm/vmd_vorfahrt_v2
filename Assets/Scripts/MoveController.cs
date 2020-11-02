@@ -50,7 +50,7 @@ public class MoveController : MonoBehaviour
         float yInput, xInput;
 
         yInput = CrossPlatformInputManager.GetAxis("Mouse X");
-        yRot -= yInput * cSpeedMouse;
+        yRot -= yInput * cSpeedMouse; //check if out of clamping range or just clamp it
 
         xInput = CrossPlatformInputManager.GetAxis("Mouse Y");
         xRot += xInput * cSpeedMouse;
