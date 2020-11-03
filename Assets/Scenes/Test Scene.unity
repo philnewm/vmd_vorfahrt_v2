@@ -611,22 +611,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb02914b9f4ccb48a54c4f6cdde509d, type: 3}
---- !u!1 &2028902137 stripped
+--- !u!1 &2031429868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dfb02914b9f4ccb48a54c4f6cdde509d,
     type: 3}
   m_PrefabInstance: {fileID: 1944710788}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2028902138
+--- !u!114 &2031429869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028902137}
+  m_GameObject: {fileID: 2031429868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05e23c3048df2d4397c5ded936673b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bae1a9541e20d14c9ec1030d09cc707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xRot: 0
@@ -635,7 +635,7 @@ MonoBehaviour:
   cSpeedX: 0.5
   cSpeedMouse: 0.5
   maxXRot: 35
-  minXRot: -55
+  minXRot: -50
 --- !u!1 &2035403220
 GameObject:
   m_ObjectHideFlags: 0
