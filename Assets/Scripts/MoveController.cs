@@ -8,14 +8,15 @@ public class MoveController : MonoBehaviour
 {
     //member variables
 
+
     //params
     [Tooltip("horizontal rotation")] [SerializeField] float xRot = 0;
     [Tooltip("vertcial rotation")] [SerializeField] float yRot;
     [Tooltip("control the rotaion speed on y-axis")] [SerializeField] float cSpeedY = 0.5f;
     [Tooltip("control the rotaion speed on x-axis")] [SerializeField] float cSpeedX = 0.5f;
-    [Tooltip("control the rotaion speed for mouse")] [SerializeField] float cSpeedMouse = 0.5f;
-    [Tooltip("max rotation x-axis")] [SerializeField] float maxXRot = 35;
-    [Tooltip("max rotation x-axis")] [SerializeField] float minXRot = -50;
+    [Tooltip("control the rotaion speed for mouse")] [SerializeField] float cSpeedMouse = 0.1f;
+    [Tooltip("max rotation x-axis")] [SerializeField] float maxXRot = -50;
+    [Tooltip("max rotation x-axis")] [SerializeField] float minXRot = 35;
 
     // Update is called once per frame
     void Update()
@@ -35,7 +36,7 @@ public class MoveController : MonoBehaviour
         {
             xRot = maxXRot;
         }
-        else if(xRot < minXRot)
+        else if (xRot < minXRot)
         {
             xRot = minXRot;
         }
@@ -56,6 +57,8 @@ public class MoveController : MonoBehaviour
         xRot += xInput * cSpeedX;
 
         transform.localRotation = Quaternion.Euler(Mathf.Clamp(xRot, minXRot, maxXRot), yRot, 0);
+
+        Debug.Log("yRot = " + yRot);
         Debug.Log("xRot = " + xRot);
     }
 
@@ -70,6 +73,8 @@ public class MoveController : MonoBehaviour
         xRot += xInput * cSpeedMouse;
 
         transform.localRotation = Quaternion.Euler(Mathf.Clamp(xRot, minXRot, maxXRot), yRot, 0);
+
+        Debug.Log("yRot = " + yRot);
         Debug.Log("xRot = " + xRot);
     }
 }
