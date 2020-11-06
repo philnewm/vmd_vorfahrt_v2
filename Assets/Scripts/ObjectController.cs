@@ -12,7 +12,7 @@ public class ObjectController : MonoBehaviour
     //params
     [SerializeField] float moveSpeed = 0.5f;
     [SerializeField] float minXRot = -35f;
-    [SerializeField] float maxXRot = 50f;
+    [SerializeField] float maxXRot = 25f;
     [SerializeField] float smoothSpeed = 7.0f;
 
     private void Awake()
@@ -51,7 +51,7 @@ public class ObjectController : MonoBehaviour
 
     private void MapVectorToRotation()
     {
-        rotation = new Vector3(move.y * moveSpeed, Mathf.Clamp(-move.x * moveSpeed, minXRot, maxXRot), 0.0f);
+        rotation = new Vector3(-move.y * moveSpeed, Mathf.Clamp(move.x * moveSpeed, minXRot, maxXRot), 0.0f);
 
         //add rotation value for every frame
         currentRotation += rotation;
