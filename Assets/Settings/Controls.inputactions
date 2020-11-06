@@ -12,6 +12,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "51739d57-748d-436b-b37d-1263632ab547",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -94,12 +102,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c5161434-822f-403c-acdd-33f1ab951755",
-                    "path": "<Mouse>/delta",
+                    "id": "8cb394aa-6d17-4842-994c-ac967b829cde",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationControl",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

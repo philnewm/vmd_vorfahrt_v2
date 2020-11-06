@@ -25,6 +25,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""51739d57-748d-436b-b37d-1263632ab547"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -107,12 +115,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c5161434-822f-403c-acdd-33f1ab951755"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""8cb394aa-6d17-4842-994c-ac967b829cde"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationControl"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -124,6 +132,7 @@ public class @Controls : IInputActionCollection, IDisposable
         // ObjectController
         m_ObjectController = asset.FindActionMap("ObjectController", throwIfNotFound: true);
         m_ObjectController_RotationControl = m_ObjectController.FindAction("RotationControl", throwIfNotFound: true);
+        m_ObjectController_Click = m_ObjectController.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -174,11 +183,13 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_ObjectController;
     private IObjectControllerActions m_ObjectControllerActionsCallbackInterface;
     private readonly InputAction m_ObjectController_RotationControl;
+    private readonly InputAction m_ObjectController_Click;
     public struct ObjectControllerActions
     {
         private @Controls m_Wrapper;
         public ObjectControllerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @RotationControl => m_Wrapper.m_ObjectController_RotationControl;
+        public InputAction @Click => m_Wrapper.m_ObjectController_Click;
         public InputActionMap Get() { return m_Wrapper.m_ObjectController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -191,6 +202,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @RotationControl.started -= m_Wrapper.m_ObjectControllerActionsCallbackInterface.OnRotationControl;
                 @RotationControl.performed -= m_Wrapper.m_ObjectControllerActionsCallbackInterface.OnRotationControl;
                 @RotationControl.canceled -= m_Wrapper.m_ObjectControllerActionsCallbackInterface.OnRotationControl;
+                @Click.started -= m_Wrapper.m_ObjectControllerActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_ObjectControllerActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_ObjectControllerActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_ObjectControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -198,6 +212,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @RotationControl.started += instance.OnRotationControl;
                 @RotationControl.performed += instance.OnRotationControl;
                 @RotationControl.canceled += instance.OnRotationControl;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -205,5 +222,6 @@ public class @Controls : IInputActionCollection, IDisposable
     public interface IObjectControllerActions
     {
         void OnRotationControl(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }
