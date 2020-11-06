@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ObjectController : MonoBehaviour
@@ -27,9 +25,10 @@ public class ObjectController : MonoBehaviour
 
     private void Update()
     {
-        SetToLimit();
 
+        SetToLimit();
         MapVectorToRotation();
+
         //check output
         //Debug.Log($"Move Input: {move}");
     }
@@ -72,8 +71,5 @@ public class ObjectController : MonoBehaviour
     private void OnDisable()
     {
         controls.ObjectController.Disable();
-    }
-
-    private void OnRotationControl(InputValue value) { 
     }
 }
