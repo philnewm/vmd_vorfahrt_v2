@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Quitter : MonoBehaviour
 {
-    public void Quit()
+    public void quit()
     {
-            Application.Quit();
+    if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        Application.Quit();
     }
 }

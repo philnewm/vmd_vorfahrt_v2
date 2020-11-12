@@ -1,26 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ObjectController : MonoBehaviour
+public class RotationControl : MonoBehaviour
 {
     //member variables
     Controls controls;
-    Vector2 move;
+    Vector2 rot;
     Vector3 rotation;
     Vector3 currentRotation;
 
     //params
-    [SerializeField] float moveSpeed = 0.5f;
-    [SerializeField] float minXRot = -35f;
-    [SerializeField] float maxXRot = 25f;
-    [SerializeField] float smoothSpeed = 7.0f;
+    [SerializeField] float moveSpeed = 0.3f;
+    [SerializeField] float minXRot = -25f;
+    [SerializeField] float maxXRot = 35f;
+    [SerializeField] float smoothSpeed = 5.0f;
 
     private void Awake()
     {
         controls = new Controls();
 
-        controls.ObjectController.RotationControl.performed += cntxt => move = cntxt.ReadValue<Vector2>();
-        controls.ObjectController.RotationControl.canceled += cntxt => move = Vector2.zero;
+        controls.CameraController.RotationControl.performed += cntxt => rot = cntxt.ReadValue<Vector2>();
+        controls.CameraController.RotationControl.canceled += cntxt => rot = Vector2.zero;
     }
 
     private void Update()
@@ -51,7 +52,7 @@ public class ObjectController : MonoBehaviour
 
     private void MapVectorToRotation()
     {
-        rotation = new Vector3(-move.y * moveSpeed, Mathf.Clamp(move.x * moveSpeed, minXRot, maxXRot), 0.0f);
+        rotation = new Vector3(-rot.y * moveSpeed, Mathf.Clamp(rot.x * moveSpeed, minXRot, maxXRot), 0.0f);
 
         //add rotation value for every frame
         currentRotation += rotation;
@@ -65,11 +66,11 @@ public class ObjectController : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.ObjectController.Enable();
+        controls.CameraController.Enable();
     }
 
     private void OnDisable()
     {
-        controls.ObjectController.Disable();
+        controls.CameraController.Disable();
     }
 }
