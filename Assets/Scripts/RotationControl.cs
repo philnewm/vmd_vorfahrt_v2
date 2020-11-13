@@ -9,6 +9,7 @@ public class RotationControl : MonoBehaviour
     Vector2 rot;
     Vector3 rotation;
     Vector3 currentRotation;
+    Quaternion defaultRotation;
 
     //params
     [SerializeField] float moveSpeed = 0.3f;
@@ -18,6 +19,8 @@ public class RotationControl : MonoBehaviour
 
     private void Awake()
     {
+        defaultRotation = gameObject.transform.rotation;
+
         controls = new Controls();
 
         controls.CameraController.RotationControl.performed += cntxt => rot = cntxt.ReadValue<Vector2>();
@@ -26,7 +29,6 @@ public class RotationControl : MonoBehaviour
 
     private void Update()
     {
-
         SetToLimit();
         MapVectorToRotation();
 
@@ -62,6 +64,11 @@ public class RotationControl : MonoBehaviour
 
         //smotth rotation using slerp
         transform.localRotation = Quaternion.Slerp(transform.rotation, newRotation, smoothSpeed * Time.deltaTime);
+    }
+
+    public void ResetRotation() //TODO update seems to intefere with this one
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, defaultRotation, smoothSpeed);
     }
 
     private void OnEnable()

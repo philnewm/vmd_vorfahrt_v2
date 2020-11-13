@@ -9,7 +9,6 @@ public class ZoomControl : MonoBehaviour
     Controls controls;
     float zoom;
     Mouse mouse;
-    Touch touch1, touch2;
 
 
     //params
@@ -21,8 +20,6 @@ public class ZoomControl : MonoBehaviour
 
         controls.CameraController.ZoomMouse.performed += cntxt => zoom = cntxt.ReadValue<float>();
         controls.CameraController.ZoomMouse.canceled += cntxt => zoom = float.NaN;
-
-        mouse = Mouse.current;
     }
 
     private void Update()
