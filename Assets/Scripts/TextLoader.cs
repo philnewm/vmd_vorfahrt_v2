@@ -10,48 +10,47 @@ public class TextLoader : MonoBehaviour
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI year;
     [SerializeField] TextMeshProUGUI descr;
+    [SerializeField] SceneState state;
+    [SerializeField] DataLoader dataloader;
+
+    [SerializeField] public GameObject basePlate;
 
     //member variables
-    private string language = "ger";
     private string jsonString;
     private string path;
-    [SerializeField] public GameObject basePlate;
+    private Vehicle[] vehicle;
 
     private void Awake()
     {
-        InserText();
+        //InserText();
+    }
+
+    private void Start()
+    {
+        title.text = dataloader.vehicles[0].GetName();
     }
 
     private void InserText()
     {
-        path = Application.dataPath + "/Texts/rt/" + language + ".json";
+        path = Application.dataPath + "/Texts/rt/" + state.GetLanguage() + ".json";
         jsonString = File.ReadAllText(path);
-        VehicleData vehicleData = JsonUtility.FromJson<VehicleData>(jsonString);
+        TextData textData = JsonUtility.FromJson<TextData>(jsonString);
 
-        title.text = vehicleData.title;
-        year.text = vehicleData.year;
-        descr.text = vehicleData.descr;
 
-        ChangeBasePlateScale(vehicleData);
-    }
-
-    private void ChangeBasePlateScale(VehicleData vehicleData)
-    {
-        if (vehicleData.title == "MZ RT 125") // TODO clean this part of code
-        {
-            basePlate.transform.localScale = new Vector3(0.6f, 0.5f, 0.6f);
-        }
+        //title.text = textData.title;
+        //year.text = textData.year;
+        //descr.text = textData.descr;
     }
 
     public void SetLanguageEng()
     {
-        language = "eng";
+        state.SetLanguage("eng");
         InserText();
     }
 
     public void SetLanguageGer()
     {
-        language = "ger";
+        state.SetLanguage("ger");
         InserText();
     }
 }
