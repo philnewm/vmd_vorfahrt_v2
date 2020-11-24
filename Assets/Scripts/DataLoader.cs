@@ -2,33 +2,80 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
+using UnityEngine.UI;
 
 public class DataLoader : MonoBehaviour
 {
-    public Vehicle[] vehicles;
+    //Input from outside
+    [SerializeField] SceneState state;
 
-    private void Start()
+    //memeber variables
+    public Vehicle[] vehicles;
+    string vehicleID;
+    string curLanguage;
+
+    private void Awake()
     {
+        curLanguage = state.GetLanguage();
+        int i = 0;
         DirectoryInfo directoryInfo = new DirectoryInfo(Application.streamingAssetsPath);
-        Debug.Log("Streaming Assets Path: " + Application.streamingAssetsPath);
         FileInfo[] allFiles = directoryInfo.GetFiles("*.*");
 
         vehicles = new Vehicle[allFiles.Length];
 
-        Debug.Log(allFiles.Length + " files found: " + allFiles[0].Name + ", " + allFiles[1].Name);
-
         foreach (FileInfo file in allFiles)
         {
-            StartCoroutine("SearchForContent", file);
+            SearchForContent(file, i);
+            Debug.Log(file);
+            i += 1;
         }
     }
 
-    private void SearchForContent(FileInfo contentFile)
+    private void SearchForContent(FileInfo contentFile, int index)
     {
+        //vehicle root directory
         DirectoryInfo subdirectoryInfo = new DirectoryInfo(contentFile.ToString());
-        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(contentFile.ToString());
-        Debug.Log(contentFile.ToString());
 
-        vehicles[0] = new Vehicle(fileNameWithoutExtension);
+        //ID found
+        ExtractVehicleID(contentFile, index);
+
+        SearchForText(index);
+        SearchForTitlePic(index);
+        //SearchForContentForModell();
+        //SearchForTextures();
+        //SearchForMagazine();
+        //SearchForGallery();
+        //WriteContentToClass();
+    }
+
+    private void ExtractVehicleID(FileInfo contentFile, int index)
+    {
+        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(contentFile.ToString());
+        vehicles[index] = new Vehicle(fileNameWithoutExtension, curLanguage);
+        vehicleID = vehicles[index].GetName();
+    }
+
+    private void SearchForText(int index)
+    {
+
+        string languageGer = "ger", languageEng = "eng";
+
+        LoadText(index, languageGer);
+        LoadText(index, languageEng);
+    }
+
+    private void LoadText(int index, string language)
+    {
+        string jsonPath;
+        string jsonString;
+        jsonPath = Application.streamingAssetsPath + "/" + vehicleID + "/Text/" + language + ".json";
+        jsonString = File.ReadAllText(jsonPath);
+        vehicles[index].LoadText(jsonString);
+    }
+
+    private void SearchForTitlePic(int index)
+    {
+        
     }
 }

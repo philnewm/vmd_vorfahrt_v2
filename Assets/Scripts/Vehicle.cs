@@ -4,29 +4,45 @@ using System.Collections;
 [System.Serializable]
 public class Vehicle
 {
+    [Header("Vehicle ID")]
     [SerializeField] string name;
-    [SerializeField] string title;
     [SerializeField] string year;
-    [SerializeField] string header;
-    [TextArea(10,5)] [SerializeField] string preDescr;
-    [TextArea(10,5)] [SerializeField] string descr;
+    [SerializeField] string title;
 
-    [SerializeField] Texture2D titlePicture;
+    [Header("German Text")]
+    [SerializeField] string gerHeader;
+    [TextArea(10,3)] [SerializeField] string gerPreDescr;
+    [TextArea(10,8)] [SerializeField] string gerDescr;
 
+    [Header("English Text")]
+    [SerializeField] string engHeader;
+    [TextArea(10, 3)] [SerializeField] string engPreDescr;
+    [TextArea(10, 8)] [SerializeField] string engDescr;
+
+    [Header("Title Picture")]
+    [SerializeField] Sprite titlePicture;
+
+    [Header("Content for 3D Modells")]
     [SerializeField] Mesh vehicleModell;
     [SerializeField] Material opaqueMat;
     [SerializeField] Material transpMat;
 
-    [SerializeField] Mesh baseModell;
-    [SerializeField] Material baseMat;
+    string language;
 
-    public Vehicle(string name) //, string year, string header, string preDescr, string descr)
+    public Vehicle(string name, string language)
     {
+        this.language = language;
         this.name = name;
-        //this.year = year;
-        //this.header = header;
-        //this.preDescr = preDescr;
-        //this.descr = descr;
+    }
+
+    public void ChangeLanguage(string language)
+    {
+        this.language = language;
+    }
+
+    public void LoadText (string jsonData)
+    {
+        JsonUtility.FromJsonOverwrite(jsonData, this);
     }
 
     public string GetName()
@@ -46,21 +62,47 @@ public class Vehicle
 
     public string GetHeader()
     {
-        return header;
+        if (language == "ger")
+        {
+            return gerHeader;
+        }
+        else
+        {
+            return engHeader;
+        }
     }
 
     public string GetPreDescr()
     {
-        return preDescr;
+        if (language == "ger")
+        {
+            return gerPreDescr;
+        }
+        else
+        {
+            return engPreDescr;
+        }
     }
 
     public string Getdescr()
     {
-        return preDescr;
+        if (language == "ger")
+        {
+            return gerDescr;
+        }
+        else
+        {
+            return engDescr;
+        }
     }
 
-    public Texture2D GetTitlePic()
+    public Sprite GetTitlePic()
     {
         return titlePicture;
+    }
+
+    public void SetTitlePic(Sprite titlePic)
+    {
+        this.titlePicture = titlePic;
     }
 }

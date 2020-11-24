@@ -34,7 +34,7 @@ public class ZoomControl : MonoBehaviour
     private void MouseZoom()
     {
         transform.position = Vector3.MoveTowards(transform.position, transform.parent.position, zoom * zoomSpeed );
-        Debug.Log(zoom);
+        //Debug.Log(zoom);
     }
 
     //private void SetToLimit()

@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class SceneState : MonoBehaviour
 {
     //member variables
-    [SerializeField] string curLang = "ger";
-    [SerializeField] string curVehicle;
-    [SerializeField] int curScene;
+    [SerializeField] public string curLang = "ger";
+    [SerializeField] public int curScene;
+    [SerializeField] public int selectedVehicle = 1;
 
     [SerializeField] Button gerButton;
     [SerializeField] Button engButton;
@@ -59,18 +59,18 @@ public class SceneState : MonoBehaviour
         }
     }
 
-    public string GetCurVehicle()
-    {
-        return curVehicle;
-    }
-
-    public void SetCurVehicle(string curVehicle)
-    {
-        this.curVehicle = curVehicle;
-    }
-
     public void SetCurScene()
     {
         curScene = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public int GetSelectedVehicle()
+    {
+        return selectedVehicle;
+    }
+
+    public void SetSelectedVehicle(int VehicleNumber)
+    {
+        this.selectedVehicle = VehicleNumber;
     }
 }
