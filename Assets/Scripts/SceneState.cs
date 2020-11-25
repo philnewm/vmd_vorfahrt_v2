@@ -9,22 +9,26 @@ public class SceneState : MonoBehaviour
     //member variables
     [SerializeField] public string curLang = "ger";
     [SerializeField] public int curScene;
-    [SerializeField] public int selectedVehicle = 1;
-
-    [SerializeField] Button gerButton;
-    [SerializeField] Button engButton;
-
-    Color greyedColor;
-    Color defaultColor;
-
+    [SerializeField] public int selectedVehicle;
 
     private void Awake()
     {
+        CheckIfExists();
         SetCurScene();
-        greyedColor = new Color(100, 100, 100, 100);
-        defaultColor = new Color(255, 255, 255, 255);
     }
 
+    private void CheckIfExists()
+    {
+        int DataLoaderCount = FindObjectsOfType<DataLoader>().Length;
+        if (DataLoaderCount > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     //user defined functions
     public string GetLanguage()
@@ -35,28 +39,6 @@ public class SceneState : MonoBehaviour
     public void SetLanguage(string language)
     {
         this.curLang = language;
-
-        ChangFLag(language);
-    }
-
-    private void ChangFLag(string language)
-    {
-        if (language == "eng")
-        {
-            gerButton.image.color = greyedColor;
-            engButton.image.color = defaultColor;
-
-            Debug.Log("Eng Button: " + engButton.image.color);
-            Debug.Log("Ger Button: " + gerButton.image.color);
-        }
-        else if (language == "ger")
-        {
-            engButton.image.color = greyedColor;
-            gerButton.image.color = defaultColor;
-
-            Debug.Log("Eng Button: " + engButton.image.color);
-            Debug.Log("Ger Button: " + gerButton.image.color);
-        }
     }
 
     public void SetCurScene()
