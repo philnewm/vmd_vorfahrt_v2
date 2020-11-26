@@ -23,9 +23,12 @@ public class Vehicle
     [SerializeField] Sprite titlePicture;
 
     [Header("Content for 3D Modells")]
-    [SerializeField] Mesh vehicleModell;
+    [SerializeField] GameObject vehicleModel;
     [SerializeField] Material opaqueMat;
     [SerializeField] Material transpMat;
+
+    [SerializeField] Sprite[] magazine;
+    [SerializeField] Sprite[] gallery;
 
     string language;
 
@@ -104,5 +107,30 @@ public class Vehicle
     public void SetTitlePic(Sprite titlePic)
     {
         this.titlePicture = titlePic;
+    }
+
+    public void SetVehicleModel(GameObject vehicleModel) // TODo remove all model loading content
+    {
+        this.vehicleModel = vehicleModel;
+    }
+
+    public void SetGallery(Sprite[] gallery)
+    {
+        this.gallery = gallery;
+    }
+
+    public Sprite[] GetGallery()
+    {
+        return gallery;
+    }
+
+    public void SetMagazine(Sprite[] magazine)
+    {
+        this.magazine = magazine;
+    }
+
+    public Sprite[] GetMagazine()
+    {
+        return magazine;
     }
 }

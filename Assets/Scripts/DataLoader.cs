@@ -57,9 +57,9 @@ public class DataLoader : MonoBehaviour
 
         SearchForText(index);
         SearchForTitlePic(index);
-        //SearchForContentForModell();
+        //SearchForContentForModel(index);
         //SearchForTextures();
-        //SearchForMagazine();
+        SearchForMagazine();
         //SearchForGallery();
         //WriteContentToClass();
     }
@@ -99,7 +99,6 @@ public class DataLoader : MonoBehaviour
 
         //Converts desired path into byte array
         byte[] pngBytes = System.IO.File.ReadAllBytes(titlePicPath[0]);
-        Debug.Log(titlePicPath[0]);
 
         //Creates texture and loads byte array data to create image
         Texture2D tex = new Texture2D(2560, 1440);
@@ -110,5 +109,27 @@ public class DataLoader : MonoBehaviour
 
         //Assigns the UI sprite
         vehicles[index].SetTitlePic(titlePicSprite);
+    }
+
+    private void SearchForMagazine()
+    {
+        string filePath;
+        string[] magazinePicPath;
+        //Create an array of file paths from which to choose
+        filePath = Application.streamingAssetsPath + "/" + vehicleID + "/Images/";  //Get path of folder
+        magazinePicPath = Directory.GetFiles(filePath, "*_mag.jpg"); // Get all files of type .jpg in this folder
+
+        //Converts desired path into byte array
+        byte[] pngBytes = new byte[magazinePicPath.Length];
+
+        for (int i = 0; i >= magazinePicPath.Length; i++)
+        {
+            pngBytes = System.IO.File.ReadAllBytes(magazinePicPath[i]);
+            Debug.Log(magazinePicPath[i]);
+        }
+
+        //Creates texture and loads byte array data to create image
+        Texture2D tex = new Texture2D(1920, 1080);
+        tex.LoadImage(pngBytes);
     }
 }

@@ -1,0 +1,262 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.3.48",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "paenomen_textured"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "phaenomen",
+            "normalTexture" : {
+                "index" : 0,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1,
+                    "texCoord" : 0
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 2,
+                    "texCoord" : 0
+                }
+            }
+        },
+        {
+            "alphaMode" : "BLEND",
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                1,
+                1,
+                1
+            ],
+            "emissiveTexture" : {
+                "index" : 3,
+                "texCoord" : 0
+            },
+            "name" : "phaenomen_window",
+            "normalTexture" : {
+                "index" : 4,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 5,
+                    "texCoord" : 0
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 6,
+                    "texCoord" : 0
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube.052",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        },
+        {
+            "source" : 2
+        },
+        {
+            "source" : 3
+        },
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        },
+        {
+            "source" : 2
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "phaenomen_4_rl_low_DefaultMaterial_Normal_OpenGL",
+            "uri" : "../Textures/phaenomen_4_rl_low_DefaultMaterial_Normal_OpenGL.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "phaenomen_4_rl_low_DefaultMaterial_BaseColor",
+            "uri" : "../Textures/phaenomen_4_rl_low_DefaultMaterial_BaseColor.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "phaenomen_4_rl_low_DefaultMaterial_Metallic-phaenomen_4_rl_low_DefaultMaterial_Roughness",
+            "uri" : "../Textures/phaenomen_4_rl_low_DefaultMaterial_Metallic-phaenomen_4_rl_low_DefaultMaterial_Roughness.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "phaenomen_4_rl_low_DefaultMaterial_Emissive",
+            "uri" : "../Textures/phaenomen_4_rl_low_DefaultMaterial_Emissive.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 13295,
+            "max" : [
+                0.875788152217865,
+                2.047273874282837,
+                1.878730297088623
+            ],
+            "min" : [
+                -0.8568980693817139,
+                0.0017590522766113281,
+                -2.542099714279175
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 13295,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 13295,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 48519,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 130,
+            "max" : [
+                0.7695653438568115,
+                1.8501158952713013,
+                1.463189721107483
+            ],
+            "min" : [
+                -0.750819742679596,
+                0.9321518540382385,
+                -0.5152530074119568
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 130,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 130,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 474,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 159540,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 159540,
+            "byteOffset" : 159540
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 106360,
+            "byteOffset" : 319080
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 97038,
+            "byteOffset" : 425440
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1560,
+            "byteOffset" : 522480
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1560,
+            "byteOffset" : 524040
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1040,
+            "byteOffset" : 525600
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 948,
+            "byteOffset" : 526640
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 527588,
+            "uri" : "phaenomen_4_rl.bin"
+        }
+    ]
+}
