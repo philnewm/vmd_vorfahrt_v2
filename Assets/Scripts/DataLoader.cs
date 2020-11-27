@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.Networking;
 
 public class DataLoader : MonoBehaviour
 {
     //Input from outside
     [SerializeField] SceneState state;
 
-    //memeber variables
+    //member variables
     public Vehicle[] vehicles;
 
     string vehicleID;
@@ -29,7 +30,7 @@ public class DataLoader : MonoBehaviour
         foreach (FileInfo file in allFiles)
         {
             SearchForContent(file, i);
-            Debug.Log(file);
+            //Debug.Log(file);
             i += 1;
         }
     }
@@ -59,7 +60,7 @@ public class DataLoader : MonoBehaviour
         SearchForTitlePic(index);
         //SearchForContentForModel(index);
         //SearchForTextures();
-        SearchForMagazine();
+        StartCoroutine("SearchForMagazine", index);
         //SearchForGallery();
         //WriteContentToClass();
     }
@@ -111,25 +112,31 @@ public class DataLoader : MonoBehaviour
         vehicles[index].SetTitlePic(titlePicSprite);
     }
 
-    private void SearchForMagazine()
+    private void SearchForMagazine(int index)
     {
         string filePath;
-        string[] magazinePicPath;
+        string[] magPath;
+
         //Create an array of file paths from which to choose
         filePath = Application.streamingAssetsPath + "/" + vehicleID + "/Images/";  //Get path of folder
-        magazinePicPath = Directory.GetFiles(filePath, "*_mag.jpg"); // Get all files of type .jpg in this folder
+        magPath = Directory.GetFiles(filePath, "*_mag.jpg"); // Get all files of type .jpg in this folder
+
+        Sprite[] magSprite = new Sprite[magPath.Length];
 
         //Converts desired path into byte array
-        byte[] pngBytes = new byte[magazinePicPath.Length];
-
-        for (int i = 0; i >= magazinePicPath.Length; i++)
+        for (int i = 0; i <= magPath.Length-1; i++)
         {
-            pngBytes = System.IO.File.ReadAllBytes(magazinePicPath[i]);
-            Debug.Log(magazinePicPath[i]);
+            byte[] pngBytes = System.IO.File.ReadAllBytes(magPath[i]);
+
+            //Creates texture and loads byte array data to create image
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(pngBytes);
+
+            //Creates a new Sprite based on the Texture2D
+            magSprite[i] = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
-        //Creates texture and loads byte array data to create image
-        Texture2D tex = new Texture2D(1920, 1080);
-        tex.LoadImage(pngBytes);
+        //load into vehicle class
+        vehicles[index].SetMagazine(magSprite);
     }
 }
