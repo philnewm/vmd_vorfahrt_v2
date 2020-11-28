@@ -117,26 +117,20 @@ public class DataLoader : MonoBehaviour
         string filePath;
         string[] magPath;
 
-        //Create an array of file paths from which to choose
-        filePath = Application.streamingAssetsPath + "/" + vehicleID + "/Images/";  //Get path of folder
-        magPath = Directory.GetFiles(filePath, "*_mag.jpg"); // Get all files of type .jpg in this folder
+        filePath = Application.streamingAssetsPath + "/" + vehicleID + "/Images/";
+        magPath = Directory.GetFiles(filePath, "*_mag.jpg");
 
         Sprite[] magSprite = new Sprite[magPath.Length];
 
-        //Converts desired path into byte array
         for (int i = 0; i <= magPath.Length-1; i++)
         {
             byte[] pngBytes = System.IO.File.ReadAllBytes(magPath[i]);
 
-            //Creates texture and loads byte array data to create image
             Texture2D tex = new Texture2D(2, 2);
             tex.LoadImage(pngBytes);
 
-            //Creates a new Sprite based on the Texture2D
             magSprite[i] = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
-
-        //load into vehicle class
         vehicles[index].SetMagazine(magSprite);
     }
 }
