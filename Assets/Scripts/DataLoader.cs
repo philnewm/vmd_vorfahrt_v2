@@ -74,7 +74,6 @@ public class DataLoader : MonoBehaviour
 
     private void SearchForText(int index)
     {
-
         string languageGer = "ger", languageEng = "eng";
 
         LoadText(index, languageGer);
@@ -90,7 +89,7 @@ public class DataLoader : MonoBehaviour
         vehicles[index].LoadText(jsonString);
     }
 
-    private void SearchForTitlePic(int index)
+    private void SearchForTitlePic(int index) //maybe combine both image loaders
     {
         string filePath;
         string[] titlePicPath;
