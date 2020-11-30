@@ -9,23 +9,28 @@ public class ZoomControl : MonoBehaviour
     Controls controls;
     float zoom;
     Mouse mouse;
+    Vector3 zoomVector;
+    float curScale = 1;
 
 
     //params
-    [SerializeField] float zoomSpeed = 1/120f;
+    [SerializeField] float zoomSpeed;
+    [SerializeField] float maxZoom;
+    [SerializeField] float minZoom;
 
     private void Awake()
     {
         controls = new Controls();
 
-        controls.CameraController.ZoomMouse.performed += cntxt => zoom = cntxt.ReadValue<float>();
+        controls.CameraController.ZoomMouse.performed += cntxt => zoom = cntxt.ReadValue<float>()/ 120f;
         controls.CameraController.ZoomMouse.canceled += cntxt => zoom = float.NaN;
     }
 
     private void Update()
     {
-       // SetToLimit();
-      if(zoom != 0.0f)
+        SetToLimit();
+
+        if (zoom != 0)
         {
             MouseZoom();
         }
@@ -33,25 +38,12 @@ public class ZoomControl : MonoBehaviour
 
     private void MouseZoom()
     {
-        transform.position = Vector3.MoveTowards(transform.position, transform.parent.position, zoom * zoomSpeed );
-        //Debug.Log(zoom);
+        float zoomControl = zoom * zoomSpeed;
+        curScale += zoomControl;
+        gameObject.transform.localScale = new Vector3(Mathf.Clamp(curScale, minZoom, maxZoom), 
+                                                      Mathf.Clamp(curScale, minZoom, maxZoom),
+                                                      Mathf.Clamp(curScale, minZoom, maxZoom));
     }
-
-    //private void SetToLimit()
-    //{
-    //    if (currentRotation.x > maxXRot)
-    //    {
-    //        currentRotation.x = maxXRot;
-    //    }
-    //    else if (currentRotation.x < minXRot)
-    //    {
-    //        currentRotation.x = minXRot;
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
 
     private void OnEnable()
     {
@@ -61,5 +53,20 @@ public class ZoomControl : MonoBehaviour
     private void OnDisable()
     {
         controls.CameraController.Disable();
+    }
+    private void SetToLimit()
+    {
+        if (curScale > maxZoom)
+        {
+            curScale = maxZoom;
+        }
+        else if (curScale < minZoom)
+        {
+            curScale = minZoom;
+        }
+        else
+        {
+            return;
+        }
     }
 }

@@ -19,25 +19,27 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] GameObject pageSlides;
     [SerializeField] GameObject nextSlideBtn;
     [SerializeField] GameObject prevSlideBtn;
+    [SerializeField] Button gerButton;
+    [SerializeField] Button engButton;
 
     [SerializeField] public GameObject basePlate;
 
     //member variables
     SceneState state;
-    DataLoader dataloader;
-    private string jsonString;
-    private string path;
-    private Vehicle[] vehicle;
-    public int slideNum;
-    private int magSlides;
-    private bool show = false;
+    DataLoader loader;
+    public int slideNum;        //switch gallery slides
+    private int magSlides;      //loading gallery slides
+    private bool show = false;  //indicator if gallery images are in use or not
+    private bool baseScale;
+    Color greyedColor;  //for chaning language button color to inaktive
+    Color defaultColor; // for chaning language button color to aktive
 
     private void Awake()
     {
-        state = FindObjectOfType<SceneState>();
-        dataloader = FindObjectOfType<DataLoader>();
+        state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
+        loader = FindObjectOfType<DataLoader>();
 
-        if (state.GetSelectedVehicle() == 0)
+        if (state.GetSelectedVehicle() == 0) //check wich vehicle to display, value found in state-class
         {
             rt.SetActive(false);
             rl.SetActive(true);
@@ -47,7 +49,15 @@ public class VehicleScene : MonoBehaviour
             rt.SetActive(true);
             rl.SetActive(false);
         }
-        magSlides = dataloader.vehicles[state.GetSelectedVehicle()].GetMagazine().Length-1;
+        SetSlides();
+
+        greyedColor = new Color(100, 100, 100, 100);
+        defaultColor = new Color(255, 255, 255, 255);
+    }
+
+    private void SetSlides()
+    {
+        magSlides = loader.vehicles[state.GetSelectedVehicle()].GetMagazine().Length - 1;
         slideNum = 0;
     }
 
@@ -64,15 +74,24 @@ public class VehicleScene : MonoBehaviour
 
     public void InserText()
     {
-        title.text = dataloader.vehicles[state.GetSelectedVehicle()].GetTitle();
-        year.text = dataloader.vehicles[state.GetSelectedVehicle()].GetYear();
-        descr.text = dataloader.vehicles[state.GetSelectedVehicle()].GetPreDescr() + "\n\n"
-                   + dataloader.vehicles[state.GetSelectedVehicle()].Getdescr();
-        menuYear.text = dataloader.vehicles[state.GetSelectedVehicle()].GetYear();
+        title.text = loader.vehicles[state.GetSelectedVehicle()].GetTitle();
+        year.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
+        menuYear.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
+
+        if (state.curLang == "ger")
+        {
+            descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
+           + loader.vehicles[state.GetSelectedVehicle()].GetGerDescr();
+        }
+        else
+        {
+            descr.text = loader.vehicles[state.GetSelectedVehicle()].GetEngPreDescr() + "\n\n"
+            + loader.vehicles[state.GetSelectedVehicle()].GetEngDescr();
+        }
     }
     private void InsertMagazine()
     {
-        magImg.sprite = dataloader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     public void NextSlide()
@@ -84,7 +103,7 @@ public class VehicleScene : MonoBehaviour
         else
         {
             slideNum++;
-            magImg.sprite = dataloader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+            magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
         }
     }
 
@@ -97,7 +116,7 @@ public class VehicleScene : MonoBehaviour
         else
         {
             slideNum--;
-            magImg.sprite = dataloader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+            magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
         }
     }
     public void FadeIt()
@@ -108,5 +127,38 @@ public class VehicleScene : MonoBehaviour
         pageSlides.SetActive(!show);
         prevSlideBtn.SetActive(show);
         nextSlideBtn.SetActive(show);
+    }
+
+    public void SetLanguageEng()
+    {
+        state.SetLanguage("eng");
+        InserText();
+        ChangeFLag();
+    }
+    public void SetLanguageGer()
+    {
+        state.SetLanguage("ger");
+        InserText();
+        ChangeFLag();
+    }
+
+    private void ChangeFLag() // still broken
+    {
+        if (state.curLang == "eng")
+        {
+            gerButton.image.color = greyedColor;
+            engButton.image.color = defaultColor;
+
+            //Debug.Log("Eng Button: " + engButton.image.color);
+            //Debug.Log("Ger Button: " + gerButton.image.color);
+        }
+        else if (state.curLang == "ger")
+        {
+            engButton.image.color = greyedColor;
+            engButton.image.color = defaultColor;
+
+            //Debug.Log("Eng Button: " + engButton.image.color);
+            //Debug.Log("Ger Button: " + gerButton.image.color);
+        }
     }
 }

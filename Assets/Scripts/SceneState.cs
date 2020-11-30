@@ -11,8 +11,11 @@ public class SceneState : MonoBehaviour
     [SerializeField] public int curScene;
     [SerializeField] public int selectedVehicle;
 
+    private DataLoader loader;
+
     private void Awake()
     {
+        loader = FindObjectOfType<DataLoader>();
         CheckIfExists();
         SetCurScene();
     }

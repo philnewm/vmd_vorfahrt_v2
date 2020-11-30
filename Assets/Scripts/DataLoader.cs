@@ -68,7 +68,7 @@ public class DataLoader : MonoBehaviour
     private void ExtractVehicleID(FileInfo contentFile, int index)
     {
         string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(contentFile.ToString());
-        vehicles[index] = new Vehicle(fileNameWithoutExtension, curLanguage);
+        vehicles[index] = new Vehicle(fileNameWithoutExtension);
         vehicleID = vehicles[index].GetName();
     }
 

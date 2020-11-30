@@ -30,17 +30,11 @@ public class Vehicle
     [SerializeField] Sprite[] magazine;
     [SerializeField] Sprite[] gallery;
 
-    string language;
+    private SceneState state;
 
-    public Vehicle(string name, string language)
+    public Vehicle(string name)
     {
-        this.language = language;
         this.name = name;
-    }
-
-    public void ChangeLanguage(string language)
-    {
-        this.language = language;
     }
 
     public void LoadText (string jsonData)
@@ -63,40 +57,34 @@ public class Vehicle
         return year;
     }
 
-    public string GetHeader()
+    public string GetGerHeader()
     {
-        if (language == "ger")
-        {
-            return gerHeader;
-        }
-        else
-        {
-            return engHeader;
-        }
+        return gerHeader;
     }
 
-    public string GetPreDescr()
+    public string GetEngHeader()
     {
-        if (language == "ger")
-        {
-            return gerPreDescr;
-        }
-        else
-        {
-            return engPreDescr;
-        }
+        return engHeader;
     }
 
-    public string Getdescr()
+    public string GetGerPreDescr()
     {
-        if (language == "ger")
-        {
-            return gerDescr;
-        }
-        else
-        {
-            return engDescr;
-        }
+        return gerPreDescr;
+    }
+
+    public string GetEngPreDescr()
+    {
+        return engPreDescr;
+    }
+
+    public string GetGerDescr()
+    {
+        return gerDescr;
+    }
+
+    public string GetEngDescr()
+    {
+        return engDescr;
     }
 
     public Sprite GetTitlePic()
@@ -107,11 +95,6 @@ public class Vehicle
     public void SetTitlePic(Sprite titlePic)
     {
         this.titlePicture = titlePic;
-    }
-
-    public void SetVehicleModel(GameObject vehicleModel) // TODo remove all model loading content
-    {
-        this.vehicleModel = vehicleModel;
     }
 
     public void SetGallery(Sprite[] gallery)
