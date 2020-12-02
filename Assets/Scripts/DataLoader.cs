@@ -57,12 +57,11 @@ public class DataLoader : MonoBehaviour
         ExtractVehicleID(contentFile, index);
 
         SearchForText(index);
-        SearchForTitlePic(index);
+        SearchImages(index);
         //SearchForContentForModel(index);
         //SearchForTextures();
-        StartCoroutine("SearchForMagazine", index);
+        //StartCoroutine("SearchForMagazine", index);
         //SearchForGallery();
-        //WriteContentToClass();
     }
 
     private void ExtractVehicleID(FileInfo contentFile, int index)
@@ -89,26 +88,59 @@ public class DataLoader : MonoBehaviour
         vehicles[index].LoadText(jsonString);
     }
 
-    private void SearchForTitlePic(int index) //maybe combine both image loaders
+    private void SearchImages(int index) //maybe combine both image loaders
     {
         string filePath;
         string[] titlePicPath;
-        //Create an array of file paths from which to choose
+        string[] magPath;
+
+
+        //path to vehicle directory
         filePath = Application.streamingAssetsPath + "/" + vehicleID + "/Images/";  //Get path of folder
+
+        //path to titlepic
         titlePicPath = Directory.GetFiles(filePath, "*titlePic.png"); // Get all files of type .png in this folder
 
-        //Converts desired path into byte array
+        //path to mag
+        magPath = Directory.GetFiles(filePath, "*_mag.jpg");
+
+        SearchMagPics(index, magPath);
+
+        SearchTitlePic(index, titlePicPath);
+    }
+
+    private void SearchTitlePic(int index, string[] titlePicPath)
+    {
+        //Converts titlepic path into byte array
         byte[] pngBytes = System.IO.File.ReadAllBytes(titlePicPath[0]);
 
-        //Creates texture and loads byte array data to create image
-        Texture2D tex = new Texture2D(2560, 1440);
+        Texture2D tex = new Texture2D(1024, 1024);
         tex.LoadImage(pngBytes);
 
         //Creates a new Sprite based on the Texture2D
         Sprite titlePicSprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
 
-        //Assigns the UI sprite
+        //assign titlepic to loaded vehicle instance
         vehicles[index].SetTitlePic(titlePicSprite);
+    }
+
+    private void SearchMagPics(int index, string[] magPath)
+    {
+        Sprite[] magSprite = new Sprite[magPath.Length];
+
+        for (int i = 0; i <= magPath.Length - 1; i++)
+        {
+            //Converts magpic path into byte array
+            byte[] pngBytes = System.IO.File.ReadAllBytes(magPath[i]);
+
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(pngBytes); // texture from byte array
+
+            //new sprite for each texture
+            magSprite[i] = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+        //assign magpics to loaded vehicle instance
+        vehicles[index].SetMagazine(magSprite);
     }
 
     private void SearchForMagazine(int index)
