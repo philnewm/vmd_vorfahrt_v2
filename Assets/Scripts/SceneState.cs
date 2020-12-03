@@ -15,22 +15,9 @@ public class SceneState : MonoBehaviour
 
     private void Awake()
     {
+		DontDestroyOnLoad(gameObject);
         loader = FindObjectOfType<DataLoader>();
-        CheckIfExists();
         SetCurScene();
-    }
-
-    private void CheckIfExists()
-    {
-        int DataLoaderCount = FindObjectsOfType<DataLoader>().Length;
-        if (DataLoaderCount > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
     }
 
     //user defined functions

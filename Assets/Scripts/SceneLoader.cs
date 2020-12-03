@@ -19,6 +19,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+	
     public void CheckPreloadScene()
     {
         GameObject check = GameObject.Find("__app");
