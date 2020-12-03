@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class VehicleScene : MonoBehaviour
 {
     //params
+    [Header("VehicleData")]
+    [SerializeField] SceneLoader sceneLoader;
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI year;
     [SerializeField] TextMeshProUGUI descr;
@@ -36,19 +38,11 @@ public class VehicleScene : MonoBehaviour
 
     private void Awake()
     {
+        sceneLoader.CheckPreloadScene();
+
         state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
         loader = FindObjectOfType<DataLoader>();
 
-        if (state.GetSelectedVehicle() == 0) //check wich vehicle to display, value found in state-class
-        {
-            rt.SetActive(false);
-            rl.SetActive(true);
-        }
-        else
-        {
-            rt.SetActive(true);
-            rl.SetActive(false);
-        }
         SetSlides();
 
         greyedColor = new Color(100, 100, 100, 100);
@@ -63,6 +57,7 @@ public class VehicleScene : MonoBehaviour
 
     private void Start()
     {
+        CheckVehicleID();
         InserText();
         //InsertVehicleModell();
         //InsertBase();
@@ -70,6 +65,20 @@ public class VehicleScene : MonoBehaviour
         //InsertGallery();
         prevSlideBtn.SetActive(show);
         nextSlideBtn.SetActive(show);
+    }
+
+    private void CheckVehicleID()
+    {
+        if (state.GetSelectedVehicle() == 0) //check wich vehicle to display, value found in state-class
+        {
+            rt.SetActive(false);
+            rl.SetActive(true);
+        }
+        else
+        {
+            rt.SetActive(true);
+            rl.SetActive(false);
+        }
     }
 
     public void InserText()

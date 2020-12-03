@@ -7,12 +7,23 @@ public class SceneLoader : MonoBehaviour
     public void LoadNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadSceneAsync(currentSceneIndex + 1, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+    }
+
+    public void LoadNextScene(int sceneID)
+    {
+        SceneManager.LoadSceneAsync(sceneID);
     }
 
     public void LoadStartScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+    public void CheckPreloadScene()
+    {
+        GameObject check = GameObject.Find("__app");
+        if (check == null)
+        { UnityEngine.SceneManagement.SceneManager.LoadScene(0); }
     }
 
     public void quit()

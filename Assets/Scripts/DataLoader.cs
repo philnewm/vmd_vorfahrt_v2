@@ -9,6 +9,7 @@ public class DataLoader : MonoBehaviour
 {
     //Input from outside
     [SerializeField] SceneState state;
+    [SerializeField] SceneLoader sceneLoader;
 
     //member variables
     public Vehicle[] vehicles;
@@ -16,9 +17,10 @@ public class DataLoader : MonoBehaviour
     string vehicleID;
     string curLanguage;
 
+
     private void Awake()
     {
-        CheckIfExists();
+        sceneLoader = FindObjectOfType<SceneLoader>();
 
         curLanguage = state.GetLanguage();
         int i = 0;
@@ -33,19 +35,7 @@ public class DataLoader : MonoBehaviour
             //Debug.Log(file);
             i += 1;
         }
-    }
-
-    private void CheckIfExists()
-    {
-        int DataLoaderCount = FindObjectsOfType<DataLoader>().Length;
-        if (DataLoaderCount > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        sceneLoader.LoadNextScene();
     }
 
     private void SearchForContent(FileInfo contentFile, int index)

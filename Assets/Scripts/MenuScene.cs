@@ -11,6 +11,7 @@ public class MenuScene : MonoBehaviour
     //params
     SceneState state;
     DataLoader loader;
+    [SerializeField] SceneLoader sceneLoader;
     [SerializeField] Button button4RL;
     [SerializeField] Button buttonRT;
     [SerializeField] TextMeshProUGUI text4RL;
@@ -24,6 +25,8 @@ public class MenuScene : MonoBehaviour
 
     private void Awake()
     {
+        sceneLoader.CheckPreloadScene();
+
         state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
         loader = FindObjectOfType<DataLoader>();
 
