@@ -40,10 +40,10 @@ public class VehicleScene : MonoBehaviour
     private void Awake()
     {
         sceneLoader.CheckPreloadScene();
-
         state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
         loader = FindObjectOfType<DataLoader>();
 
+        state.SetCurScene();
         SetSlides();
 
         greyedColor = new Color(100, 100, 100, 100);

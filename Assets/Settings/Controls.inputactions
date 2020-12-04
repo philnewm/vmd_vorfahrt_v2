@@ -2,20 +2,20 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "CameraController",
+            "name": "SceneController",
             "id": "3a1fa04f-c466-4e23-89ae-cb67abb0a656",
             "actions": [
                 {
                     "name": "RotationControl",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "beb0d4f5-1755-4d99-8e9b-6cb1e3c93ec8",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold"
                 },
                 {
                     "name": "Click",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "51739d57-748d-436b-b37d-1263632ab547",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -23,17 +23,9 @@
                 },
                 {
                     "name": "ZoomMouse",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "3bb18ed0-e849-4078-a3e0-a8a2d1647b22",
                     "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "ZoomTouch",
-                    "type": "Value",
-                    "id": "49d2c8e9-28cb-41b9-9c9c-95f4eeec3f3b",
-                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -120,7 +112,7 @@
                     "name": "",
                     "id": "8cb394aa-6d17-4842-994c-ac967b829cde",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Click",
@@ -146,28 +138,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ZoomMouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "29c6ddb4-f032-4f8d-a1e5-0c0fd7954723",
-                    "path": "<Touchscreen>/touch0",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ZoomTouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "203a5eac-54c3-4876-8bb8-7ae750666541",
-                    "path": "<Touchscreen>/touch1",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ZoomTouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

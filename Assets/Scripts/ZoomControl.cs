@@ -10,7 +10,6 @@ public class ZoomControl : MonoBehaviour
     float zoom;
     Mouse mouse;
     Vector3 zoomVector;
-    float curScale = 1;
     float sliderZoom;
 
 
@@ -23,48 +22,31 @@ public class ZoomControl : MonoBehaviour
     [Header("Slider Zoom")]
     [SerializeField] float defaultFOV = 25;
     [SerializeField] float multFOV = 2;
-    [SerializeField] float defaultScale = 1;
     [SerializeField] float multScale = 1;
+    [SerializeField] Vector3 defaultScale;
+    [SerializeField] float curScale;
 
-    [Header("Camera Reference")]
+   [Header("Camera Reference")]
     [SerializeField] Camera camera;
 
     private void Awake()
     {
-        controls = new Controls();
-
-        controls.CameraController.ZoomMouse.performed += cntxt => zoom = cntxt.ReadValue<float>()/ 120f;
-        controls.CameraController.ZoomMouse.canceled += cntxt => zoom = float.NaN;
+        defaultScale = gameObject.transform.localScale;
     }
 
-    private void Update()
+    public void OnMouseZoom(InputAction.CallbackContext value)
     {
         SetToLimit();
+        curScale = defaultScale.x;
+        float inputScale = value.ReadValue<float>();
 
-        if (zoom != 0)
-        {
-            MouseZoom();
-        }
-    }
-
-    private void MouseZoom()
-    {
-        float zoomControl = zoom * zoomSpeed;
+        float zoomControl = inputScale * zoomSpeed;
         curScale += zoomControl;
         gameObject.transform.localScale = new Vector3(Mathf.Clamp(curScale, minZoom, maxZoom), 
                                                       Mathf.Clamp(curScale, minZoom, maxZoom),
                                                       Mathf.Clamp(curScale, minZoom, maxZoom));
     }
 
-    private void OnEnable()
-    {
-        controls.CameraController.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.CameraController.Disable();
-    }
     private void SetToLimit()
     {
         if (curScale > maxZoom)
@@ -83,7 +65,8 @@ public class ZoomControl : MonoBehaviour
 
     public void SliderZoom(float zoomValue)
     {
-        float newZoom = defaultScale + (zoomValue * zoomValue * multScale);
+        curScale = defaultScale.x;
+        float newZoom = curScale + (zoomValue * zoomValue * multScale);
 
         gameObject.transform.localScale = new Vector3(newZoom, newZoom, newZoom);
         camera.fieldOfView = defaultFOV + (multFOV * zoomValue);

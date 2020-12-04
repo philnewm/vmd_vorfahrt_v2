@@ -15,20 +15,20 @@ public class @Controls : IInputActionCollection, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""CameraController"",
+            ""name"": ""SceneController"",
             ""id"": ""3a1fa04f-c466-4e23-89ae-cb67abb0a656"",
             ""actions"": [
                 {
                     ""name"": ""RotationControl"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""beb0d4f5-1755-4d99-8e9b-6cb1e3c93ec8"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Hold""
                 },
                 {
                     ""name"": ""Click"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""51739d57-748d-436b-b37d-1263632ab547"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -36,17 +36,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""ZoomMouse"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""3bb18ed0-e849-4078-a3e0-a8a2d1647b22"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""ZoomTouch"",
-                    ""type"": ""Value"",
-                    ""id"": ""49d2c8e9-28cb-41b9-9c9c-95f4eeec3f3b"",
-                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -133,7 +125,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""8cb394aa-6d17-4842-994c-ac967b829cde"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
@@ -161,40 +153,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""ZoomMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""29c6ddb4-f032-4f8d-a1e5-0c0fd7954723"",
-                    ""path"": ""<Touchscreen>/touch0"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ZoomTouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""203a5eac-54c3-4876-8bb8-7ae750666541"",
-                    ""path"": ""<Touchscreen>/touch1"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ZoomTouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // CameraController
-        m_CameraController = asset.FindActionMap("CameraController", throwIfNotFound: true);
-        m_CameraController_RotationControl = m_CameraController.FindAction("RotationControl", throwIfNotFound: true);
-        m_CameraController_Click = m_CameraController.FindAction("Click", throwIfNotFound: true);
-        m_CameraController_ZoomMouse = m_CameraController.FindAction("ZoomMouse", throwIfNotFound: true);
-        m_CameraController_ZoomTouch = m_CameraController.FindAction("ZoomTouch", throwIfNotFound: true);
+        // SceneController
+        m_SceneController = asset.FindActionMap("SceneController", throwIfNotFound: true);
+        m_SceneController_RotationControl = m_SceneController.FindAction("RotationControl", throwIfNotFound: true);
+        m_SceneController_Click = m_SceneController.FindAction("Click", throwIfNotFound: true);
+        m_SceneController_ZoomMouse = m_SceneController.FindAction("ZoomMouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -241,44 +210,39 @@ public class @Controls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // CameraController
-    private readonly InputActionMap m_CameraController;
-    private ICameraControllerActions m_CameraControllerActionsCallbackInterface;
-    private readonly InputAction m_CameraController_RotationControl;
-    private readonly InputAction m_CameraController_Click;
-    private readonly InputAction m_CameraController_ZoomMouse;
-    private readonly InputAction m_CameraController_ZoomTouch;
-    public struct CameraControllerActions
+    // SceneController
+    private readonly InputActionMap m_SceneController;
+    private ISceneControllerActions m_SceneControllerActionsCallbackInterface;
+    private readonly InputAction m_SceneController_RotationControl;
+    private readonly InputAction m_SceneController_Click;
+    private readonly InputAction m_SceneController_ZoomMouse;
+    public struct SceneControllerActions
     {
         private @Controls m_Wrapper;
-        public CameraControllerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RotationControl => m_Wrapper.m_CameraController_RotationControl;
-        public InputAction @Click => m_Wrapper.m_CameraController_Click;
-        public InputAction @ZoomMouse => m_Wrapper.m_CameraController_ZoomMouse;
-        public InputAction @ZoomTouch => m_Wrapper.m_CameraController_ZoomTouch;
-        public InputActionMap Get() { return m_Wrapper.m_CameraController; }
+        public SceneControllerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RotationControl => m_Wrapper.m_SceneController_RotationControl;
+        public InputAction @Click => m_Wrapper.m_SceneController_Click;
+        public InputAction @ZoomMouse => m_Wrapper.m_SceneController_ZoomMouse;
+        public InputActionMap Get() { return m_Wrapper.m_SceneController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CameraControllerActions set) { return set.Get(); }
-        public void SetCallbacks(ICameraControllerActions instance)
+        public static implicit operator InputActionMap(SceneControllerActions set) { return set.Get(); }
+        public void SetCallbacks(ISceneControllerActions instance)
         {
-            if (m_Wrapper.m_CameraControllerActionsCallbackInterface != null)
+            if (m_Wrapper.m_SceneControllerActionsCallbackInterface != null)
             {
-                @RotationControl.started -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnRotationControl;
-                @RotationControl.performed -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnRotationControl;
-                @RotationControl.canceled -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnRotationControl;
-                @Click.started -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnClick;
-                @ZoomMouse.started -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnZoomMouse;
-                @ZoomMouse.performed -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnZoomMouse;
-                @ZoomMouse.canceled -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnZoomMouse;
-                @ZoomTouch.started -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnZoomTouch;
-                @ZoomTouch.performed -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnZoomTouch;
-                @ZoomTouch.canceled -= m_Wrapper.m_CameraControllerActionsCallbackInterface.OnZoomTouch;
+                @RotationControl.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnRotationControl;
+                @RotationControl.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnRotationControl;
+                @RotationControl.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnRotationControl;
+                @Click.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnClick;
+                @ZoomMouse.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnZoomMouse;
+                @ZoomMouse.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnZoomMouse;
+                @ZoomMouse.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnZoomMouse;
             }
-            m_Wrapper.m_CameraControllerActionsCallbackInterface = instance;
+            m_Wrapper.m_SceneControllerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @RotationControl.started += instance.OnRotationControl;
@@ -290,18 +254,14 @@ public class @Controls : IInputActionCollection, IDisposable
                 @ZoomMouse.started += instance.OnZoomMouse;
                 @ZoomMouse.performed += instance.OnZoomMouse;
                 @ZoomMouse.canceled += instance.OnZoomMouse;
-                @ZoomTouch.started += instance.OnZoomTouch;
-                @ZoomTouch.performed += instance.OnZoomTouch;
-                @ZoomTouch.canceled += instance.OnZoomTouch;
             }
         }
     }
-    public CameraControllerActions @CameraController => new CameraControllerActions(this);
-    public interface ICameraControllerActions
+    public SceneControllerActions @SceneController => new SceneControllerActions(this);
+    public interface ISceneControllerActions
     {
         void OnRotationControl(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnZoomMouse(InputAction.CallbackContext context);
-        void OnZoomTouch(InputAction.CallbackContext context);
     }
 }
