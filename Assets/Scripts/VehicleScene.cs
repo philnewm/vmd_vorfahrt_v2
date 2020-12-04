@@ -9,8 +9,9 @@ using UnityEngine.UI;
 public class VehicleScene : MonoBehaviour
 {
     //params
-    [Header("VehicleData")]
     [SerializeField] SceneLoader sceneLoader;
+
+    [Header("VehicleData")]
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI year;
     [SerializeField] TextMeshProUGUI descr;

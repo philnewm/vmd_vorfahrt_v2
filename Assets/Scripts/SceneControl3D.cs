@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class SceneControl3D : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] SceneLoader sceneLoader;
+
+    private void Awake()
     {
-        
+        sceneLoader.CheckPreloadScene();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }

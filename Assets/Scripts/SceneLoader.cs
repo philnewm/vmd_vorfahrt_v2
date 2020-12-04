@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadSceneAsync(sceneID);
     }
 
-    public void LoadStartScene()
+    public void LoadMenuScene()
     {
         SceneManager.LoadScene(1);
     }
@@ -27,11 +27,26 @@ public class SceneLoader : MonoBehaviour
         { UnityEngine.SceneManagement.SceneManager.LoadScene(0); }
     }
 
+    public void LoadVehicleScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void Load3DFullScene()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void LoadTextFullScene()
+    {
+        SceneManager.LoadScene(4);
+    }
+
     public void quit()
     {
-        if (Application.isEditor)
+        if (Application.isEditor)  //remove before building will create error
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;  //remove before building will create error
         }
 		else
 		{
