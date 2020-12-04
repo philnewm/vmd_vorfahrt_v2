@@ -1686,6 +1686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7444929979377335657, guid: fab442efb9e297b4c887d6b643cab2ba,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444929979377335657, guid: fab442efb9e297b4c887d6b643cab2ba,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnRotationXYAxis
       objectReference: {fileID: 0}
