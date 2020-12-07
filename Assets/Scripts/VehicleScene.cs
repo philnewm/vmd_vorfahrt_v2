@@ -42,7 +42,6 @@ public class VehicleScene : MonoBehaviour
         sceneLoader.CheckPreloadScene();
         state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
         loader = FindObjectOfType<DataLoader>();
-        SetSlides();
 
         greyedColor = new Color(100, 100, 100, 100);
         defaultColor = new Color(255, 255, 255, 255);
@@ -57,6 +56,7 @@ public class VehicleScene : MonoBehaviour
     private void Start()
     {
         state.SetCurScene();
+        SetSlides();
         CheckVehicleID();
         InserText();
         //InsertVehicleModell();
