@@ -19,21 +19,21 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] Image magImg;
     [SerializeField] GameObject rt, rl;
     [SerializeField] GameObject magazinePanel;
+    [SerializeField] GameObject descrPanel;
+    [SerializeField] GameObject blueBG;
     [SerializeField] GameObject pageSlides;
     [SerializeField] GameObject nextSlideBtn;
     [SerializeField] GameObject prevSlideBtn;
     [SerializeField] Button gerButton;
     [SerializeField] Button engButton;
-
-    [SerializeField] public GameObject basePlate;
+    [SerializeField] GameObject ExitBtn;
 
     //member variables
     SceneState state;
     DataLoader loader;
     public int slideNum;        //switch gallery slides
     private int magSlides;      //loading gallery slides
-    private bool show = false;  //indicator if gallery images are in use or not
-    private bool baseScale;
+    private bool showMag, showDescr, showBlueBG = false;  //indicator if gallery images are in use or not
     Color greyedColor;  //for chaning language button color to inaktive
     Color defaultColor; // for chaning language button color to aktive
 
@@ -42,8 +42,6 @@ public class VehicleScene : MonoBehaviour
         sceneLoader.CheckPreloadScene();
         state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
         loader = FindObjectOfType<DataLoader>();
-
-        state.SetCurScene();
         SetSlides();
 
         greyedColor = new Color(100, 100, 100, 100);
@@ -58,14 +56,15 @@ public class VehicleScene : MonoBehaviour
 
     private void Start()
     {
+        state.SetCurScene();
         CheckVehicleID();
         InserText();
         //InsertVehicleModell();
         //InsertBase();
         InsertMagazine();
         //InsertGallery();
-        prevSlideBtn.SetActive(show);
-        nextSlideBtn.SetActive(show);
+        prevSlideBtn.SetActive(showMag);
+        nextSlideBtn.SetActive(showMag);
     }
 
     private void CheckVehicleID()
@@ -129,14 +128,15 @@ public class VehicleScene : MonoBehaviour
             magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
         }
     }
-    public void FadeIt()
+    public void FadeMagazine()
     {
-        if (show) show = false;
-        else show = true;
-        magazinePanel.GetComponent<Animator>().SetBool("Show", show);
-        pageSlides.SetActive(!show);
-        prevSlideBtn.SetActive(show);
-        nextSlideBtn.SetActive(show);
+        if (showMag) showMag = false;
+        else showMag = true;
+        magazinePanel.GetComponent<Animator>().SetBool("show", showMag);
+        pageSlides.SetActive(!showMag);
+        prevSlideBtn.SetActive(showMag);
+        nextSlideBtn.SetActive(showMag);
+        ExitBtn.SetActive(showMag);
     }
 
     public void SetLanguageEng()

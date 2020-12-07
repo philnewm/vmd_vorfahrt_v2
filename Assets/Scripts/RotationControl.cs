@@ -110,7 +110,6 @@ public class RotationControl : MonoBehaviour
     private void UpdateXYRotation()
     {
         curXYRotation += smoothInputXYRotation;
-        Debug.Log("XY final: " + curXYRotation);
         gameObject.transform.localRotation = Quaternion.Euler(curXYRotation.x, curXYRotation.y, 0.0f);
     }
 

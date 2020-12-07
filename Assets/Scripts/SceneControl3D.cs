@@ -6,6 +6,7 @@ public class SceneControl3D : MonoBehaviour
 {
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] GameObject rt, rl;
+    [SerializeField] GameObject modellAsTexture;
     private SceneState state;
 
     private void Awake()
@@ -13,12 +14,13 @@ public class SceneControl3D : MonoBehaviour
         sceneLoader.CheckPreloadScene();
 
         state = FindObjectOfType<SceneState>();
-        state.SetCurScene();
     }
 
     private void Start()
     {
+        state.SetCurScene();
         CheckVehicleID();
+        modellAsTexture.GetComponent<Animator>().SetBool("upscaled", true);
     }
 
     private void CheckVehicleID()
@@ -33,5 +35,15 @@ public class SceneControl3D : MonoBehaviour
             rt.SetActive(true);
             rl.SetActive(false);
         }
+    }
+    public void ClosingDelay()
+    {
+        modellAsTexture.GetComponent<Animator>().SetBool("upscaled", false);
+        Invoke("BackToVehicle", 2);
+    }
+
+    private void BackToVehicle()
+    {
+        sceneLoader.LoadVehicleScene();
     }
 }

@@ -1,32 +1,25 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuScene : MonoBehaviour
+public class SceneControlText : MonoBehaviour
 {
-    //params
-    SceneState state;
-    DataLoader loader;
+    private SceneState state;
+    private DataLoader loader;
     [SerializeField] SceneLoader sceneLoader;
-    [SerializeField] Button button4RL;
-    [SerializeField] Button buttonRT;
-    [SerializeField] TextMeshProUGUI text4RL;
-    [SerializeField] TextMeshProUGUI textRT;
-    [SerializeField] TextMeshProUGUI year4RL;
-    [SerializeField] TextMeshProUGUI yearRT;
+    [SerializeField] TextMeshProUGUI descr;
     [SerializeField] Button gerButton;
     [SerializeField] Button engButton;
+    [SerializeField] GameObject descrPanel;
+
     Color greyedColor;  //for chaning language button color to inaktive
     Color defaultColor; // for chaning language button color to aktive
 
     private void Awake()
     {
         sceneLoader.CheckPreloadScene();
-
         state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
         loader = FindObjectOfType<DataLoader>();
 
@@ -37,39 +30,35 @@ public class MenuScene : MonoBehaviour
     private void Start()
     {
         state.SetCurScene();
-        InsertTitlePic();
-        InsertTitle();
-        InsertYear();
-    }
-
-    private void InsertTitlePic()
-    {
-        button4RL.image.sprite = loader.vehicles[0].GetTitlePic();
-        buttonRT.image.sprite = loader.vehicles[1].GetTitlePic();
-    }
-
-    private void InsertTitle()
-    {
-        text4RL.text = loader.vehicles[0].GetTitle();
-        textRT.text = loader.vehicles[1].GetTitle();
-    }
-
-    private void InsertYear()
-    {
-        year4RL.text = loader.vehicles[0].GetYear();
-        yearRT.text = loader.vehicles[1].GetYear();
+        descrPanel.GetComponent<Animator>().SetBool("show", true);
+        InserText();
     }
 
     public void SetLanguageEng()
     {
         state.SetLanguage("eng");
+        InserText();
         ChangeFLag();
     }
-
     public void SetLanguageGer()
     {
         state.SetLanguage("ger");
+        InserText();
         ChangeFLag();
+    }
+
+    public void InserText()
+    { 
+        if (state.curLang == "ger")
+        {
+            descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
+           + loader.vehicles[state.GetSelectedVehicle()].GetGerDescr();
+        }
+        else
+        {
+            descr.text = loader.vehicles[state.GetSelectedVehicle()].GetEngPreDescr() + "\n\n"
+            + loader.vehicles[state.GetSelectedVehicle()].GetEngDescr();
+        }
     }
 
     private void ChangeFLag() // still broken
@@ -79,21 +68,27 @@ public class MenuScene : MonoBehaviour
             gerButton.image.color = greyedColor;
             engButton.image.color = defaultColor;
 
-            Debug.Log("Eng Button: " + engButton.image.color);
-            Debug.Log("Ger Button: " + gerButton.image.color);
+            //Debug.Log("Eng Button: " + engButton.image.color);
+            //Debug.Log("Ger Button: " + gerButton.image.color);
         }
         else if (state.curLang == "ger")
         {
             engButton.image.color = greyedColor;
             engButton.image.color = defaultColor;
 
-            Debug.Log("Eng Button: " + engButton.image.color);
-            Debug.Log("Ger Button: " + gerButton.image.color);
+            //Debug.Log("Eng Button: " + engButton.image.color);
+            //Debug.Log("Ger Button: " + gerButton.image.color);
         }
     }
 
-    public void SwitchVehicle( int num)
+    public void ClosingDelay()
     {
-        state.SetSelectedVehicle(num);
+        descrPanel.GetComponent<Animator>().SetBool("show", false);
+        Invoke ("BackToVehicle", 2);
+    }
+
+    private void BackToVehicle()
+    {
+        sceneLoader.LoadVehicleScene();
     }
 }
