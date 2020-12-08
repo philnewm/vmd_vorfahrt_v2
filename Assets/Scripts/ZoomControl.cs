@@ -20,18 +20,19 @@ public class ZoomControl : MonoBehaviour
     [SerializeField] float minZoom;
 
     [Header("Slider Zoom")]
-    [SerializeField] float defaultFOV = 25;
-    [SerializeField] float multFOV = 2;
-    [SerializeField] float multScale = 1;
+    [SerializeField] float defaultFOV;
+    [SerializeField] float maxFOV;
     [SerializeField] Vector3 defaultScale;
     [SerializeField] float curScale;
 
    [Header("Camera Reference")]
     [SerializeField] Camera camera;
+    private Vector3 defaultCameraPosition;
 
     private void Awake()
     {
         defaultScale = gameObject.transform.localScale;
+        defaultCameraPosition = camera.transform.localPosition;
     }
 
     public void OnMouseZoom(InputAction.CallbackContext value)
@@ -65,10 +66,14 @@ public class ZoomControl : MonoBehaviour
 
     public void SliderZoom(float zoomValue)
     {
-        curScale = defaultScale.x;
-        float newZoom = curScale + (zoomValue * zoomValue * multScale);
+        float newzoom = minZoom + zoomValue * (maxZoom - minZoom);
 
-        gameObject.transform.localScale = new Vector3(newZoom, newZoom, newZoom);
-        camera.fieldOfView = defaultFOV + (multFOV * zoomValue);
+        camera.transform.localPosition = defaultCameraPosition + new Vector3(0, 0, newzoom);
+
+        //curScale = defaultScale.x;
+        //float newZoom = curScale + (zoomValue * zoomValue * multScale);
+
+        //gameObject.transform.localScale = new Vector3(newZoom, newZoom, newZoom);
+        camera.fieldOfView = defaultFOV + zoomValue * (maxFOV - defaultFOV);
     }
 }

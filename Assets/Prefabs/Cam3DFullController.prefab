@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 5771940369845581042}
   - component: {fileID: 5771940369845581043}
   - component: {fileID: 7444929979377335657}
+  - component: {fileID: 1954887400}
   m_Layer: 0
   m_Name: Cam3DFullController
   m_TagString: Untagged
@@ -338,7 +339,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5771940369845581043}
-        m_MethodName: OnRotationYAxis
+        m_MethodName: OnRotationXYAxis
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -355,20 +356,7 @@ MonoBehaviour:
     m_ActionId: 51739d57-748d-436b-b37d-1263632ab547
     m_ActionName: CameraController/Click[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_leftClick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 4756739937578413899, guid: fb48fdbb5bd3ff5408d960ef3b9f754c,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
-            Unity.InputSystem
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 3bb18ed0-e849-4078-a3e0-a8a2d1647b22
     m_ActionName: CameraController/ZoomMouse[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
@@ -376,3 +364,23 @@ MonoBehaviour:
   m_DefaultActionMap: SceneController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1954887400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771940369845581041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b2cb6e449854c48b53e37fc7e5418a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 1
+  maxZoom: 5
+  minZoom: 0
+  defaultFOV: 30
+  maxFOV: 45
+  defaultScale: {x: 0, y: 0, z: 0}
+  curScale: 0
+  camera: {fileID: 0}

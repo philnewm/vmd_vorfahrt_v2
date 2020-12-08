@@ -571,6 +571,26 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3984482186728364071}
+    - target: {fileID: 1494796957413447776, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: maxZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494796957413447776, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: zoomSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494796957413447776, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: maxFOV
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494796957413447776, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: minZoom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1494796957413447777, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -641,7 +661,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1494796957413447776, guid: b1fa120a73142e448b8fa54ac1cd7b7e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1fa120a73142e448b8fa54ac1cd7b7e, type: 3}
 --- !u!1 &1464385956 stripped
 GameObject:
@@ -1009,7 +1030,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1494796958298954179}
+      objectReference: {fileID: 7444929979327127297}
     - target: {fileID: 804203114894278978, guid: 19eaffe42d1df114cb02202ca5174e85,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1221,18 +1242,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbbfa6e270609d2409602342e35d52b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1494796958298954179 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1494796957413447776, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1464385955}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b2cb6e449854c48b53e37fc7e5418a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3341468670352814718
@@ -1478,6 +1487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1954887400, guid: fab442efb9e297b4c887d6b643cab2ba, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 3984482186728364071}
     - target: {fileID: 5771940369845581041, guid: fab442efb9e297b4c887d6b643cab2ba,
         type: 3}
       propertyPath: m_Name
@@ -1538,15 +1551,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7444929979377335657, guid: fab442efb9e297b4c887d6b643cab2ba,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7444929979377335657, guid: fab442efb9e297b4c887d6b643cab2ba,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnRotationXYAxis
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab442efb9e297b4c887d6b643cab2ba, type: 3}
+--- !u!114 &7444929979327127297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1954887400, guid: fab442efb9e297b4c887d6b643cab2ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 7444929979327127296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b2cb6e449854c48b53e37fc7e5418a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
