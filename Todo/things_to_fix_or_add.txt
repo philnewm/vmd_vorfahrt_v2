@@ -5,3 +5,5 @@
 - zoom sldier broken when using touch always rotates model instead of moving slider
 - interface doesn't scale, in case screen higher res than 1080p
 - real camera zoom: start + t*(ende-start)
+- 3D-Animationen for engine-hood + drivers door
+- uniform interface control colors

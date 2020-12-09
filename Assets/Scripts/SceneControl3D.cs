@@ -7,6 +7,7 @@ public class SceneControl3D : MonoBehaviour
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] GameObject rt, rl;
     [SerializeField] GameObject modellAsTexture;
+    [SerializeField] GameObject driverDoorBtn, coDriverDoorBtn, engineCoverBtn;
     private SceneState state;
 
     private void Awake()
@@ -29,11 +30,17 @@ public class SceneControl3D : MonoBehaviour
         {
             rt.SetActive(false);
             rl.SetActive(true);
+            driverDoorBtn.SetActive(true);
+            coDriverDoorBtn.SetActive(true);
+            engineCoverBtn.SetActive(true);
         }
         else
         {
             rt.SetActive(true);
             rl.SetActive(false);
+            driverDoorBtn.SetActive(false);
+            coDriverDoorBtn.SetActive(false);
+            engineCoverBtn.SetActive(false);
         }
     }
     public void ClosingDelay()

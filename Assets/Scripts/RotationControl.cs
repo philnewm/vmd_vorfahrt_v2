@@ -31,7 +31,7 @@ public class RotationControl : MonoBehaviour
     {
         sceneState = FindObjectOfType<SceneState>();
 
-        defaultRotation = gameObject.transform.rotation;
+        defaultRotation = gameObject.transform.localRotation;
         curYRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z);
         curXYRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z);
     }
@@ -115,6 +115,6 @@ public class RotationControl : MonoBehaviour
 
     public void ResetRotation() //TODO update seems to intefere with this one
     {
-        gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, defaultRotation, smoothRotationSpeed);
+        gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.localRotation, defaultRotation, 1.5f);
     }
 }

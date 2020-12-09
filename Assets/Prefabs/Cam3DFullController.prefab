@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6367317443bad894b99d428ac4e5d388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.3
+  moveSpeed: 0.2
   minXRot: -5
   maxXRot: 45
   smoothRotationSpeed: 5
@@ -383,4 +383,4 @@ MonoBehaviour:
   maxFOV: 45
   defaultScale: {x: 0, y: 0, z: 0}
   curScale: 0
-  camera: {fileID: 0}
+  camera: {fileID: 5771940368524494631}
