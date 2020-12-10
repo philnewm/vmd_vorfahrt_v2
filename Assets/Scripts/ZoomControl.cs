@@ -70,10 +70,6 @@ public class ZoomControl : MonoBehaviour
 
         camera.transform.localPosition = defaultCameraPosition + new Vector3(0, 0, newzoom);
 
-        //curScale = defaultScale.x;
-        //float newZoom = curScale + (zoomValue * zoomValue * multScale);
-
-        //gameObject.transform.localScale = new Vector3(newZoom, newZoom, newZoom);
         camera.fieldOfView = defaultFOV + zoomValue * (maxFOV - defaultFOV);
     }
 }
