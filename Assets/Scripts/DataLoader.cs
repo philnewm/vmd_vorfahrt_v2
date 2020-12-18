@@ -10,32 +10,42 @@ public class DataLoader : MonoBehaviour
     //Input from outside
     [SerializeField] SceneState state;
     [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] string ImageSubFolder;
+    [SerializeField] string TextSubFolder;
 
     //member variables
     public Vehicle[] vehicles;
 
-    string vehicleID;
-    string curLanguage;
-
+    private string vehicleID;
+    private UnityWebRequest uwr;
 
     private void Awake()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
 
-        curLanguage = state.GetLanguage();
-        int i = 0;
         DirectoryInfo directoryInfo = new DirectoryInfo(Application.streamingAssetsPath);
         FileInfo[] allFiles = directoryInfo.GetFiles("*.*");
 
         vehicles = new Vehicle[allFiles.Length];
 
+        LoopThroughAllDir(allFiles);
+        sceneLoader.LoadNextScene();
+    }
+
+    private void LoopThroughAllDir(FileInfo[] allFiles)
+    {
+        int i = 0;
         foreach (FileInfo file in allFiles)
         {
             SearchForContent(file, i);
             //Debug.Log(file);
             i += 1;
         }
-        sceneLoader.LoadNextScene();
+    }
+
+    public static string getFileLocation(string relativePath)
+    {
+        return "file://" + Path.Combine(Application.streamingAssetsPath, relativePath);
     }
 
     private void SearchForContent(FileInfo contentFile, int index)
