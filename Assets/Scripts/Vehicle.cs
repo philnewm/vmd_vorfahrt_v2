@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Vehicle
@@ -27,14 +28,16 @@ public class Vehicle
     [SerializeField] Material opaqueMat;
     [SerializeField] Material transpMat;
 
-    [SerializeField] Sprite[] magazine;
-    [SerializeField] Sprite[] gallery;
+    [SerializeField] public List<Texture2D> magazine;
+    [SerializeField] public List<Texture2D> gallery;
 
     private SceneState state;
 
     public Vehicle(string name)
     {
         this.name = name;
+        magazine = new List<Texture2D>();
+        gallery = new List<Texture2D>();
     }
 
     public void LoadText (string jsonData)
@@ -97,22 +100,22 @@ public class Vehicle
         this.titlePicture = titlePic;
     }
 
-    public void SetGallery(Sprite[] gallery)
+    public void SetGallery(List<Texture2D> gallery)
     {
         this.gallery = gallery;
     }
 
-    public Sprite[] GetGallery()
+    public List<Texture2D> GetGallery()
     {
         return gallery;
     }
 
-    public void SetMagazine(Sprite[] magazine)
+    public void SetMagazine(List<Texture2D> magazine)
     {
         this.magazine = magazine;
     }
 
-    public Sprite[] GetMagazine()
+    public List<Texture2D> GetMagazine()
     {
         return magazine;
     }

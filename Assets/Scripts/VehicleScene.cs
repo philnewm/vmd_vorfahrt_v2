@@ -16,7 +16,7 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] TextMeshProUGUI year;
     [SerializeField] TextMeshProUGUI descr;
     [SerializeField] TextMeshProUGUI menuYear;
-    [SerializeField] Image magImg;
+    [SerializeField] Texture2D magImg;
     [SerializeField] GameObject rt, rl;
     [SerializeField] GameObject magazinePanel;
     [SerializeField] GameObject descrPanel;
@@ -49,7 +49,7 @@ public class VehicleScene : MonoBehaviour
 
     private void SetSlides()
     {
-        magSlides = loader.vehicles[state.GetSelectedVehicle()].GetMagazine().Length - 1;
+        magSlides = loader.vehicles[state.GetSelectedVehicle()].magazine.Count - 1;
         slideNum = 0;
     }
 
@@ -100,7 +100,7 @@ public class VehicleScene : MonoBehaviour
     }
     private void InsertMagazine()
     {
-        magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        magImg = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     public void NextSlide()
@@ -112,7 +112,7 @@ public class VehicleScene : MonoBehaviour
         else
         {
             slideNum++;
-            magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+            magImg = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
         }
     }
 
@@ -125,7 +125,7 @@ public class VehicleScene : MonoBehaviour
         else
         {
             slideNum--;
-            magImg.sprite = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+            magImg = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
         }
     }
     public void FadeMagazine()

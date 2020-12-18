@@ -538,8 +538,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
+      propertyPath: vehicles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: vehicleDirNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
       propertyPath: sceneLoader
       value: 
       objectReference: {fileID: 1797228549}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: magazineSubFolder
+      value: /Images/
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: imagesSubFolder
+      value: \Images\
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: magazineFileFormat
+      value: '*jpg'
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: titlePicFileFormat
+      value: '*png'
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: TextSubFolder
+      value: \Text\
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: magUWRPath
+      value: /Images/
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: magUWRImagesPath
+      value: /Images/
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: imagesUWRSubfolder
+      value: /Images/
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: textUWRSubFolder
+      value: /Text/
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: vehicles.Array.data[0].name
+      value: 4rl
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: vehicles.Array.data[1].name
+      value: rt
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: vehicleDirNames.Array.data[0]
+      value: 4rl
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: vehicleDirNames.Array.data[1]
+      value: rt
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b13b15ebccf3a94f948759230d9bbec, type: 3}
