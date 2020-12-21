@@ -47,9 +47,9 @@ public class SceneLoader : MonoBehaviour
         {
             UnityEditor.EditorApplication.isPlaying = false;  //remove before building will create error
         }
-		else
-		{
-			Application.Quit();
-		}
+        else
+        {
+            Application.Quit();
+        }
 	}
 }

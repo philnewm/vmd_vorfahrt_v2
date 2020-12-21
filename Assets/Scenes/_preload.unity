@@ -616,5 +616,10 @@ PrefabInstance:
       propertyPath: vehicleDirNames.Array.data[1]
       value: rt
       objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: titlePic
+      value: TitlePic.png
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b13b15ebccf3a94f948759230d9bbec, type: 3}

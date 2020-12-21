@@ -21,7 +21,7 @@ public class Vehicle
     [TextArea(10, 8)] [SerializeField] string engDescr;
 
     [Header("Title Picture")]
-    [SerializeField] Sprite titlePicture;
+    [SerializeField] Texture2D titlePicture;
 
     [Header("Content for 3D Modells")]
     [SerializeField] GameObject vehicleModel;
@@ -90,14 +90,19 @@ public class Vehicle
         return engDescr;
     }
 
-    public Sprite GetTitlePic()
+    public Texture2D GetTitlePic()
     {
         return titlePicture;
     }
 
-    public void SetTitlePic(Sprite titlePic)
+    public void SetTitlePic(Texture2D titlePic)
     {
         this.titlePicture = titlePic;
+    }
+
+    public void SetTitlePicName(string titlePicName)
+    {
+        this.titlePicture.name= titlePicName;
     }
 
     public void SetGallery(List<Texture2D> gallery)
@@ -115,8 +120,24 @@ public class Vehicle
         this.magazine = magazine;
     }
 
+    public void SetMagazine(Texture2D magazine)
+    {
+        this.magazine.Add(magazine);
+    }
+
+    public void SetMagazinePosition(int magPos, string name)
+    {
+        int newPos = this.magazine.Count - 1;
+        this.magazine[newPos].name = name;
+    }
+
     public List<Texture2D> GetMagazine()
     {
         return magazine;
+    }
+
+    public Texture2D GetMagazine(int index)
+    {
+        return magazine[index];
     }
 }

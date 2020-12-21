@@ -48,7 +48,7 @@ public class RotationControl : MonoBehaviour
     public void OnRotationXYAxis(InputAction.CallbackContext value)
     {
         Vector2 inputRotation = value.ReadValue<Vector2>();
-        rawAxisXYRotation = new Vector3(inputRotation.y * moveSpeed, -inputRotation.x * moveSpeed, 0.0f);
+        rawAxisXYRotation = new Vector3(-inputRotation.y * moveSpeed, inputRotation.x * moveSpeed, 0.0f); //prepared for touch control
 
         //add rotation value for every frame
         curXYRotation += rawAxisXYRotation;

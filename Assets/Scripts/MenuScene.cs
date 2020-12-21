@@ -44,8 +44,8 @@ public class MenuScene : MonoBehaviour
 
     private void InsertTitlePic()
     {
-        button4RL.image.sprite = loader.vehicles[0].GetTitlePic();
-        buttonRT.image.sprite = loader.vehicles[1].GetTitlePic();
+        button4RL.GetComponent<RawImage>().texture = loader.vehicles[0].GetTitlePic();
+        buttonRT.GetComponent<RawImage>().texture = loader.vehicles[1].GetTitlePic();
     }
 
     private void InsertTitle()
