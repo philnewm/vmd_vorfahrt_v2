@@ -5,6 +5,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+#pragma warning disable CS0649, CS0414 //suppress non relevant warnings
 
 public class VehicleScene : MonoBehaviour
 {

@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using UnityEngine.Networking;
 using System.Linq;
+#pragma warning disable CS0649 //suppress non relevant warnings
 
 public class DataLoader : MonoBehaviour
 {
@@ -16,17 +17,19 @@ public class DataLoader : MonoBehaviour
     [SerializeField] string imagesUWRSubfolder;
     [SerializeField] string magazineFileFormat;
     [SerializeField] string TextSubFolder;
-    [SerializeField] string textUWRSubFolder;
     public string[] vehicleDirNames;
-    public List<Texture2D> magazine;
+    public string[] availableLanguages;
+    public string textFormat;
 
     //member variables
     public Vehicle[] vehicles;
+    private List<Texture2D> magazine;
     private FileInfo[] magFiles;
     private DirectoryInfo streamingAssetsDir;
     private string vehicleIDUWR;
     private string magUWRPath;
     private string vehicleIDSearch;
+    private string jsonPath;
     private DirectoryInfo magDirSearchPath;
 
     private void Awake()
@@ -80,6 +83,7 @@ public class DataLoader : MonoBehaviour
     {
         magUWRPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + imagesUWRSubfolder);
         magDirSearchPath = new DirectoryInfo(streamingAssetsDir + vehicleIDSearch + imagesSubFolder);
+        jsonPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + TextSubFolder);
         //Debug.Log(magDirSearchPath);
     }
 
@@ -89,22 +93,28 @@ public class DataLoader : MonoBehaviour
         foreach (FileInfo image in magFiles)
         {
             string fileName = Path.GetFileName(image.ToString());
-            //Debug.Log(fileName);
             StartCoroutine(LoadMagImages(fileName, index));
+            //SearchForGallery();
         }
+
+        foreach (string language in availableLanguages)
+        {
+            StartCoroutine(LoadJSONFiles(index, language));
+        }
+        //LoadSingleJSONFiles(0, "eng");
+
         StartCoroutine(LoadTitlePic(index));
-        //SearchImages(index);
+        //StartCoroutine(LoadJSONFiles(0, "ger"));
         //SearchForContentForModel(index);
         //SearchForTextures();
-        //SearchForGallery();
     }
 
     private void SearchForText(int index)
     {
-        string languageGer = "ger", languageEng = "eng";
+        string languageger = "ger", languageeng = "eng";
 
-        LoadText(index, languageGer);
-        LoadText(index, languageEng);
+        LoadText(index, languageger);
+        LoadText(index, languageeng);
     }
 
     private void LoadText(int index, string language)
@@ -114,6 +124,45 @@ public class DataLoader : MonoBehaviour
         jsonPath = Application.streamingAssetsPath + "/" + vehicleIDSearch + "/Text/" + language + ".json";
         jsonString = File.ReadAllText(jsonPath);
         vehicles[index].LoadText(jsonString);
+    }
+
+    private IEnumerator LoadJSONFiles(int index, string language)
+    {
+        string searchForJSON = jsonPath + language + textFormat;
+
+        using (UnityWebRequest uwr = UnityWebRequest.Get(searchForJSON))
+        {
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                Debug.Log(uwr.error);
+            }
+            else
+            {
+                vehicles[index].LoadText(uwr.downloadHandler.text);
+            }
+        }
+    }
+
+    private IEnumerator LoadSingleJSONFiles(int index, string language)
+    {
+        Debug.Log("Durchlauf: " + index);
+        string searchForJSON = jsonPath + language + textFormat;
+        Debug.Log("final search path: " + searchForJSON);
+
+        using (UnityWebRequest uwr = UnityWebRequest.Get(searchForJSON))
+        {
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                Debug.Log(uwr.error);
+            }
+            else
+            {
+                //Debug.Log(jsonData);
+                vehicles[index].LoadText(uwr.downloadHandler.text);
+            }
+        }
     }
 
     private IEnumerator LoadMagImages(string file, int index)

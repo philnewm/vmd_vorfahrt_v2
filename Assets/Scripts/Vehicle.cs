@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#pragma warning disable CS0649 //suppress non relevant warnings
 
 [System.Serializable]
 public class Vehicle
@@ -16,7 +17,7 @@ public class Vehicle
     [TextArea(10,8)] [SerializeField] string gerDescr;
 
     [Header("English Text")]
-    [SerializeField] string engHeader;
+    [SerializeField] public string engHeader;
     [TextArea(10, 3)] [SerializeField] string engPreDescr;
     [TextArea(10, 8)] [SerializeField] string engDescr;
 

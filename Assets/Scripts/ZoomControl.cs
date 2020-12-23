@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+#pragma warning disable CS0108, CS0649 //suppress non relevant warnings
 
 public class ZoomControl : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ZoomControl : MonoBehaviour
     Vector3 zoomVector;
     float sliderZoom;
 
+    //[SerializeField] InputActionAsset uiInput;
+    [SerializeField] InputActionAsset sceneInput;
 
     //params
     [Header("Mouse Scroll Zoom")]
@@ -25,7 +28,7 @@ public class ZoomControl : MonoBehaviour
     [SerializeField] Vector3 defaultScale;
     [SerializeField] float curScale;
 
-   [Header("Camera Reference")]
+    [Header("Camera Reference")]
     [SerializeField] Camera camera;
     private Vector3 defaultCameraPosition;
 

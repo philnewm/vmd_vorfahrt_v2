@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+#pragma warning disable CS0649 //suppress non relevant warnings
 
 public class SceneControlText : MonoBehaviour
 {
