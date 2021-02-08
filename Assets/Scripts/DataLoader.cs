@@ -193,7 +193,8 @@ public class DataLoader : MonoBehaviour
         vehicles[index].magazine = vehicles[index].magazine.OrderBy(mag => mag.name, new AlphanumComparatorFast()).ToList();        
     }
 
-    //AlphanumComparatorFast made by dotnetperls
+    // NOTE: This code is free to use in any program.
+	// ... It was developed by Dot Net Perls.
     //link: https://www.dotnetperls.com/alphanumeric-sorting
     public class AlphanumComparatorFast : IComparer<string>
     {
