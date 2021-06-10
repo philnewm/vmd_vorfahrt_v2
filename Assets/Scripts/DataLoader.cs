@@ -5,21 +5,39 @@ using System.IO;
 using System;
 using UnityEngine.Networking;
 using System.Linq;
-#pragma warning disable CS0649 //suppress non relevant warnings
+//#pragma warning disable CS0649 //suppress non relevant warnings
 
 public class DataLoader : MonoBehaviour
 {
     //Input from outside
-    [SerializeField] SceneState state;
-    [SerializeField] SceneLoader sceneLoader;
-    [SerializeField] string titlePic;
-    [SerializeField] string imagesSubFolder;
-    [SerializeField] string imagesUWRSubfolder;
-    [SerializeField] string magazineFileFormat;
-    [SerializeField] string TextSubFolder;
-    public string[] vehicleDirNames;
-    public string[] availableLanguages;
-    public string textFormat;
+    [Header("External Scripts")]
+    [Tooltip("load SceneState-Script from another gameObject")]
+    [SerializeField]
+    SceneState state;
+    [Tooltip("load SceneLoader-Script from another gameObject")]
+    [SerializeField]
+    SceneLoader sceneLoader;
+
+    [Header("Files and File Paths")]
+    [Tooltip("insert the exact filename of the title picture, needs to be consistent")]
+    [SerializeField]
+    string titlePicFileName;
+    [Tooltip("insert the exact directory name for the gallery image subdirectory, needs '/' before and after it")]
+    [SerializeField]
+    string galleryImgSubDir;
+    [Tooltip("insert the exact directory name for the text subdirectory, needs '/' before and after it")]
+    [SerializeField]
+    string textSubDir;
+    //string imagesSubFolder;  seems obsolete
+    //string magazineFileFormat; seems obsolete
+
+    [Header("For Debugging")]
+    [SerializeField]
+    bool moveon;
+    [Tooltip("how many are available and what are their values")]
+    [SerializeField]
+    public string[] availableVehicles, availableLanguages;
+    public string textFileFormat;
 
     //member variables
     public Vehicle[] vehicles;
@@ -30,37 +48,36 @@ public class DataLoader : MonoBehaviour
     private string magUWRPath;
     private string vehicleIDSearch;
     private string jsonPath;
-    private DirectoryInfo magDirSearchPath;
+    private DirectoryInfo galImgSearchPath;
 
     private void Awake()
     {
-        sceneLoader = FindObjectOfType<SceneLoader>();
-        //get streamingAssets path
-        streamingAssetsDir = new DirectoryInfo(Application.streamingAssetsPath);
-        GetAvailableVehicles();
+        state.SetCurScene(); //set scene state on preload
+
+        LoadStreamingAssetsDir();
+        CreateVehicleArray();
         LoopThroughAvailableVehicles();
     }
 
-    private void CreateMagFileArray()
+    private void LoadStreamingAssetsDir()
     {
-        magFiles = magDirSearchPath.GetFiles("*.jpg");
+         streamingAssetsDir = new DirectoryInfo(Application.streamingAssetsPath);  //save streamingAssets path
     }
 
-    private void GetAvailableVehicles()
+    private void CreateVehicleArray()
     {
         //FileInfo[] availableVehicles = streamingAssetsDir.GetFiles("*.*"); //wont work outside editor
-        vehicles = new Vehicle[vehicleDirNames.Length];
+        vehicles = new Vehicle[availableVehicles.Length]; //try to adjust to work dynamic like it did in line above
     }
 
     private void LoopThroughAvailableVehicles()
     {
         for(int i = 0; i <= vehicles.Length-1; i++)
         {
-            //ID found
             CrateVehicle(i);
             ExtractVehicleID(i);
             CreatePaths();
-            CreateMagFileArray();
+            CreateGalFileArray();
             SearchForContent(i);
             //Debug.Log(file);
         }
@@ -68,23 +85,28 @@ public class DataLoader : MonoBehaviour
 
     private void CrateVehicle(int index)
     {
-        vehicles[index] = new Vehicle(vehicleDirNames[index]);
+        vehicles[index] = new Vehicle(availableVehicles[index]);
     }
 
     private void ExtractVehicleID(int index)
     {
         //string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(contentFile.ToString()); //wont work outside editor
         //vehicles[0] = new Vehicle(fileNameWithoutExtension);
-        vehicleIDSearch = "/" + vehicleDirNames[index];
-        vehicleIDUWR = "/" + vehicleDirNames[index];
+        vehicleIDSearch = "/" + availableVehicles[index];
+        vehicleIDUWR = vehicleIDSearch;
     }
 
     private void CreatePaths()
     {
-        magUWRPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + imagesUWRSubfolder);
-        magDirSearchPath = new DirectoryInfo(streamingAssetsDir + vehicleIDSearch + imagesSubFolder);
-        jsonPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + TextSubFolder);
-        //Debug.Log(magDirSearchPath);
+        magUWRPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + "/" + galleryImgSubDir + "/");
+        galImgSearchPath = new DirectoryInfo(streamingAssetsDir + vehicleIDSearch + "/" + galleryImgSubDir + "/");
+        jsonPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + "/" + textSubDir + "/");
+        //Debug.Log(galImgSearchPath);
+    }
+
+    private void CreateGalFileArray()
+    {
+        magFiles = galImgSearchPath.GetFiles("*.jpg");
     }
 
     private void SearchForContent(int index)
@@ -128,7 +150,7 @@ public class DataLoader : MonoBehaviour
 
     private IEnumerator LoadJSONFiles(int index, string language)
     {
-        string searchForJSON = jsonPath + language + textFormat;
+        string searchForJSON = jsonPath + language + textFileFormat;
 
         using (UnityWebRequest uwr = UnityWebRequest.Get(searchForJSON))
         {
@@ -147,7 +169,7 @@ public class DataLoader : MonoBehaviour
     private IEnumerator LoadSingleJSONFiles(int index, string language)
     {
         Debug.Log("Durchlauf: " + index);
-        string searchForJSON = jsonPath + language + textFormat;
+        string searchForJSON = jsonPath + language + textFileFormat;
         Debug.Log("final search path: " + searchForJSON);
 
         using (UnityWebRequest uwr = UnityWebRequest.Get(searchForJSON))
@@ -290,7 +312,7 @@ public class DataLoader : MonoBehaviour
 
     private IEnumerator LoadTitlePic(int index)
     {
-        string searchForTitlePic = magUWRPath + titlePic;
+        string searchForTitlePic = magUWRPath + titlePicFileName;
         //Debug.Log(searchForMag);
 
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(searchForTitlePic))
@@ -305,19 +327,22 @@ public class DataLoader : MonoBehaviour
                 //Debug.Log(vehicles[index].GetName());
                 //adds images in random way to list
                 vehicles[index].SetTitlePic(DownloadHandlerTexture.GetContent(uwr));
-                vehicles[index].SetTitlePicName(Path.GetFileNameWithoutExtension(titlePic));
+                vehicles[index].SetTitlePicName(Path.GetFileNameWithoutExtension(titlePicFileName));
             }
         }
     }
 
     private IEnumerator Start()
     {
-        for(int i = 0; i <= vehicleDirNames.Length-1; i++)
+        for(int i = 0; i <= availableVehicles.Length-1; i++)
         {
             SortMagList(i);
         }
 
-        yield return new WaitForSeconds(1);
-        sceneLoader.LoadNextScene();
+        if (moveon)
+        {
+            yield return new WaitForSeconds(1);
+            sceneLoader.LoadNextScene();
+        }        
     }
 }
