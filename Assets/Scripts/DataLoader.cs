@@ -39,21 +39,21 @@ public class DataLoader : MonoBehaviour
     public string[] availableVehicles, availableLanguages;
     public string textFileFormat;
 
+    [Header("UWR realted")]
+    [Tooltip("Prefix for UWRs to access local file system")]
+    [SerializeField]
+    private string uwrLocalPath;
+
     //member variables
     public Vehicle[] vehicles;
-    private List<Texture2D> magazine;
-    private FileInfo[] magFiles;
+    private FileInfo[] galImgFiles;
     private DirectoryInfo streamingAssetsDir;
-    private string vehicleIDUWR;
-    private string magUWRPath;
-    private string vehicleIDSearch;
-    private string jsonPath;
-    private DirectoryInfo galImgSearchPath;
+    private string magUWRPath, jsonPath;
 
     private void Awake()
     {
         state.SetCurScene(); //set scene state on preload
-
+        uwrLocalPath = "file://";
         LoadStreamingAssetsDir();
         CreateVehicleArray();
         LoopThroughAvailableVehicles();
@@ -75,8 +75,8 @@ public class DataLoader : MonoBehaviour
         for(int i = 0; i <= vehicles.Length-1; i++)
         {
             CrateVehicle(i);
-            ExtractVehicleID(i);
-            CreatePaths();
+            //ExtractVehicleID(i);
+            CreatePaths(i);
             CreateGalFileArray();
             SearchForContent(i);
             //Debug.Log(file);
@@ -92,30 +92,29 @@ public class DataLoader : MonoBehaviour
     {
         //string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(contentFile.ToString()); //wont work outside editor
         //vehicles[0] = new Vehicle(fileNameWithoutExtension);
-        vehicleIDSearch = "/" + availableVehicles[index];
-        vehicleIDUWR = vehicleIDSearch;
     }
 
-    private void CreatePaths()
+    private void CreatePaths(int index)
     {
-        magUWRPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + "/" + galleryImgSubDir + "/");
-        galImgSearchPath = new DirectoryInfo(streamingAssetsDir + vehicleIDSearch + "/" + galleryImgSubDir + "/");
-        jsonPath = Path.Combine("file://" + streamingAssetsDir + vehicleIDUWR + "/" + textSubDir + "/");
-        //Debug.Log(galImgSearchPath);
+        string vehiclePath = streamingAssetsDir + "/" + availableVehicles[index];
+
+        magUWRPath = Path.Combine(vehiclePath + "/" + galleryImgSubDir + "/");
+        jsonPath = Path.Combine(vehiclePath + "/" + textSubDir + "/");
     }
 
     private void CreateGalFileArray()
     {
-        magFiles = galImgSearchPath.GetFiles("*.jpg");
+        DirectoryInfo galImgSearchPath = new DirectoryInfo(magUWRPath);
+        galImgFiles = galImgSearchPath.GetFiles("*.jpg");
     }
 
     private void SearchForContent(int index)
     {
         //SearchForText(index);
-        foreach (FileInfo image in magFiles)
+        foreach (FileInfo image in galImgFiles)
         {
             string fileName = Path.GetFileName(image.ToString());
-            StartCoroutine(LoadMagImages(fileName, index));
+            StartCoroutine(LoadGalImg(fileName, index));
             //SearchForGallery();
         }
 
@@ -141,9 +140,10 @@ public class DataLoader : MonoBehaviour
 
     private void LoadText(int index, string language)
     {
-        string jsonPath;
+        string jsonFile;
         string jsonString;
-        jsonPath = Application.streamingAssetsPath + "/" + vehicleIDSearch + "/Text/" + language + ".json";
+
+        jsonFile = jsonPath + language + textFileFormat;
         jsonString = File.ReadAllText(jsonPath);
         vehicles[index].LoadText(jsonString);
     }
@@ -152,7 +152,7 @@ public class DataLoader : MonoBehaviour
     {
         string searchForJSON = jsonPath + language + textFileFormat;
 
-        using (UnityWebRequest uwr = UnityWebRequest.Get(searchForJSON))
+        using (UnityWebRequest uwr = UnityWebRequest.Get(uwrLocalPath + searchForJSON))
         {
             yield return uwr.SendWebRequest();
             if (uwr.isNetworkError || uwr.isHttpError)
@@ -168,11 +168,9 @@ public class DataLoader : MonoBehaviour
 
     private IEnumerator LoadSingleJSONFiles(int index, string language)
     {
-        Debug.Log("Durchlauf: " + index);
         string searchForJSON = jsonPath + language + textFileFormat;
-        Debug.Log("final search path: " + searchForJSON);
 
-        using (UnityWebRequest uwr = UnityWebRequest.Get(searchForJSON))
+        using (UnityWebRequest uwr = UnityWebRequest.Get(uwrLocalPath + searchForJSON))
         {
             yield return uwr.SendWebRequest();
             if (uwr.isNetworkError || uwr.isHttpError)
@@ -187,12 +185,12 @@ public class DataLoader : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadMagImages(string file, int index)
+    private IEnumerator LoadGalImg(string file, int index)
     {
         string searchForMag = magUWRPath + file;
         //Debug.Log(searchForMag);
 
-        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(searchForMag))
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uwrLocalPath + searchForMag))
         {
             yield return uwr.SendWebRequest();
             if (uwr.isNetworkError || uwr.isHttpError)
@@ -203,8 +201,8 @@ public class DataLoader : MonoBehaviour
             {
                 //Debug.Log(vehicles[index].GetName());
                 //adds images in random way to list
-                vehicles[index].magazine.Add(DownloadHandlerTexture.GetContent(uwr));
-                vehicles[index].magazine[vehicles[index].magazine.Count - 1].name = Path.GetFileNameWithoutExtension(file);
+                vehicles[index].gallery.Add(DownloadHandlerTexture.GetContent(uwr));
+                vehicles[index].gallery[vehicles[index].gallery.Count - 1].name = Path.GetFileNameWithoutExtension(file);
             }
         }
     }
@@ -212,7 +210,7 @@ public class DataLoader : MonoBehaviour
     private void SortMagList(int index)
     {
         //sorts the random list by item name
-        vehicles[index].magazine = vehicles[index].magazine.OrderBy(mag => mag.name, new AlphanumComparatorFast()).ToList();        
+        vehicles[index].gallery = vehicles[index].gallery.OrderBy(mag => mag.name, new AlphanumComparatorFast()).ToList();        
     }
 
     // NOTE: This code is free to use in any program.
@@ -315,7 +313,7 @@ public class DataLoader : MonoBehaviour
         string searchForTitlePic = magUWRPath + titlePicFileName;
         //Debug.Log(searchForMag);
 
-        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(searchForTitlePic))
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uwrLocalPath + searchForTitlePic))
         {
             yield return uwr.SendWebRequest();
             if (uwr.isNetworkError || uwr.isHttpError)

@@ -24,20 +24,18 @@ public class Vehicle
     [Header("Title Picture")]
     [SerializeField] Texture2D titlePicture;
 
-    [Header("Content for 3D Modells")]
-    [SerializeField] GameObject vehicleModel;
-    [SerializeField] Material opaqueMat;
-    [SerializeField] Material transpMat;
+    // optional
+    // [Header("Content for 3D Modells")]
+    // [SerializeField] GameObject vehicleModel;
+    // [SerializeField] Material opaqueMat;
+    // [SerializeField] Material transpMat;
 
-    [SerializeField] public List<Texture2D> magazine;
     [SerializeField] public List<Texture2D> gallery;
 
-    private SceneState state;
 
     public Vehicle(string name)
     {
         this.name = name;
-        magazine = new List<Texture2D>();
         gallery = new List<Texture2D>();
     }
 
@@ -106,39 +104,29 @@ public class Vehicle
         this.titlePicture.name= titlePicName;
     }
 
-    public void SetGallery(List<Texture2D> gallery)
+    public void SetMagazine(List<Texture2D> gallery)
     {
         this.gallery = gallery;
     }
 
-    public List<Texture2D> GetGallery()
+    public void SetMagazine(Texture2D gallery)
     {
-        return gallery;
-    }
-
-    public void SetMagazine(List<Texture2D> magazine)
-    {
-        this.magazine = magazine;
-    }
-
-    public void SetMagazine(Texture2D magazine)
-    {
-        this.magazine.Add(magazine);
+        this.gallery.Add(gallery);
     }
 
     public void SetMagazinePosition(int magPos, string name)
     {
-        int newPos = this.magazine.Count - 1;
-        this.magazine[newPos].name = name;
+        int newPos = this.gallery.Count - 1;
+        this.gallery[newPos].name = name;
     }
 
     public List<Texture2D> GetMagazine()
     {
-        return magazine;
+        return gallery;
     }
 
     public Texture2D GetMagazine(int index)
     {
-        return magazine[index];
+        return gallery[index];
     }
 }

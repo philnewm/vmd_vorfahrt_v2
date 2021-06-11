@@ -50,7 +50,7 @@ public class VehicleScene : MonoBehaviour
 
     private void SetSlides()
     {
-        magSlides = loader.vehicles[state.GetSelectedVehicle()].magazine.Count - 1;
+        magSlides = loader.vehicles[state.GetSelectedVehicle()].gallery.Count - 1;
         slideNum = 0;
     }
 
