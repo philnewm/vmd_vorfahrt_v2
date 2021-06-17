@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.IO;
 using System;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Linq;
 //#pragma warning disable CS0649 //suppress non relevant warnings
@@ -12,22 +14,17 @@ public class DataLoader : MonoBehaviour
     //Input from outside
     [Header("External Scripts")]
     [Tooltip("load SceneState-Script from another gameObject")]
-    [SerializeField]
-    SceneState state;
+    [SerializeField] SceneState state;
     [Tooltip("load SceneLoader-Script from another gameObject")]
-    [SerializeField]
-    SceneLoader sceneLoader;
+    [SerializeField] SceneLoader sceneLoader;
 
     [Header("Files and File Paths")]
     [Tooltip("insert the exact filename of the title picture, needs to be consistent")]
-    [SerializeField]
-    string titlePicFileName;
+    [SerializeField] string titlePicFileName;
     [Tooltip("insert the exact directory name for the gallery image subdirectory, needs '/' before and after it")]
-    [SerializeField]
-    string galleryImgSubDir;
+    [SerializeField] string galleryImgSubDir;
     [Tooltip("insert the exact directory name for the text subdirectory, needs '/' before and after it")]
-    [SerializeField]
-    string textSubDir;
+    [SerializeField] string textSubDir;
     //string imagesSubFolder;  seems obsolete
     //string magazineFileFormat; seems obsolete
 
@@ -52,7 +49,6 @@ public class DataLoader : MonoBehaviour
 
     private void Awake()
     {
-        state.SetCurScene(); //set scene state on preload
         uwrLocalPath = "file://";
         LoadStreamingAssetsDir();
         CreateVehicleArray();
@@ -66,7 +62,7 @@ public class DataLoader : MonoBehaviour
 
     private void CreateVehicleArray()
     {
-        //FileInfo[] availableVehicles = streamingAssetsDir.GetFiles("*.*"); //wont work outside editor
+        FileInfo[] Vehicles = streamingAssetsDir.GetFiles("*.*"); //wont work outside editor
         vehicles = new Vehicle[availableVehicles.Length]; //try to adjust to work dynamic like it did in line above
     }
 

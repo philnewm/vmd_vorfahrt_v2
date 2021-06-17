@@ -34,6 +34,7 @@ public class SceneState : MonoBehaviour
     public void SetCurScene()
     {
         curScene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(curScene);
     }
 
     public int GetSelectedVehicle()

@@ -1113,6 +1113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
       propertyPath: magUWRPath
       value: /Images/
       objectReference: {fileID: 0}
