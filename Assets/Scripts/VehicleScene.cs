@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 #pragma warning disable CS0649, CS0414 //suppress non relevant warnings
@@ -59,7 +55,7 @@ public class VehicleScene : MonoBehaviour
         PrepopSlideNum();
         CheckVehicleID();
         InserText();
-        InserGallery();
+        InsertGallery();
         prevSlideBtn.SetActive(showGal);
         nextSlideBtn.SetActive(showGal);
     }
@@ -93,81 +89,96 @@ public class VehicleScene : MonoBehaviour
 
     public void InserText()
     {
-        title.text = loader.vehicles[state.GetSelectedVehicle()].GetTitle();
-        year.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
-        menuYear.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
+        LoadLangIndText();
 
         if (state.curLang == "ger")
         {
-            threedFullBtn.text = "3D-Vollbild";
-            textFullBtn.text = "Text-Vollbild";
-            pagePanel.GetComponent<TextMeshProUGUI>().text = "Seite";
-
-            descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
-           + loader.vehicles[state.GetSelectedVehicle()].GetGerDescr();
+            LoadGerText();
         }
         else
         {
-            threedFullBtn.text = "3D-Fullscreen";
-            textFullBtn.text = "Text-Fullscreen";
-            pagePanel.GetComponent<TextMeshProUGUI>().text = "Page";
-
-            descr.text = loader.vehicles[state.GetSelectedVehicle()].GetEngPreDescr() + "\n\n"
-            + loader.vehicles[state.GetSelectedVehicle()].GetEngDescr();
+            LoadEngText();
         }
     }
-    private void InserGallery()
+
+    private void LoadLangIndText()
+    {
+        title.text = loader.vehicles[state.GetSelectedVehicle()].GetTitle();
+        year.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
+        menuYear.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
+    }
+
+    private void LoadGerText()
+    {
+        threedFullBtn.text = "3D-Vollbild";
+        textFullBtn.text = "Text-Vollbild";
+        pagePanel.GetComponent<TextMeshProUGUI>().text = "Seite";
+
+        descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
+       + loader.vehicles[state.GetSelectedVehicle()].GetGerDescr();
+    }
+    private void LoadEngText()
+    {
+        threedFullBtn.text = "3D-Fullscreen";
+        textFullBtn.text = "Text-Fullscreen";
+        pagePanel.GetComponent<TextMeshProUGUI>().text = "Page";
+
+        descr.text = loader.vehicles[state.GetSelectedVehicle()].GetEngPreDescr() + "\n\n"
+        + loader.vehicles[state.GetSelectedVehicle()].GetEngDescr();
+    }
+
+    private void InsertGallery()
     {
         magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
-    public void NextSlide()
+    public void NextSlide(int direction)
     {
         //set slide-numbers
         displaySlideNum = 1;
         displaySlides = galSlides + 1;
 
-        if (slideNum >= galSlides)
+        if (slideNum >= galSlides && direction == 1)
         {
-            slideNum = 0;
-            magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
-
-            displaySlideNum += slideNum;
-            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
+            MoveToStart();
+            NumDisplayConversion();
+        }
+        else if (slideNum <= 0 && direction == -1)
+        {
+            MoveToEnd();
+            NumDisplayConversion();
         }
         else
         {
-            slideNum++;
-            magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
-
-            displaySlideNum += slideNum;
-            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
+            ChangeSlideNum(direction);
+            NumDisplayConversion();
         }
     }
 
-    public void PrevSlide()
+    private void MoveToStart()
     {
-        //set slide-numbers
-        displaySlideNum = 1;
-        displaySlides = galSlides + 1;
-
-        if (slideNum <= 0)
-        {
-            slideNum = galSlides;
-            magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
-
-            displaySlideNum += slideNum;
-            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
-        }
-        else
-        {
-            slideNum--;
-            magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
-
-            displaySlideNum += slideNum;
-            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
-        }
+        slideNum = 0;
+        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
+
+    private void MoveToEnd()
+    {
+        slideNum = galSlides;
+        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+    }
+
+    private void ChangeSlideNum(int direction)
+    {
+        slideNum += direction;
+        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+    }
+
+    private void NumDisplayConversion()
+    {
+        displaySlideNum += slideNum;
+        pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
+    }
+
     public void FadeGallery()
     {
         if (showGal) { showGal = false; }

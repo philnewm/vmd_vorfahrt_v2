@@ -5,29 +5,32 @@ using UnityEngine;
 
 public class SceneControl3D : MonoBehaviour
 {
+    //accessable members
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] GameObject rt, rl;
     [SerializeField] GameObject modellAsTexture;
     [SerializeField] GameObject driverDoorBtn, coDriverDoorBtn, engineCoverBtn;
+
+    //non-accessable members
     private SceneState state;
 
     private void Awake()
     {
+        //all operations in here depent on DontDestroyOnLoad-Feature ()SceneState.cs --> Awake-Methode
         sceneLoader.CheckPreloadScene();
-
-        state = FindObjectOfType<SceneState>();
+        state = FindObjectOfType<SceneState>(); //find state-script
     }
 
     private void Start()
     {
-        state.SetCurScene();
+        state.SetCurScene();    //update scene index
         CheckVehicleID();
         modellAsTexture.GetComponent<Animator>().SetBool("upscaled", true);
     }
 
     private void CheckVehicleID()
     {
-        if (state.GetSelectedVehicle() == 0) //check wich vehicle to display, value found in state-class
+        if (state.GetSelectedVehicle() == 0) //check which vehicle to display, value found in state-class
         {
             rt.SetActive(false);
             rl.SetActive(true);

@@ -4013,14 +4013,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7943191079380637376, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079380637376, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 712727332}
+    - target: {fileID: 7943191079380637376, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079380637376, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079380637406, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079445001706, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079445001708, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079445001708, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7943191079445001708, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 712727332}
+    - target: {fileID: 7943191079445001708, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextSlide
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943191079445001708, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7943191080728555300, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
         type: 3}
       propertyPath: m_Pivot.x

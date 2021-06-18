@@ -1,26 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 #pragma warning disable CS0649 //suppress non relevant warnings
 
 public class SceneControlText : MonoBehaviour
 {
-    private SceneState state;
-    private DataLoader loader;
+    //accessable members
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] TextMeshProUGUI descr;
     [SerializeField] GameObject descrPanel;
 
-    Color greyedColor;  //for chaning language button color to inaktive
-    Color defaultColor; // for chaning language button color to aktive
+    //non-accessable members
+    private SceneState state;
+    private DataLoader loader;  //find loader-script
 
     private void Awake()
     {
+        //all operations in here depent on DontDestroyOnLoad-Feature ()SceneState.cs --> Awake-Methode
         sceneLoader.CheckPreloadScene();
-        state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
-        loader = FindObjectOfType<DataLoader>();
+        state = FindObjectOfType<SceneState>();     //find state-script
+        loader = FindObjectOfType<DataLoader>();    //find loader-script
     }
 
     private void Start()
@@ -31,7 +29,7 @@ public class SceneControlText : MonoBehaviour
     }
 
     public void InserText()
-    { 
+    {
         if (state.curLang == "ger")
         {
             descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
@@ -47,7 +45,7 @@ public class SceneControlText : MonoBehaviour
     public void ClosingDelay()
     {
         descrPanel.GetComponent<Animator>().SetBool("show", false);
-        Invoke ("BackToVehicle", 2);
+        Invoke("BackToVehicle", 2);
     }
 
     private void BackToVehicle()
