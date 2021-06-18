@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneState : MonoBehaviour
@@ -34,7 +31,6 @@ public class SceneState : MonoBehaviour
     public void SetCurScene()
     {
         curScene = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(curScene);
     }
 
     public int GetSelectedVehicle()

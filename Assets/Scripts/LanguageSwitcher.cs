@@ -16,7 +16,7 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void Start()
     {
-        //ChangeFlag();
+        ChangeFlag();
     }
 
     public void SwitchLanguage()

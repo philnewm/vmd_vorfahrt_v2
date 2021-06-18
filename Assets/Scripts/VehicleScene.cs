@@ -9,8 +9,14 @@ using UnityEngine.UI;
 
 public class VehicleScene : MonoBehaviour
 {
-    //params
+    //accessable members
     [SerializeField] SceneLoader sceneLoader;
+
+    [Header("Button")]
+    [SerializeField] TextMeshProUGUI threedFullBtn;
+    [SerializeField] TextMeshProUGUI textFullBtn;
+    [SerializeField] GameObject pageNum;
+    [SerializeField] GameObject pagePanel;
 
     [Header("VehicleData")]
     [SerializeField] TextMeshProUGUI title;
@@ -25,47 +31,50 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] GameObject pageSlides;
     [SerializeField] GameObject nextSlideBtn;
     [SerializeField] GameObject prevSlideBtn;
-    [SerializeField] Button gerButton;
-    [SerializeField] Button engButton;
     [SerializeField] GameObject ExitBtn;
 
     //member variables
-    SceneState state;
-    DataLoader loader;
     public int slideNum;        //switch gallery slides
-    private int magSlides;      //loading gallery slides
-    private bool showMag, showDescr, showBlueBG = false;  //indicator if gallery images are in use or not
-    Color greyedColor;  //for chaning language button color to inaktive
-    Color defaultColor; // for chaning language button color to aktive
+
+    //non-accessable members
+    private SceneState state;
+    private DataLoader loader;
+    private int galSlides;      //loading gallery slides
+    private bool showGal, showDescr, showBlueBG = false;  //indicator if gallery images are in use or not
+    private int displaySlideNum;
+    private int displaySlides;
 
     private void Awake()
     {
+        //all operations in here depent on DontDestroyOnLoad-Feature ()SceneState.cs --> Awake-Methode
         sceneLoader.CheckPreloadScene();
-        state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
-        loader = FindObjectOfType<DataLoader>();
-
-        greyedColor = new Color(100, 100, 100, 100);
-        defaultColor = new Color(255, 255, 255, 255);
-    }
-
-    private void SetSlides()
-    {
-        magSlides = loader.vehicles[state.GetSelectedVehicle()].gallery.Count - 1;
-        slideNum = 0;
+        state = FindObjectOfType<SceneState>(); //find state-script
+        loader = FindObjectOfType<DataLoader>(); //find loader-script
     }
 
     private void Start()
     {
         state.SetCurScene();
         SetSlides();
+        PrepopSlideNum();
         CheckVehicleID();
         InserText();
-        //InsertVehicleModell();
-        //InsertBase();
-        InsertMagazine();
-        //InsertGallery();
-        prevSlideBtn.SetActive(showMag);
-        nextSlideBtn.SetActive(showMag);
+        InserGallery();
+        prevSlideBtn.SetActive(showGal);
+        nextSlideBtn.SetActive(showGal);
+    }
+
+    private void SetSlides()
+    {
+        galSlides = loader.vehicles[state.GetSelectedVehicle()].gallery.Count - 1;
+        slideNum = 0;
+    }
+
+    private void PrepopSlideNum()
+    {
+        displaySlideNum = 1;
+        displaySlides = galSlides + 1;
+        pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
     }
 
     private void CheckVehicleID()
@@ -90,86 +99,86 @@ public class VehicleScene : MonoBehaviour
 
         if (state.curLang == "ger")
         {
+            threedFullBtn.text = "3D-Vollbild";
+            textFullBtn.text = "Text-Vollbild";
+            pagePanel.GetComponent<TextMeshProUGUI>().text = "Seite";
+
             descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
            + loader.vehicles[state.GetSelectedVehicle()].GetGerDescr();
         }
         else
         {
+            threedFullBtn.text = "3D-Fullscreen";
+            textFullBtn.text = "Text-Fullscreen";
+            pagePanel.GetComponent<TextMeshProUGUI>().text = "Page";
+
             descr.text = loader.vehicles[state.GetSelectedVehicle()].GetEngPreDescr() + "\n\n"
             + loader.vehicles[state.GetSelectedVehicle()].GetEngDescr();
         }
     }
-    private void InsertMagazine()
+    private void InserGallery()
     {
         magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     public void NextSlide()
     {
-        if (slideNum >= magSlides)
+        //set slide-numbers
+        displaySlideNum = 1;
+        displaySlides = galSlides + 1;
+
+        if (slideNum >= galSlides)
         {
-            return;
+            slideNum = 0;
+            magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+
+            displaySlideNum += slideNum;
+            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
         }
         else
         {
             slideNum++;
             magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+
+            displaySlideNum += slideNum;
+            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
         }
     }
 
     public void PrevSlide()
     {
+        //set slide-numbers
+        displaySlideNum = 1;
+        displaySlides = galSlides + 1;
+
         if (slideNum <= 0)
         {
-            return;
+            slideNum = galSlides;
+            magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+
+            displaySlideNum += slideNum;
+            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
         }
         else
         {
             slideNum--;
             magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+
+            displaySlideNum += slideNum;
+            pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
         }
     }
-    public void FadeMagazine()
+    public void FadeGallery()
     {
-        if (showMag) showMag = false;
-        else showMag = true;
-        magazinePanel.GetComponent<Animator>().SetBool("show", showMag);
-        pageSlides.SetActive(!showMag);
-        prevSlideBtn.SetActive(showMag);
-        nextSlideBtn.SetActive(showMag);
-        ExitBtn.SetActive(showMag);
-    }
+        if (showGal) { showGal = false; }
+        else { showGal = true; }
 
-    public void SetLanguageEng()
-    {
-        state.SetLanguage("eng");
-        InserText();
-        ChangeFLag();
-    }
-    public void SetLanguageGer()
-    {
-        state.SetLanguage("ger");
-        InserText();
-        ChangeFLag();
-    }
-
-    private void ChangeFLag() // still broken
-    {
-        if (state.curLang == "eng")
-        {
-            gerButton.image.color = greyedColor;
-            engButton.image.color = defaultColor;
-
-            //Debug.Log("Eng Button: " + engButton.image.color);
-            //Debug.Log("Ger Button: " + gerButton.image.color);
-        }
-        else if (state.curLang == "ger")
-        {
-            engButton.image.color = greyedColor;
-            engButton.image.color = defaultColor;
-
-            //Debug.Log("Eng Button: " + engButton.image.color);
-            //Debug.Log("Ger Button: " + gerButton.image.color);
-        }
+        magazinePanel.GetComponent<Animator>().SetBool("show", showGal);
+        pageSlides.SetActive(!showGal);
+        prevSlideBtn.SetActive(showGal);
+        nextSlideBtn.SetActive(showGal);
+        ExitBtn.SetActive(showGal);
+        pageNum.SetActive(showGal);
+        pagePanel.SetActive(showGal);
     }
 }

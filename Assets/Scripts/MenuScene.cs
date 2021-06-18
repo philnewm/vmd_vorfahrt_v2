@@ -9,10 +9,7 @@ using UnityEngine.UI;
 
 public class MenuScene : MonoBehaviour
 {
-    //params
-    SceneState state;
-    DataLoader loader;
-
+    //accessable members
     [Header("External Scripts")]
     [SerializeField] SceneLoader sceneLoader;
 
@@ -26,16 +23,23 @@ public class MenuScene : MonoBehaviour
     [SerializeField] TextMeshProUGUI year4RL;
     [SerializeField] TextMeshProUGUI yearRT;
 
+    //non-accessable members
+    private SceneState state;
+    private DataLoader loader;
+
     private void Awake()
     {
+        //all operations in here depent on DontDestroyOnLoad-Feature ()SceneState.cs --> Awake-Methode
         sceneLoader.CheckPreloadScene();
-        state = FindObjectOfType<SceneState>(); //find state and loader cause they are using DontDestroyOnLoad
-        loader = FindObjectOfType<DataLoader>();
+        state = FindObjectOfType<SceneState>(); //find state-script 
+        loader = FindObjectOfType<DataLoader>(); //find loader-script
     }
 
     private void Start()
     {
-        state.SetCurScene();
+        state.SetCurScene(); //update scene index
+
+        //populate scene
         InsertTitlePic();
         InsertTitle();
         InsertYear();
@@ -59,7 +63,7 @@ public class MenuScene : MonoBehaviour
         yearRT.text = loader.vehicles[1].GetYear();
     }
 
-    public void SwitchVehicle( int num)
+    public void SwitchVehicle(int num)
     {
         state.SetSelectedVehicle(num);
     }

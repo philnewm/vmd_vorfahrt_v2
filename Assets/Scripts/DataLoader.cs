@@ -1,17 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
-using System;
-using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Linq;
 //#pragma warning disable CS0649 //suppress non relevant warnings
 
 public class DataLoader : MonoBehaviour
 {
-    //Input from outside
+    //accessable members
     [Header("External Scripts")]
     [Tooltip("load SceneState-Script from another gameObject")]
     [SerializeField] SceneState state;
@@ -25,8 +22,6 @@ public class DataLoader : MonoBehaviour
     [SerializeField] string galleryImgSubDir;
     [Tooltip("insert the exact directory name for the text subdirectory, needs '/' before and after it")]
     [SerializeField] string textSubDir;
-    //string imagesSubFolder;  seems obsolete
-    //string magazineFileFormat; seems obsolete
 
     [Header("For Debugging")]
     [SerializeField]
@@ -43,6 +38,8 @@ public class DataLoader : MonoBehaviour
 
     //member variables
     public Vehicle[] vehicles;
+
+    //non-accessable members
     private FileInfo[] galImgFiles;
     private DirectoryInfo streamingAssetsDir;
     private string magUWRPath, jsonPath;
