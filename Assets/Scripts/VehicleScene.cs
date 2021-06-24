@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 #pragma warning disable CS0649, CS0414 //suppress non relevant warnings
@@ -7,6 +7,8 @@ public class VehicleScene : MonoBehaviour
 {
     //accessable members
     [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] GameObject camCtl;
+    [SerializeField] float speed;
 
     [Header("Button")]
     [SerializeField] TextMeshProUGUI threedFullBtn;
@@ -39,6 +41,8 @@ public class VehicleScene : MonoBehaviour
     private bool showGal, showDescr, showBlueBG = false;  //indicator if gallery images are in use or not
     private int displaySlideNum;
     private int displaySlides;
+    private Controls controls;
+    private float angle;
 
     private void Awake()
     {
@@ -46,6 +50,17 @@ public class VehicleScene : MonoBehaviour
         sceneLoader.CheckPreloadScene();
         state = FindObjectOfType<SceneState>(); //find state-script
         loader = FindObjectOfType<DataLoader>(); //find loader-script
+        controls = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     private void Start()
@@ -191,5 +206,16 @@ public class VehicleScene : MonoBehaviour
         ExitBtn.SetActive(showGal);
         pageNum.SetActive(showGal);
         pagePanel.SetActive(showGal);
+    }
+
+    private void Update()
+    {
+        CameraYRotation();
+    }
+
+    private void CameraYRotation()
+    {
+        angle += controls.SceneController.vertical_rotation.ReadValue<float>() * speed * Time.deltaTime;
+        camCtl.transform.eulerAngles = new Vector3(0, angle, 0);
     }
 }

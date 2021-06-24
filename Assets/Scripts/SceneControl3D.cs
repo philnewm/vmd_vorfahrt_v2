@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-#pragma warning disable CS0649
+﻿using UnityEngine;
+#pragma warning disable CS0649 //suppress non-relevant warnings
 
 public class SceneControl3D : MonoBehaviour
 {
@@ -32,21 +30,32 @@ public class SceneControl3D : MonoBehaviour
     {
         if (state.GetSelectedVehicle() == 0) //check which vehicle to display, value found in state-class
         {
-            rt.SetActive(false);
-            rl.SetActive(true);
-            driverDoorBtn.SetActive(true);
-            coDriverDoorBtn.SetActive(true);
-            engineCoverBtn.SetActive(true);
+            Display4rl();
         }
         else
         {
-            rt.SetActive(true);
-            rl.SetActive(false);
-            driverDoorBtn.SetActive(false);
-            coDriverDoorBtn.SetActive(false);
-            engineCoverBtn.SetActive(false);
+            Displayrt();
         }
     }
+
+    private void Display4rl()
+    {
+        rt.SetActive(false);
+        rl.SetActive(true);
+        driverDoorBtn.SetActive(true);
+        coDriverDoorBtn.SetActive(true);
+        engineCoverBtn.SetActive(true);
+    }
+
+    private void Displayrt()
+    {
+        rt.SetActive(true);
+        rl.SetActive(false);
+        driverDoorBtn.SetActive(false);
+        coDriverDoorBtn.SetActive(false);
+        engineCoverBtn.SetActive(false);
+    }
+
     public void ClosingDelay()
     {
         modellAsTexture.GetComponent<Animator>().SetBool("upscaled", false);

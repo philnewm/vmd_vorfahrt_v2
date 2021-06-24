@@ -35,10 +35,10 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ZoomMouse"",
+                    ""name"": ""vertical_rotation"",
                     ""type"": ""Value"",
-                    ""id"": ""3bb18ed0-e849-4078-a3e0-a8a2d1647b22"",
-                    ""expectedControlType"": ""Axis"",
+                    ""id"": ""401c91f0-fcd2-44ab-b4cf-ca766076c7de"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -144,15 +144,70 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""c46e221a-4c0e-47c3-a940-ecca13317be9"",
-                    ""path"": ""<Mouse>/scroll/y"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""0dd100f8-9a63-416c-9aa8-e50f55d2117f"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMouse"",
-                    ""isComposite"": false,
+                    ""action"": ""vertical_rotation"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""98833577-2ce5-4cca-8d2b-f72d8fefdc21"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""vertical_rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""d00bc235-e83e-44af-ae28-4f615c2b6ad6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""vertical_rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""d1901e9d-615b-4b26-a5f6-f66e864feeb2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""vertical_rotation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""95f72c9c-4da6-4389-93a2-b584aa657b83"",
+                    ""path"": ""<Touchscreen>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""vertical_rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6b942ef4-286b-4f8a-87f0-3e4ae6379b1d"",
+                    ""path"": ""<Touchscreen>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""vertical_rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -163,7 +218,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_SceneController = asset.FindActionMap("SceneController", throwIfNotFound: true);
         m_SceneController_RotationControl = m_SceneController.FindAction("RotationControl", throwIfNotFound: true);
         m_SceneController_Click = m_SceneController.FindAction("Click", throwIfNotFound: true);
-        m_SceneController_ZoomMouse = m_SceneController.FindAction("ZoomMouse", throwIfNotFound: true);
+        m_SceneController_vertical_rotation = m_SceneController.FindAction("vertical_rotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -215,14 +270,14 @@ public class @Controls : IInputActionCollection, IDisposable
     private ISceneControllerActions m_SceneControllerActionsCallbackInterface;
     private readonly InputAction m_SceneController_RotationControl;
     private readonly InputAction m_SceneController_Click;
-    private readonly InputAction m_SceneController_ZoomMouse;
+    private readonly InputAction m_SceneController_vertical_rotation;
     public struct SceneControllerActions
     {
         private @Controls m_Wrapper;
         public SceneControllerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @RotationControl => m_Wrapper.m_SceneController_RotationControl;
         public InputAction @Click => m_Wrapper.m_SceneController_Click;
-        public InputAction @ZoomMouse => m_Wrapper.m_SceneController_ZoomMouse;
+        public InputAction @vertical_rotation => m_Wrapper.m_SceneController_vertical_rotation;
         public InputActionMap Get() { return m_Wrapper.m_SceneController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -238,9 +293,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Click.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnClick;
                 @Click.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnClick;
                 @Click.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnClick;
-                @ZoomMouse.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnZoomMouse;
-                @ZoomMouse.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnZoomMouse;
-                @ZoomMouse.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnZoomMouse;
+                @vertical_rotation.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnVertical_rotation;
+                @vertical_rotation.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnVertical_rotation;
+                @vertical_rotation.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnVertical_rotation;
             }
             m_Wrapper.m_SceneControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -251,9 +306,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Click.started += instance.OnClick;
                 @Click.performed += instance.OnClick;
                 @Click.canceled += instance.OnClick;
-                @ZoomMouse.started += instance.OnZoomMouse;
-                @ZoomMouse.performed += instance.OnZoomMouse;
-                @ZoomMouse.canceled += instance.OnZoomMouse;
+                @vertical_rotation.started += instance.OnVertical_rotation;
+                @vertical_rotation.performed += instance.OnVertical_rotation;
+                @vertical_rotation.canceled += instance.OnVertical_rotation;
             }
         }
     }
@@ -262,6 +317,6 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnRotationControl(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
-        void OnZoomMouse(InputAction.CallbackContext context);
+        void OnVertical_rotation(InputAction.CallbackContext context);
     }
 }

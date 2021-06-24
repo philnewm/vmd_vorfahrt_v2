@@ -403,6 +403,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438196366}
   m_CullTransparentMesh: 0
+--- !u!1 &452542715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3984482188007122282, guid: 6ca1aca1c75f46547a86717d22f777db,
+    type: 3}
+  m_PrefabInstance: {fileID: 3984482186507205583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &459196179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3221,22 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 152694002, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 401c91f0-fcd2-44ab-b4cf-ca766076c7de
+      objectReference: {fileID: 0}
+    - target: {fileID: 152694002, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: SceneController/vertical_rotation[/Keyboard/a,/Keyboard/d]
+      objectReference: {fileID: 0}
+    - target: {fileID: 152694002, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 152694002, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3984482186628585840, guid: 6ca1aca1c75f46547a86717d22f777db,
         type: 3}
       propertyPath: m_Type
@@ -3285,6 +3307,11 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Strength
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 3984482188007122280, guid: 6ca1aca1c75f46547a86717d22f777db,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3984482188007122281, guid: 6ca1aca1c75f46547a86717d22f777db,
         type: 3}
       propertyPath: m_RootOrder
@@ -3345,7 +3372,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CamController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3984482188007122280, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
+    - {fileID: 152694002, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
 --- !u!1001 &4514215193151117649
 PrefabInstance:
@@ -4433,6 +4462,11 @@ PrefabInstance:
       objectReference: {fileID: 1106264442}
     - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
         type: 3}
+      propertyPath: speed
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
+        type: 3}
       propertyPath: title
       value: 
       objectReference: {fileID: 905483583}
@@ -4441,6 +4475,16 @@ PrefabInstance:
       propertyPath: blueBG
       value: 
       objectReference: {fileID: 250817561}
+    - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
+        type: 3}
+      propertyPath: camCtl
+      value: 
+      objectReference: {fileID: 452542715}
+    - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 452542715}
     - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
         type: 3}
       propertyPath: magImg

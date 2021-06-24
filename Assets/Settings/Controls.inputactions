@@ -22,10 +22,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ZoomMouse",
+                    "name": "vertical_rotation",
                     "type": "Value",
-                    "id": "3bb18ed0-e849-4078-a3e0-a8a2d1647b22",
-                    "expectedControlType": "Axis",
+                    "id": "401c91f0-fcd2-44ab-b4cf-ca766076c7de",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -131,15 +131,70 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "c46e221a-4c0e-47c3-a940-ecca13317be9",
-                    "path": "<Mouse>/scroll/y",
+                    "name": "1D Axis",
+                    "id": "0dd100f8-9a63-416c-9aa8-e50f55d2117f",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ZoomMouse",
-                    "isComposite": false,
+                    "action": "vertical_rotation",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "98833577-2ce5-4cca-8d2b-f72d8fefdc21",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "vertical_rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "d00bc235-e83e-44af-ae28-4f615c2b6ad6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "vertical_rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "d1901e9d-615b-4b26-a5f6-f66e864feeb2",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "vertical_rotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "95f72c9c-4da6-4389-93a2-b584aa657b83",
+                    "path": "<Touchscreen>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "vertical_rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6b942ef4-286b-4f8a-87f0-3e4ae6379b1d",
+                    "path": "<Touchscreen>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "vertical_rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

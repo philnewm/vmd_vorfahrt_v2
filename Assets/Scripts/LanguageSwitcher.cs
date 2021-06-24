@@ -10,7 +10,7 @@ public class LanguageSwitcher : MonoBehaviour
     SceneState state;
 
     private void Awake()
-    {    
+    {
         state = FindObjectOfType<SceneState>();
     }
 
@@ -27,10 +27,11 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void SetLanguage()
     {
-        if(state.curLang == "ger")
+        if (state.curLang == "ger")
         {
             state.SetLanguage("eng");
-        } else
+        }
+        else
         {
             state.SetLanguage("ger");
         }

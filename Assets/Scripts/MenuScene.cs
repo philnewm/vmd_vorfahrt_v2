@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-#pragma warning disable CS0649 //suppress non relevant warnings
+#pragma warning disable CS0649 //suppress non-relevant warnings
 
 public class MenuScene : MonoBehaviour
 {

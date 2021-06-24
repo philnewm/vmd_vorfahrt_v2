@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -43,6 +43,7 @@ public class DataLoader : MonoBehaviour
     private FileInfo[] galImgFiles;
     private DirectoryInfo streamingAssetsDir;
     private string magUWRPath, jsonPath;
+
 
     private void Awake()
     {

@@ -1,18 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 public class RotationControl : MonoBehaviour
 {
     [Header("Sub Behaviours")]
-   // public PlayerMovementBehaviour playerMovementBehaviour;
+    // public PlayerMovementBehaviour playerMovementBehaviour;
 
-    [Header("Parameters")]
-    [SerializeField] float moveSpeed = 0.3f;
-    [SerializeField] float minXRot = -25f;
-    [SerializeField] float maxXRot = 35f;
-    [SerializeField] float smoothRotationSpeed = 5.0f;
+    [Header("Rotation Parameters to set in Inspector")]
+    [SerializeField] float moveSpeed;
+    [SerializeField] float minXRot;
+    [SerializeField] float maxXRot;
+    [SerializeField] float smoothRotationSpeed;
 
     //member variables for y-rotation
     private Vector3 rawAxisYRotation;
@@ -31,9 +29,10 @@ public class RotationControl : MonoBehaviour
     {
         sceneState = FindObjectOfType<SceneState>();
 
-        defaultRotation = gameObject.transform.localRotation;
-        curYRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z);
-        curXYRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z);
+        defaultRotation = gameObject.transform.localRotation;   //assign default rotation to variable
+        //DO WE NEED BOTH?
+        curYRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z);    //splitting up quaternion into Vector3 components
+        curXYRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z);   //splitting up quaternion into Vector3 components
     }
 
     public void OnRotationYAxis(InputAction.CallbackContext value)
@@ -56,18 +55,22 @@ public class RotationControl : MonoBehaviour
 
     private void Update()
     {
-        if(sceneState.curScene == 3)
+        if (sceneState.curScene == 3)
         {
-            SetToLimit();
-            CalculateXYRotationInputSmoothing();
-            ClampXRotation();
-            UpdateXYRotation();
+            RotateAndLimitX();
         }
         else
         {
-            CalculateYRotationInputSmoothing();
-            UpdateYRotation();
+            RotateYAxisOnly();
         }
+    }
+
+    public void RotateAndLimitX()
+    {
+        SetToLimit();
+        CalculateXYRotationInputSmoothing();
+        ClampXRotation();
+        UpdateXYRotation();
     }
 
     private void SetToLimit()
@@ -86,11 +89,6 @@ public class RotationControl : MonoBehaviour
         }
     }
 
-    private void CalculateYRotationInputSmoothing()
-    {
-        smoothInputYRotation = Vector3.Lerp(smoothInputYRotation, rawAxisYRotation, smoothRotationSpeed * Time.deltaTime);
-    }
-
     private void CalculateXYRotationInputSmoothing()
     {
         smoothInputXYRotation = Vector3.Lerp(smoothInputXYRotation, rawAxisXYRotation, smoothRotationSpeed * Time.deltaTime);
@@ -98,19 +96,30 @@ public class RotationControl : MonoBehaviour
 
     private void ClampXRotation()
     {
-        smoothInputXYRotation = new Vector3 (Mathf.Clamp(smoothInputXYRotation.x, minXRot, maxXRot), smoothInputXYRotation.y, smoothInputXYRotation.z);
-    }
-
-    private void UpdateYRotation()
-    {
-        curYRotation += smoothInputYRotation;
-        gameObject.transform.localRotation = Quaternion.Euler(0.0f, curYRotation.y, 0.0f);
+        smoothInputXYRotation = new Vector3(Mathf.Clamp(smoothInputXYRotation.x, minXRot, maxXRot), smoothInputXYRotation.y, smoothInputXYRotation.z);
     }
 
     private void UpdateXYRotation()
     {
         curXYRotation += smoothInputXYRotation;
         gameObject.transform.localRotation = Quaternion.Euler(curXYRotation.x, curXYRotation.y, 0.0f);
+    }
+
+    public void RotateYAxisOnly()
+    {
+        CalculateYRotationInputSmoothing();
+        UpdateYRotation();
+    }
+
+    private void CalculateYRotationInputSmoothing()
+    {
+        smoothInputYRotation = Vector3.Lerp(smoothInputYRotation, rawAxisYRotation, smoothRotationSpeed * Time.deltaTime);
+    }
+
+    private void UpdateYRotation()
+    {
+        curYRotation += smoothInputYRotation;
+        gameObject.transform.localRotation = Quaternion.Euler(0.0f, curYRotation.y, 0.0f);
     }
 
     public void ResetRotation() //TODO update seems to intefere with this one
