@@ -55,14 +55,7 @@ public class RotationControl : MonoBehaviour
 
     private void Update()
     {
-        if (sceneState.curScene == 3)
-        {
-            RotateAndLimitX();
-        }
-        else
-        {
-            RotateYAxisOnly();
-        }
+        RotateAndLimitX();
     }
 
     public void RotateAndLimitX()
@@ -103,23 +96,6 @@ public class RotationControl : MonoBehaviour
     {
         curXYRotation += smoothInputXYRotation;
         gameObject.transform.localRotation = Quaternion.Euler(curXYRotation.x, curXYRotation.y, 0.0f);
-    }
-
-    public void RotateYAxisOnly()
-    {
-        CalculateYRotationInputSmoothing();
-        UpdateYRotation();
-    }
-
-    private void CalculateYRotationInputSmoothing()
-    {
-        smoothInputYRotation = Vector3.Lerp(smoothInputYRotation, rawAxisYRotation, smoothRotationSpeed * Time.deltaTime);
-    }
-
-    private void UpdateYRotation()
-    {
-        curYRotation += smoothInputYRotation;
-        gameObject.transform.localRotation = Quaternion.Euler(0.0f, curYRotation.y, 0.0f);
     }
 
     public void ResetRotation() //TODO update seems to intefere with this one
