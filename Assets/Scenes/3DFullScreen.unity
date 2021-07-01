@@ -128,20 +128,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1464385955}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &98659454
-MonoBehaviour:
+--- !u!95 &98659458
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98659453}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa8e55c067a9a3409631af89a1a80dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  degreesPerSecond: 40
-  rotationDegreesAmount: 80
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dccffe089619eebc99f6c22ff66486c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &171669017
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3DObjectAsTexture
       objectReference: {fileID: 0}
+    - target: {fileID: 6338928368938706718, guid: 1a941a5b7fafc8441a8d68650acfd04e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a941a5b7fafc8441a8d68650acfd04e, type: 3}
 --- !u!224 &268102590 stripped
@@ -438,7 +448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineCover: {fileID: 1780184560}
-  openingAngle: -80
+  driverDoor: {fileID: 98659453}
+  coDoor: {fileID: 941339593}
 --- !u!1001 &559088231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -551,20 +562,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1464385955}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &941339594
-MonoBehaviour:
+--- !u!95 &941339595
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941339593}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43aeee9276f649541abdcaca7d7d5e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  degreesPerSecond: 40
-  rotationDegreesAmount: 80
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 44520f77bfe5b75c889d056c9dcbd774, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &1088983856 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4147722259388394080, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
@@ -582,7 +598,7 @@ GameObject:
   - component: {fileID: 1347247087}
   - component: {fileID: 1347247089}
   - component: {fileID: 1347247088}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ZoomInIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,6 +673,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EngineCover (TMP)
       objectReference: {fileID: 0}
+    - target: {fileID: 1725478177134439213, guid: 423fa76eba8ef2043be5502237f5dccb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1725478177134439215, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_text
@@ -716,6 +737,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EngineCoverBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725478178786333563, guid: 423fa76eba8ef2043be5502237f5dccb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1725478178786333572, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
@@ -1187,6 +1213,36 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4316829254165717050, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316829254165717050, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316829254165717050, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316829254165717050, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316829254165717050, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316829254165717050, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4694614730637074735, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1199,12 +1255,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4798652758296550419, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
         type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798652758296550419, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798652758296550419, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
         type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798652758296550419, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798652758296550419, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
@@ -1236,6 +1302,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412356461058185271, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412356461058185271, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412356461058185271, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412356461058185271, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412356461058185271, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412356461058185271, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5601598949206769908, guid: b1fa120a73142e448b8fa54ac1cd7b7e,
         type: 3}
@@ -1418,7 +1514,7 @@ GameObject:
   - component: {fileID: 1677952927}
   - component: {fileID: 1677952929}
   - component: {fileID: 1677952928}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ZoomOutIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1487,20 +1583,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1464385955}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1780184561
-MonoBehaviour:
+--- !u!95 &1780184562
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780184560}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad6e3b5f23bccd043a764217d5dc1355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  degreesPerSecond: 40
-  rotationDegreesAmount: 80
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe41dae885ab3aa958ee59fc51916d8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1854157467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1724,7 +1825,7 @@ PrefabInstance:
     - target: {fileID: 2567332443376759981, guid: e48a7ae87662b1c498f9a3251171028a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2567332443376759982, guid: e48a7ae87662b1c498f9a3251171028a,
         type: 3}
@@ -1851,6 +1952,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoDriverDoor (TMP)
       objectReference: {fileID: 0}
+    - target: {fileID: 1725478177134439213, guid: 423fa76eba8ef2043be5502237f5dccb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1725478177134439215, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_text
@@ -1910,6 +2016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CoDriverDoorBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725478178786333563, guid: 423fa76eba8ef2043be5502237f5dccb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1725478178786333572, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
@@ -2040,7 +2151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 941339594}
+      objectReference: {fileID: 411979983}
     - target: {fileID: 1725478178786333573, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -2049,7 +2160,7 @@ PrefabInstance:
     - target: {fileID: 1725478178786333573, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDoor
+      value: ToggleCoDoor
       objectReference: {fileID: 0}
     - target: {fileID: 1725478178786333573, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
@@ -2096,6 +2207,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: -20
       objectReference: {fileID: 0}
+    - target: {fileID: 804203113793088619, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 804203113873112224, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 804203113873112227, guid: 19eaffe42d1df114cb02202ca5174e85,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2136,6 +2257,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 804203113982318661, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 804203113982318663, guid: 19eaffe42d1df114cb02202ca5174e85,
         type: 3}
       propertyPath: m_Color.b
@@ -2155,6 +2281,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZoomSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 804203114894278976, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 804203114894278976, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_TagString
+      value: overlap
       objectReference: {fileID: 0}
     - target: {fileID: 804203114894278978, guid: 19eaffe42d1df114cb02202ca5174e85,
         type: 3}
@@ -2296,6 +2432,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 804203115071943866, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 804203115071943868, guid: 19eaffe42d1df114cb02202ca5174e85,
         type: 3}
       propertyPath: m_Color.b
@@ -2330,6 +2471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 804203115445836908, guid: 19eaffe42d1df114cb02202ca5174e85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 804203115445836911, guid: 19eaffe42d1df114cb02202ca5174e85,
         type: 3}
@@ -2467,10 +2613,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 268102590}
     m_Modifications:
+    - target: {fileID: 1725478177134439213, guid: 423fa76eba8ef2043be5502237f5dccb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1725478178786333563, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_Name
       value: DriverDoorBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725478178786333563, guid: 423fa76eba8ef2043be5502237f5dccb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1725478178786333572, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
@@ -2601,7 +2757,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 98659454}
+      objectReference: {fileID: 411979983}
     - target: {fileID: 1725478178786333573, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -2610,7 +2766,7 @@ PrefabInstance:
     - target: {fileID: 1725478178786333573, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDoor
+      value: ToggleDriverDoor
       objectReference: {fileID: 0}
     - target: {fileID: 1725478178786333573, guid: 423fa76eba8ef2043be5502237f5dccb,
         type: 3}
@@ -2850,7 +3006,7 @@ PrefabInstance:
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
@@ -2922,6 +3078,10 @@ PrefabInstance:
       propertyPath: inputControls
       value: 
       objectReference: {fileID: 7444929979327127300}
+    - target: {fileID: 1954887400, guid: fab442efb9e297b4c887d6b643cab2ba, type: 3}
+      propertyPath: advancedRotation
+      value: 
+      objectReference: {fileID: 7444929979327127301}
     - target: {fileID: 5771940369845581041, guid: fab442efb9e297b4c887d6b643cab2ba,
         type: 3}
       propertyPath: m_Name

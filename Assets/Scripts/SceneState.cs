@@ -7,12 +7,13 @@ public class SceneState : MonoBehaviour
     [SerializeField] public string curLang = "ger";
     [SerializeField] public int curScene;
     [SerializeField] public int selectedVehicle;
+    [SerializeField] public string selectedSide;
 
     private DataLoader loader;
 
     private void Awake()
     {
-		DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         loader = FindObjectOfType<DataLoader>();
         SetCurScene();
     }

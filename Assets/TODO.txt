@@ -1,27 +1,11 @@
 TODO List für UI
+- Buttons für animation durch raycast hilighting ersetzen
 
-- Buttons mit Überschrift versehen
-- nur anzeigen, was vorhanden ist (keine leeren Felder)
-- inaktive Sprache ausgrauen
-- Jahreszahl für Zeitstrahl dynamisch
 
-to hold in status script:
-language, scene, selected vehicle
+Struktur:
+- 3D-Modell liste anlegen
+- im dataloader abwegen ob richtige Seite
 
-für dynamisches Laden:
-Anzahl der vorhandenen Ordner(vllt. geht auch files) als public speichern
-
-foreach Ordner(vllt. geht auch files) im Verzeichnis
-{
-	Bezeichnung public speichern
-	neues scriptable Object mit Bezeichnung anlegen
-	foreach Datei im Ordner mit gerade gespicherter Bezeichnung
-	{
-		alle Dateien checken nach "_wasesist" und entsprechend in scriptable Object speichern
-		(maybe auch nochmal mit Unterordnern versehen für check ob Gallery und/oder magazine verhanden)
-	}
-}
-
-RotationControl:
-Abfrage welche Szene aktiv in Update nicht effektiv
-Info steht beim start schon fest. separate Methoden schreiben die als entweder oder aufgerufen werden
+Controls
+- touch rotation und slider entkoppeln
+- toucg rotation in vehicle ansicht zurückbringen

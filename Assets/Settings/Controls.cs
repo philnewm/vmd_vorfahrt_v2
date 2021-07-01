@@ -22,7 +22,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""RotationControl"",
                     ""type"": ""PassThrough"",
                     ""id"": ""beb0d4f5-1755-4d99-8e9b-6cb1e3c93ec8"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold""
                 },

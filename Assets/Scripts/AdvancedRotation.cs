@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AdvancedRotation : MonoBehaviour
 {
@@ -43,5 +44,15 @@ public class AdvancedRotation : MonoBehaviour
         exctractedYRotation += inputVector.x;
         exctractedXRotation = Mathf.Clamp(exctractedXRotation, rotationMinAngle, rotationMaxAngle);
         transform.eulerAngles = new Vector3(exctractedXRotation, exctractedYRotation, 0);
+    }
+
+    public void disableInput()
+    {
+        inputSettings.Disable();
+    }
+
+    public void enableInput()
+    {
+        inputSettings.Enable();
     }
 }

@@ -11,10 +11,13 @@ public class Vehicle
     [SerializeField] string year;
     [SerializeField] string title;
 
+    [Header("Vehicle Settings")]
+    [SerializeField] string side;
+
     [Header("German Text")]
     [SerializeField] string gerHeader;
-    [TextArea(10,3)] [SerializeField] string gerPreDescr;
-    [TextArea(10,8)] [SerializeField] string gerDescr;
+    [TextArea(10, 3)] [SerializeField] string gerPreDescr;
+    [TextArea(10, 8)] [SerializeField] string gerDescr;
 
     [Header("English Text")]
     [SerializeField] public string engHeader;
@@ -39,7 +42,7 @@ public class Vehicle
         gallery = new List<Texture2D>();
     }
 
-    public void LoadText (string jsonData)
+    public void LoadText(string jsonData)
     {
         JsonUtility.FromJsonOverwrite(jsonData, this);
     }
@@ -101,7 +104,7 @@ public class Vehicle
 
     public void SetTitlePicName(string titlePicName)
     {
-        this.titlePicture.name= titlePicName;
+        this.titlePicture.name = titlePicName;
     }
 
     public void SetMagazine(List<Texture2D> gallery)
