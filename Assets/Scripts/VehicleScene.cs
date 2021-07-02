@@ -91,7 +91,7 @@ public class VehicleScene : MonoBehaviour
     {
         LoadLangIndText();
 
-        if (state.curLang == "ger")
+        if (state.GetLanguage() == "ger")
         {
             LoadGerText();
         }

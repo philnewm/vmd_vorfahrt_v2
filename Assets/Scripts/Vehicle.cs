@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 #pragma warning disable CS0649 //suppress non relevant warnings
 
@@ -97,9 +96,10 @@ public class Vehicle
         return titlePicture;
     }
 
-    public void SetTitlePic(Texture2D titlePic)
+    public void SetTitlePic(Texture2D titlePic, string titlePicName)
     {
         this.titlePicture = titlePic;
+        this.titlePicture.name = titlePicName;
     }
 
     public void SetTitlePicName(string titlePicName)
@@ -107,20 +107,10 @@ public class Vehicle
         this.titlePicture.name = titlePicName;
     }
 
-    public void SetMagazine(List<Texture2D> gallery)
+    public void SetMagazine(Texture2D loadedGallery, string vehicleName)
     {
-        this.gallery = gallery;
-    }
-
-    public void SetMagazine(Texture2D gallery)
-    {
-        this.gallery.Add(gallery);
-    }
-
-    public void SetMagazinePosition(int magPos, string name)
-    {
-        int newPos = this.gallery.Count - 1;
-        this.gallery[newPos].name = name;
+        this.gallery.Add(loadedGallery);
+        this.gallery[gallery.Count - 1].name = vehicleName;
     }
 
     public List<Texture2D> GetMagazine()

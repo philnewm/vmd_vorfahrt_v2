@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class LanguageSwitcher : MonoBehaviour
@@ -27,7 +25,7 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void SetLanguage()
     {
-        if (state.curLang == "ger")
+        if (state.GetLanguage() == "ger")
         {
             state.SetLanguage("eng");
         }
@@ -39,7 +37,7 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void ChangeFlag()
     {
-        if (state.curLang == "eng")
+        if (state.GetLanguage() == "eng")
         {
             gerButton.GetComponent<Image>().color = Color.grey;
             engButton.GetComponent<Image>().color = Color.white;

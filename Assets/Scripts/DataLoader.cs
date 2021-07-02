@@ -55,7 +55,7 @@ public class DataLoader : MonoBehaviour
 
     private void LoadStreamingAssetsDir()
     {
-         streamingAssetsDir = new DirectoryInfo(Application.streamingAssetsPath);  //save streamingAssets path
+        streamingAssetsDir = new DirectoryInfo(Application.streamingAssetsPath);  //save streamingAssets path
     }
 
     private void CreateVehicleArray()
@@ -66,7 +66,7 @@ public class DataLoader : MonoBehaviour
 
     private void LoopThroughAvailableVehicles()
     {
-        for(int i = 0; i <= vehicles.Length-1; i++)
+        for (int i = 0; i <= vehicles.Length - 1; i++)
         {
             CrateVehicle(i);
             //ExtractVehicleID(i);
@@ -116,7 +116,6 @@ public class DataLoader : MonoBehaviour
         {
             StartCoroutine(LoadJSONFiles(index, language));
         }
-        //LoadSingleJSONFiles(0, "eng");
 
         StartCoroutine(LoadTitlePic(index));
         //StartCoroutine(LoadJSONFiles(0, "ger"));
@@ -182,7 +181,6 @@ public class DataLoader : MonoBehaviour
     private IEnumerator LoadGalImg(string file, int index)
     {
         string searchForMag = magUWRPath + file;
-        //Debug.Log(searchForMag);
 
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uwrLocalPath + searchForMag))
         {
@@ -193,119 +191,21 @@ public class DataLoader : MonoBehaviour
             }
             else
             {
-                //Debug.Log(vehicles[index].GetName());
-                //adds images in random way to list
-                vehicles[index].gallery.Add(DownloadHandlerTexture.GetContent(uwr));
-                vehicles[index].gallery[vehicles[index].gallery.Count - 1].name = Path.GetFileNameWithoutExtension(file);
+                //ads image files in random order to list
+                vehicles[index].SetMagazine(DownloadHandlerTexture.GetContent(uwr), Path.GetFileNameWithoutExtension(file));
             }
         }
     }
 
-    private void SortMagList(int index)
+    private void SortGalList(int index)
     {
         //sorts the random list by item name
-        vehicles[index].gallery = vehicles[index].gallery.OrderBy(mag => mag.name, new AlphanumComparatorFast()).ToList();        
-    }
-
-    // NOTE: This code is free to use in any program.
-	// ... It was developed by Dot Net Perls.
-    //link: https://www.dotnetperls.com/alphanumeric-sorting
-    public class AlphanumComparatorFast : IComparer<string>
-    {
-        public int Compare(string x, string y)
-        {
-            string s1 = x as string;
-            if (s1 == null)
-            {
-                return 0;
-            }
-            string s2 = y as string;
-            if (s2 == null)
-            {
-                return 0;
-            }
-
-            int len1 = s1.Length;
-            int len2 = s2.Length;
-            int marker1 = 0;
-            int marker2 = 0;
-
-            // Walk through two the strings with two markers.
-            while (marker1 < len1 && marker2 < len2)
-            {
-                char ch1 = s1[marker1];
-                char ch2 = s2[marker2];
-
-                // Some buffers we can build up characters in for each chunk.
-                char[] space1 = new char[len1];
-                int loc1 = 0;
-                char[] space2 = new char[len2];
-                int loc2 = 0;
-
-                // Walk through all following characters that are digits or
-                // characters in BOTH strings starting at the appropriate marker.
-                // Collect char arrays.
-                do
-                {
-                    space1[loc1++] = ch1;
-                    marker1++;
-
-                    if (marker1 < len1)
-                    {
-                        ch1 = s1[marker1];
-                    }
-                    else
-                    {
-                        break;
-                    }
-                } while (char.IsDigit(ch1) == char.IsDigit(space1[0]));
-
-                do
-                {
-                    space2[loc2++] = ch2;
-                    marker2++;
-
-                    if (marker2 < len2)
-                    {
-                        ch2 = s2[marker2];
-                    }
-                    else
-                    {
-                        break;
-                    }
-                } while (char.IsDigit(ch2) == char.IsDigit(space2[0]));
-
-                // If we have collected numbers, compare them numerically.
-                // Otherwise, if we have strings, compare them alphabetically.
-                string str1 = new string(space1);
-                string str2 = new string(space2);
-
-                int result;
-
-                if (char.IsDigit(space1[0]) && char.IsDigit(space2[0]))
-                {
-                    int thisNumericChunk = int.Parse(str1);
-                    int thatNumericChunk = int.Parse(str2);
-                    result = thisNumericChunk.CompareTo(thatNumericChunk);
-                }
-                else
-                {
-                    result = str1.CompareTo(str2);
-                }
-
-                if (result != 0)
-                {
-                    return result;
-                }
-            }
-            return len1 - len2;
-        }
+        vehicles[index].gallery = vehicles[index].gallery.OrderBy(mag => mag.name, new AlphanumComparatorFast()).ToList();
     }
 
     private IEnumerator LoadTitlePic(int index)
     {
         string searchForTitlePic = magUWRPath + titlePicFileName;
-        //Debug.Log(searchForMag);
 
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uwrLocalPath + searchForTitlePic))
         {
@@ -316,25 +216,22 @@ public class DataLoader : MonoBehaviour
             }
             else
             {
-                //Debug.Log(vehicles[index].GetName());
-                //adds images in random way to list
-                vehicles[index].SetTitlePic(DownloadHandlerTexture.GetContent(uwr));
-                vehicles[index].SetTitlePicName(Path.GetFileNameWithoutExtension(titlePicFileName));
+                vehicles[index].SetTitlePic(DownloadHandlerTexture.GetContent(uwr), titlePicFileName);
             }
         }
     }
 
     private IEnumerator Start()
     {
-        for(int i = 0; i <= availableVehicles.Length-1; i++)
+        for (int i = 0; i <= availableVehicles.Length - 1; i++)
         {
-            SortMagList(i);
+            SortGalList(i);
         }
 
         if (moveon)
         {
             yield return new WaitForSeconds(1);
             sceneLoader.LoadNextScene();
-        }        
+        }
     }
 }

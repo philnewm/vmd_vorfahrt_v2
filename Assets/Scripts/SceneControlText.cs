@@ -30,7 +30,7 @@ public class SceneControlText : MonoBehaviour
 
     public void InserText()
     {
-        if (state.curLang == "ger")
+        if (state.GetLanguage() == "ger")
         {
             descr.text = loader.vehicles[state.GetSelectedVehicle()].GetGerPreDescr() + "\n\n"
            + loader.vehicles[state.GetSelectedVehicle()].GetGerDescr();

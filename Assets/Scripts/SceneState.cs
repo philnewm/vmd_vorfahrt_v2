@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class SceneState : MonoBehaviour
 {
     //member variables
-    [SerializeField] public string curLang = "ger";
-    [SerializeField] public int curScene;
-    [SerializeField] public int selectedVehicle;
-    [SerializeField] public string selectedSide;
+    [SerializeField] string curLang;
+    [SerializeField] int curScene;
+    [SerializeField] int selectedVehicle;
+    [SerializeField] string selectedSide;
 
     private DataLoader loader;
 
@@ -15,6 +15,7 @@ public class SceneState : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         loader = FindObjectOfType<DataLoader>();
+        curLang = "ger";
         SetCurScene();
     }
 

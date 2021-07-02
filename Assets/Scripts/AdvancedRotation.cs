@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine;
 
 public class AdvancedRotation : MonoBehaviour
 {
