@@ -36,7 +36,8 @@ public class SimpleRotation : MonoBehaviour
 
     private void CameraYRotation()
     {
-        angle += controls.SceneController.vertical_rotation.ReadValue<float>() * speed * Time.deltaTime;
+        Vector2 inputVector = controls.SceneController.RotationControl.ReadValue<Vector2>() * speed * Time.deltaTime;
+        angle += inputVector.x;
         transform.eulerAngles = new Vector3(0, angle, 0);
     }
 }
