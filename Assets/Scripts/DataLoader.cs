@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
@@ -36,6 +35,11 @@ public class DataLoader : MonoBehaviour
     [SerializeField]
     private string uwrLocalPath;
 
+    [Header("3D Models")]
+    [Tooltip("drag'n'drop to extent list")]
+    [SerializeField]
+    private GameObject[] modelList;
+
     //member variables
     public Vehicle[] vehicles;
 
@@ -44,12 +48,12 @@ public class DataLoader : MonoBehaviour
     private DirectoryInfo streamingAssetsDir;
     private string magUWRPath, jsonPath;
 
-
     private void Awake()
     {
         uwrLocalPath = "file://";
         LoadStreamingAssetsDir();
         CreateVehicleArray();
+        CreateModelList();
         LoopThroughAvailableVehicles();
     }
 
@@ -64,16 +68,20 @@ public class DataLoader : MonoBehaviour
         vehicles = new Vehicle[availableVehicles.Length]; //try to adjust to work dynamic like it did in line above
     }
 
+    private void CreateModelList()
+    {
+        modelList = new GameObject[Resources.LoadAll<GameObject>("Model/prefabs/vehicles/").Length];
+        modelList = Resources.LoadAll<GameObject>("Model/prefabs/vehicles/");
+    }
+
     private void LoopThroughAvailableVehicles()
     {
         for (int i = 0; i <= vehicles.Length - 1; i++)
         {
             CrateVehicle(i);
-            //ExtractVehicleID(i);
             CreatePaths(i);
             CreateGalFileArray();
             SearchForContent(i);
-            //Debug.Log(file);
         }
     }
 
@@ -118,9 +126,7 @@ public class DataLoader : MonoBehaviour
         }
 
         StartCoroutine(LoadTitlePic(index));
-        //StartCoroutine(LoadJSONFiles(0, "ger"));
-        //SearchForContentForModel(index);
-        //SearchForTextures();
+        LoadModelPrefab(index);
     }
 
     private void SearchForText(int index)
@@ -219,6 +225,11 @@ public class DataLoader : MonoBehaviour
                 vehicles[index].SetTitlePic(DownloadHandlerTexture.GetContent(uwr), titlePicFileName);
             }
         }
+    }
+
+    private void LoadModelPrefab(int index)
+    {
+        vehicles[index].Set3DModel(modelList[index]);
     }
 
     private IEnumerator Start()

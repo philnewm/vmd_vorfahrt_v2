@@ -25,14 +25,10 @@ public class Vehicle
 
     [Header("Title Picture")]
     [SerializeField] Texture2D titlePicture;
-
-    // optional
-    // [Header("Content for 3D Modells")]
-    // [SerializeField] GameObject vehicleModel;
-    // [SerializeField] Material opaqueMat;
-    // [SerializeField] Material transpMat;
-
     [SerializeField] public List<Texture2D> gallery;
+
+    [Header("Content for 3D Model")]
+    [SerializeField] GameObject vehicleModel;
 
 
     public Vehicle(string name)
@@ -121,5 +117,15 @@ public class Vehicle
     public Texture2D GetMagazine(int index)
     {
         return gallery[index];
+    }
+
+    public void Set3DModel(GameObject vehiclePrefFab)
+    {
+        this.vehicleModel = vehiclePrefFab;
+    }
+
+    public GameObject Get3DModel()
+    {
+        return this.vehicleModel;
     }
 }

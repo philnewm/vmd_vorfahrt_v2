@@ -20,7 +20,6 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] TextMeshProUGUI descr;
     [SerializeField] TextMeshProUGUI menuYear;
     [SerializeField] GameObject magImg;
-    [SerializeField] GameObject rt, rl;
     [SerializeField] GameObject magazinePanel;
     [SerializeField] GameObject descrPanel;
     [SerializeField] GameObject blueBG;
@@ -28,6 +27,11 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] GameObject nextSlideBtn;
     [SerializeField] GameObject prevSlideBtn;
     [SerializeField] GameObject ExitBtn;
+
+    [Header("3D Objects")]
+    [SerializeField] GameObject modelCtl;
+    [SerializeField] Vector3 modelDefaultPosition;
+    [SerializeField] Quaternion modelDefaultRotation;
 
     //member variables
     private int slideNum;       //switch gallery slides
@@ -53,9 +57,10 @@ public class VehicleScene : MonoBehaviour
         state.SetCurScene();
         SetSlides();
         PrepopSlideNum();
-        CheckVehicleID();
+        //CheckVehicleID();
         InserText();
         InsertGallery();
+        Insert3DModel();
         prevSlideBtn.SetActive(showGal);
         nextSlideBtn.SetActive(showGal);
     }
@@ -71,20 +76,6 @@ public class VehicleScene : MonoBehaviour
         displaySlideNum = 1;
         displaySlides = galSlides + 1;
         pageNum.GetComponent<TextMeshProUGUI>().text = displaySlideNum + "/" + displaySlides;
-    }
-
-    private void CheckVehicleID()
-    {
-        if (state.GetSelectedVehicle() == 0) //check wich vehicle to display, value found in state-class
-        {
-            rt.SetActive(false);
-            rl.SetActive(true);
-        }
-        else
-        {
-            rt.SetActive(true);
-            rl.SetActive(false);
-        }
     }
 
     public void InserText()
@@ -130,6 +121,11 @@ public class VehicleScene : MonoBehaviour
     private void InsertGallery()
     {
         magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+    }
+
+    private void Insert3DModel()
+    {
+        GameObject vehicleModel = Instantiate(loader.vehicles[state.GetSelectedVehicle()].Get3DModel(), modelDefaultPosition, modelDefaultRotation, modelCtl.transform);
     }
 
     public void NextSlide(int direction)
