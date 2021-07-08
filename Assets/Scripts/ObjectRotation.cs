@@ -2,16 +2,17 @@
 
 public class ObjectRotation : MonoBehaviour
 {
-    [SerializeField] GameObject engineCover;
-    [SerializeField] GameObject driverDoor;
-    [SerializeField] GameObject coDoor;
     private bool openCover;
     private bool openDriverDoor;
     private bool openCoDoor;
-
+    private GameObject driverDoor;
+    private GameObject coDriverDoor;
+    private GameObject engineCover;
     private Animator coverAnimator;
     private Animator driverDoorAnimator;
     private Animator coDoorAnimator;
+
+
 
     private void Awake()
     {
@@ -21,9 +22,13 @@ public class ObjectRotation : MonoBehaviour
     }
     private void Start()
     {
+        driverDoor = GameObject.Find("paenomen_driver_door");
+        coDriverDoor = GameObject.Find("paenomen_co_driver_door");
+        coDriverDoor = GameObject.Find("paenomen_co_driver_door");
+
         coverAnimator = engineCover.GetComponent<Animator>();
         driverDoorAnimator = driverDoor.GetComponent<Animator>();
-        coDoorAnimator = coDoor.GetComponent<Animator>();
+        coDoorAnimator = coDriverDoor.GetComponent<Animator>();
     }
 
     public void ToggleCover()

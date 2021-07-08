@@ -184,7 +184,7 @@ RectTransform:
   m_Children:
   - {fileID: 1011889024}
   m_Father: {fileID: 2104685411}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1432,7 +1432,7 @@ PrefabInstance:
     - target: {fileID: 1372453621019822298, guid: 4ffdf7720e4ca5f47865454517ebef6d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1372453621019822298, guid: 4ffdf7720e4ca5f47865454517ebef6d,
         type: 3}
@@ -2645,7 +2645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084173930}
   m_Layer: 0
-  m_Name: ModelCotroller
+  m_Name: ModelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2763,8 +2763,8 @@ RectTransform:
   - {fileID: 1150238556}
   - {fileID: 1527053368}
   - {fileID: 2061539127}
-  - {fileID: 1598629768}
   - {fileID: 250817562}
+  - {fileID: 1598629768}
   - {fileID: 1106264441}
   - {fileID: 1807141150}
   - {fileID: 1249665461}
@@ -3806,7 +3806,7 @@ PrefabInstance:
     - target: {fileID: 7943191080728555300, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7943191080728555300, guid: f2bc137d8232a6d4fa0b5d9a3187b872,
         type: 3}
@@ -4027,7 +4027,7 @@ PrefabInstance:
     - target: {fileID: 9061116396822744538, guid: c05ec81e5ce1e8d4ca143b6f9cd6d36f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9061116396822744538, guid: c05ec81e5ce1e8d4ca143b6f9cd6d36f,
         type: 3}
