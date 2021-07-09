@@ -11,8 +11,7 @@ public class ObjectRotation : MonoBehaviour
     private Animator coverAnimator;
     private Animator driverDoorAnimator;
     private Animator coDoorAnimator;
-
-
+    [SerializeField] SceneControl3D ctrl3D;
 
     private void Awake()
     {
@@ -22,13 +21,16 @@ public class ObjectRotation : MonoBehaviour
     }
     private void Start()
     {
-        engineCover = GameObject.Find("paenomen_engine_cover");
-        driverDoor = GameObject.Find("paenomen_driver_door");
-        coDriverDoor = GameObject.Find("paenomen_co_driver_door");
+        if (ctrl3D.CheckVehicle() == 0) //needs cleanup
+        {
+            engineCover = GameObject.Find("paenomen_engine_cover");
+            driverDoor = GameObject.Find("paenomen_driver_door");
+            coDriverDoor = GameObject.Find("paenomen_co_driver_door");
 
-        coverAnimator = engineCover.GetComponent<Animator>();
-        driverDoorAnimator = driverDoor.GetComponent<Animator>();
-        coDoorAnimator = coDriverDoor.GetComponent<Animator>();
+            coverAnimator = engineCover.GetComponent<Animator>();
+            driverDoorAnimator = driverDoor.GetComponent<Animator>();
+            coDoorAnimator = coDriverDoor.GetComponent<Animator>();
+        }
     }
 
     public void ToggleCover()

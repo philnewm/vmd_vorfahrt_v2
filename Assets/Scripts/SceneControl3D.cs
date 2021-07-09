@@ -73,4 +73,9 @@ public class SceneControl3D : MonoBehaviour
     {
         sceneLoader.LoadVehicleScene();
     }
+
+    public int CheckVehicle()
+    {
+        return state.GetSelectedVehicle();
+    }
 }

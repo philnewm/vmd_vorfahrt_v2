@@ -15,6 +15,7 @@ public class SceneState : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         loader = FindObjectOfType<DataLoader>();
+        selectedVehicle = 0;
         curLang = "ger";
         SetCurScene();
     }
