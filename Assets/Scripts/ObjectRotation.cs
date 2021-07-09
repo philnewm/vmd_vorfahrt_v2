@@ -22,8 +22,8 @@ public class ObjectRotation : MonoBehaviour
     }
     private void Start()
     {
+        engineCover = GameObject.Find("paenomen_engine_cover");
         driverDoor = GameObject.Find("paenomen_driver_door");
-        coDriverDoor = GameObject.Find("paenomen_co_driver_door");
         coDriverDoor = GameObject.Find("paenomen_co_driver_door");
 
         coverAnimator = engineCover.GetComponent<Animator>();
