@@ -1271,7 +1271,7 @@ PrefabInstance:
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
       propertyPath: availableVehicles.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
@@ -1297,6 +1297,16 @@ PrefabInstance:
         type: 3}
       propertyPath: availableVehicles.Array.data[1]
       value: rt
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: availableVehicles.Array.data[2]
+      value: p70
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: availableVehicles.Array.data[3]
+      value: wartburg_gold
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}

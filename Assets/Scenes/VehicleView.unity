@@ -1404,6 +1404,41 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 712727332}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopRotationOnSlide
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372453619350210277, guid: 4ffdf7720e4ca5f47865454517ebef6d,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1372453620385872136, guid: 4ffdf7720e4ca5f47865454517ebef6d,
         type: 3}
       propertyPath: m_MovementType
@@ -3215,6 +3250,43 @@ PrefabInstance:
     - {fileID: 3984482188007122280, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
     - {fileID: 152694002, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6ca1aca1c75f46547a86717d22f777db, type: 3}
+--- !u!1 &3984482186507205584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3984482186660878014, guid: 6ca1aca1c75f46547a86717d22f777db,
+    type: 3}
+  m_PrefabInstance: {fileID: 3984482186507205583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3984482186507205585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984482186507205584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &4514215193151117649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4278,6 +4350,11 @@ PrefabInstance:
       propertyPath: threedFullBtn
       value: 
       objectReference: {fileID: 129460489}
+    - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
+        type: 3}
+      propertyPath: simpleRotation
+      value: 
+      objectReference: {fileID: 452542716}
     - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
         type: 3}
       propertyPath: modelDefaultRotation.w

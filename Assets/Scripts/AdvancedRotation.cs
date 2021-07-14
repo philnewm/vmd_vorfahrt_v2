@@ -12,23 +12,23 @@ public class AdvancedRotation : MonoBehaviour
     private float exctractedYRotation;
 
 
-    private Controls inputSettings;
+    private Controls controls;
 
     private void Awake()
     {
-        inputSettings = new Controls();
+        controls = new Controls();
         exctractedXRotation = transform.rotation.x;
         exctractedYRotation = transform.rotation.y;
     }
 
     private void OnEnable()
     {
-        inputSettings.Enable();
+        controls.Enable();
     }
 
     private void OnDisable()
     {
-        inputSettings.Disable();
+        controls.Disable();
     }
 
     void Update()
@@ -38,7 +38,7 @@ public class AdvancedRotation : MonoBehaviour
 
     public void UpdateXYRotation()
     {
-        Vector2 inputVector = inputSettings.SceneController.RotationControl.ReadValue<Vector2>() * speed * Time.deltaTime;
+        Vector2 inputVector = controls.SceneController.RotationControl.ReadValue<Vector2>() * speed * Time.deltaTime;
         exctractedXRotation += inputVector.y;
         exctractedYRotation += inputVector.x;
         exctractedXRotation = Mathf.Clamp(exctractedXRotation, rotationMinAngle, rotationMaxAngle);
@@ -47,11 +47,11 @@ public class AdvancedRotation : MonoBehaviour
 
     public void disableInput()
     {
-        inputSettings.Disable();
+        controls.Disable();
     }
 
     public void enableInput()
     {
-        inputSettings.Enable();
+        controls.Enable();
     }
 }

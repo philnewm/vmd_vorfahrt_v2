@@ -8,6 +8,7 @@ public class VehicleScene : MonoBehaviour
     //accessable members
     [SerializeField] SceneLoader sceneLoader;
 
+    [SerializeField] SimpleRotation simpleRotation;
     [Header("Button")]
     [SerializeField] TextMeshProUGUI threedFullBtn;
     [SerializeField] TextMeshProUGUI textFullBtn;
@@ -187,5 +188,12 @@ public class VehicleScene : MonoBehaviour
         ExitBtn.SetActive(showGal);
         pageNum.SetActive(showGal);
         pagePanel.SetActive(showGal);
+    }
+
+    public void StopRotationOnSlide()
+    {
+        simpleRotation.disableInput();
+
+        simpleRotation.enableInput();
     }
 }

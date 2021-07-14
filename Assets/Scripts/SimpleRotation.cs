@@ -40,4 +40,13 @@ public class SimpleRotation : MonoBehaviour
         angle += inputVector.x;
         transform.eulerAngles = new Vector3(0, angle, 0);
     }
+    public void disableInput()
+    {
+        controls.Disable();
+    }
+
+    public void enableInput()
+    {
+        controls.Enable();
+    }
 }

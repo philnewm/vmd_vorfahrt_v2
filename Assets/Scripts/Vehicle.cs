@@ -10,9 +10,6 @@ public class Vehicle
     [SerializeField] string year;
     [SerializeField] string title;
 
-    [Header("Vehicle Settings")]
-    [SerializeField] string side;
-
     [Header("German Text")]
     [SerializeField] string gerHeader;
     [TextArea(10, 3)] [SerializeField] string gerPreDescr;
