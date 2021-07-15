@@ -1241,7 +1241,7 @@ PrefabInstance:
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
       propertyPath: modelList.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
@@ -1271,7 +1271,7 @@ PrefabInstance:
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
       propertyPath: availableVehicles.Array.size
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
@@ -1307,6 +1307,21 @@ PrefabInstance:
         type: 3}
       propertyPath: availableVehicles.Array.data[3]
       value: wartburg_gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: availableVehicles.Array.data[4]
+      value: penny_farth
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: availableVehicles.Array.data[5]
+      value: hanomag
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: availableVehicles.Array.data[6]
+      value: es
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
