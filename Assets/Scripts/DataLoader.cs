@@ -70,8 +70,8 @@ public class DataLoader : MonoBehaviour
 
     private void CreateModelList()
     {
-        modelList = new GameObject[Resources.LoadAll<GameObject>("Model/prefabs/vehicles/").Length];
-        modelList = Resources.LoadAll<GameObject>("Model/prefabs/vehicles/");
+        modelList = new GameObject[Resources.LoadAll<GameObject>("model_prefabs/").Length];
+        modelList = Resources.LoadAll<GameObject>("model_prefabs/");
     }
 
     private void LoopThroughAvailableVehicles()

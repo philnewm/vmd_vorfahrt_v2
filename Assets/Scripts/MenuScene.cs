@@ -40,12 +40,7 @@ public class MenuScene : MonoBehaviour
     private void Start()
     {
         state.SetCurScene(); //update scene index
-
-        //populate scene
         CreateMenuEntries();
-        /*         InsertTitlePic();
-                InsertTitle();
-                InsertYear(); */
     }
 
     private void CreateMenuEntries()
@@ -62,24 +57,6 @@ public class MenuScene : MonoBehaviour
             menuEntries[index].GetComponent<MenuEntry>().Setname(loader.vehicles[index].GetTitle());
             menuEntries[index].GetComponent<MenuEntry>().SetYear(loader.vehicles[index].GetYear());
         }
-    }
-
-    private void InsertTitlePic()
-    {
-        button4RL.GetComponent<RawImage>().texture = loader.vehicles[0].GetTitlePic();
-        buttonRT.GetComponent<RawImage>().texture = loader.vehicles[1].GetTitlePic();
-    }
-
-    private void InsertTitle()
-    {
-        text4RL.text = loader.vehicles[0].GetTitle();
-        textRT.text = loader.vehicles[1].GetTitle();
-    }
-
-    private void InsertYear()
-    {
-        year4RL.text = loader.vehicles[0].GetYear();
-        yearRT.text = loader.vehicles[1].GetYear();
     }
 
     public void SwitchVehicle(int num)
