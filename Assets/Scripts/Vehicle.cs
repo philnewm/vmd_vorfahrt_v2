@@ -8,14 +8,15 @@ public class Vehicle
     [Header("Vehicle ID")]
     [SerializeField] string name;
     [SerializeField] string year;
-    [SerializeField] string title;
 
     [Header("German Text")]
+    [SerializeField] string gerTitle;
     [SerializeField] string gerHeader;
     [TextArea(10, 3)] [SerializeField] string gerPreDescr;
     [TextArea(10, 8)] [SerializeField] string gerDescr;
 
     [Header("English Text")]
+    [SerializeField] string engTitle;
     [SerializeField] public string engHeader;
     [TextArea(10, 3)] [SerializeField] string engPreDescr;
     [TextArea(10, 8)] [SerializeField] string engDescr;
@@ -44,9 +45,14 @@ public class Vehicle
         return name;
     }
 
-    public string GetTitle()
+    public string GetGerTitle()
     {
-        return title;
+        return gerTitle;
+    }
+
+    public string GetEngTitle()
+    {
+        return engTitle;
     }
 
     public string GetYear()

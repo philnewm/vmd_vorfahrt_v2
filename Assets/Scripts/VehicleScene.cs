@@ -81,7 +81,7 @@ public class VehicleScene : MonoBehaviour
 
     public void InserText()
     {
-        LoadLangIndText();
+        LoadLangAndText();
 
         if (state.GetLanguage() == "ger")
         {
@@ -93,9 +93,17 @@ public class VehicleScene : MonoBehaviour
         }
     }
 
-    private void LoadLangIndText()
+    private void LoadLangAndText()
     {
-        title.text = loader.vehicles[state.GetSelectedVehicle()].GetTitle();
+        if (state.GetLanguage() == "ger")
+        {
+            title.text = loader.vehicles[state.GetSelectedVehicle()].GetGerTitle();
+        }
+        else
+        {
+            title.text = loader.vehicles[state.GetSelectedVehicle()].GetEngTitle();
+        }
+
         year.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
         menuYear.text = loader.vehicles[state.GetSelectedVehicle()].GetYear();
     }

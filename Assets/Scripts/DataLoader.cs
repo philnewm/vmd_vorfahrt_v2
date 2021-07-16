@@ -15,6 +15,8 @@ public class DataLoader : MonoBehaviour
     [SerializeField] SceneLoader sceneLoader;
 
     [Header("Files and File Paths")]
+    [Tooltip("insert the exact filename of the settings-file, needs to be consistent")]
+    [SerializeField] string settingsFileName;
     [Tooltip("insert the exact filename of the title picture, needs to be consistent")]
     [SerializeField] string titlePicFileName;
     [Tooltip("insert the exact directory name for the gallery image subdirectory, needs '/' before and after it")]
@@ -22,12 +24,14 @@ public class DataLoader : MonoBehaviour
     [Tooltip("insert the exact directory name for the text subdirectory, needs '/' before and after it")]
     [SerializeField] string textSubDir;
 
+    [SerializeField] string prefabDir;
+
     [Header("For Debugging")]
     [SerializeField]
     bool moveon;
     [Tooltip("how many are available and what are their values")]
     [SerializeField]
-    public string[] availableVehicles, availableLanguages;
+    public string[] leftVehicles, rightVehicles, availableVehicles, availableLanguages;
     public string textFileFormat;
 
     [Header("UWR realted")]
@@ -52,14 +56,57 @@ public class DataLoader : MonoBehaviour
     {
         uwrLocalPath = "file://";
         LoadStreamingAssetsDir();
+        LoadSettingsFile();
+        LoadSide();
         CreateVehicleArray();
         CreateModelList();
-        LoopThroughAvailableVehicles();
+        if (availableVehicles.Length != 0)
+        {
+            LoopThroughAvailableVehicles();
+        }
     }
 
     private void LoadStreamingAssetsDir()
     {
         streamingAssetsDir = new DirectoryInfo(Application.streamingAssetsPath);  //save streamingAssets path
+    }
+
+    private void LoadSettingsFile()
+    {
+        string settingsJSON = uwrLocalPath + streamingAssetsDir + "/" + settingsFileName + textFileFormat;
+
+        using (UnityWebRequest uwr = UnityWebRequest.Get(settingsJSON))
+        {
+            uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                Debug.Log(uwr.error);
+            }
+            else
+            {
+                state.SetSelectedSide(uwr.downloadHandler.text);
+            }
+        }
+    }
+
+    private void LoadSide()
+    {
+        if (state.GetLoadedSide() == 1)
+        {
+            availableVehicles = new string[rightVehicles.Length];
+            for (int index = 0; index <= availableVehicles.Length - 1; index++)
+            {
+                availableVehicles[index] = rightVehicles[index];
+            }
+        }
+        else
+        {
+            availableVehicles = new string[leftVehicles.Length];
+            for (int index = 0; index <= availableVehicles.Length - 1; index++)
+            {
+                availableVehicles[index] = leftVehicles[index];
+            }
+        }
     }
 
     private void CreateVehicleArray()
@@ -70,8 +117,9 @@ public class DataLoader : MonoBehaviour
 
     private void CreateModelList()
     {
-        modelList = new GameObject[Resources.LoadAll<GameObject>("model_prefabs/").Length];
-        modelList = Resources.LoadAll<GameObject>("model_prefabs/");
+        string modelPath = prefabDir + "/" + state.GetSelectedSide() + "/";
+        modelList = new GameObject[Resources.LoadAll<GameObject>(modelPath).Length];
+        modelList = Resources.LoadAll<GameObject>(modelPath);
     }
 
     private void LoopThroughAvailableVehicles()
@@ -98,7 +146,7 @@ public class DataLoader : MonoBehaviour
 
     private void CreatePaths(int index)
     {
-        string vehiclePath = streamingAssetsDir + "/" + availableVehicles[index];
+        string vehiclePath = streamingAssetsDir + "/" + state.GetSelectedSide() + "/" + availableVehicles[index];
 
         magUWRPath = Path.Combine(vehiclePath + "/" + galleryImgSubDir + "/");
         jsonPath = Path.Combine(vehiclePath + "/" + textSubDir + "/");
@@ -112,12 +160,10 @@ public class DataLoader : MonoBehaviour
 
     private void SearchForContent(int index)
     {
-        //SearchForText(index);
         foreach (FileInfo image in galImgFiles)
         {
             string fileName = Path.GetFileName(image.ToString());
             StartCoroutine(LoadGalImg(fileName, index));
-            //SearchForGallery();
         }
 
         foreach (string language in availableLanguages)
@@ -160,25 +206,6 @@ public class DataLoader : MonoBehaviour
             }
             else
             {
-                vehicles[index].LoadText(uwr.downloadHandler.text);
-            }
-        }
-    }
-
-    private IEnumerator LoadSingleJSONFiles(int index, string language)
-    {
-        string searchForJSON = jsonPath + language + textFileFormat;
-
-        using (UnityWebRequest uwr = UnityWebRequest.Get(uwrLocalPath + searchForJSON))
-        {
-            yield return uwr.SendWebRequest();
-            if (uwr.isNetworkError || uwr.isHttpError)
-            {
-                Debug.Log(uwr.error);
-            }
-            else
-            {
-                //Debug.Log(jsonData);
                 vehicles[index].LoadText(uwr.downloadHandler.text);
             }
         }

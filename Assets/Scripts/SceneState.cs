@@ -7,6 +7,7 @@ public class SceneState : MonoBehaviour
     [SerializeField] string curLang;
     [SerializeField] int curScene;
     [SerializeField] int selectedVehicle;
+    [SerializeField] int loadedSide;
     [SerializeField] string selectedSide;
 
     private DataLoader loader;
@@ -44,5 +45,28 @@ public class SceneState : MonoBehaviour
     public void SetSelectedVehicle(int VehicleNumber)
     {
         this.selectedVehicle = VehicleNumber;
+    }
+
+    public void SetSelectedSide(string jsonData)
+    {
+        JsonUtility.FromJsonOverwrite(jsonData, this);
+        if (loadedSide == 1)
+        {
+            selectedSide = "right";
+        }
+        else
+        {
+            selectedSide = "left";
+        }
+    }
+
+    public int GetLoadedSide()
+    {
+        return loadedSide;
+    }
+
+    public string GetSelectedSide()
+    {
+        return selectedSide;
     }
 }

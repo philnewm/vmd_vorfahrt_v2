@@ -34,7 +34,7 @@ public class SceneControl3D : MonoBehaviour
 
     private void CheckVehicleID()
     {
-        if (state.GetSelectedVehicle() == 0) //check which vehicle to display, value found in state-class
+        if (state.GetSelectedVehicle() == 2 && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
         {
             Display4rl();
         }
@@ -69,13 +69,18 @@ public class SceneControl3D : MonoBehaviour
         Invoke("BackToVehicle", 2);
     }
 
-    private void BackToVehicle()
-    {
-        sceneLoader.LoadVehicleScene();
-    }
-
     public int CheckVehicle()
     {
         return state.GetSelectedVehicle();
+    }
+
+    public int CheckSide()
+    {
+        return state.GetLoadedSide();
+    }
+
+    private void BackToVehicle()
+    {
+        sceneLoader.LoadVehicleScene();
     }
 }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1145,6 +1145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
+      propertyPath: prefabDir
+      value: model_prefabs
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
       propertyPath: textField
       value: 
       objectReference: {fileID: 0}
@@ -1200,6 +1205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
+      propertyPath: settingsFileName
+      value: settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
       propertyPath: textUWRSubFolder
       value: /Text/
       objectReference: {fileID: 0}
@@ -1245,6 +1255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
+      propertyPath: leftVehicles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
       propertyPath: modelList.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -1255,8 +1270,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
+      propertyPath: rightVehicles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: leftVehicles.Array.data[0]
+      value: 01_penny_farth
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: leftVehicles.Array.data[1]
+      value: 02_hanomag
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: leftVehicles.Array.data[2]
+      value: 03_phenomen4rl
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
       propertyPath: vehicleDirNames.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: rightVehicles.Array.data[0]
+      value: 01_p70
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: rightVehicles.Array.data[1]
+      value: 02_mzrt
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: rightVehicles.Array.data[2]
+      value: 03_wartburg_gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
+        type: 3}
+      propertyPath: rightVehicles.Array.data[3]
+      value: 04_mzes
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
@@ -1271,7 +1326,7 @@ PrefabInstance:
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
       propertyPath: availableVehicles.Array.size
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 800102719414298701, guid: 3b13b15ebccf3a94f948759230d9bbec,
         type: 3}
