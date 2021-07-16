@@ -12,8 +12,10 @@ public class VehicleScene : MonoBehaviour
     [Header("Button")]
     [SerializeField] TextMeshProUGUI threedFullBtn;
     [SerializeField] TextMeshProUGUI textFullBtn;
+    [SerializeField] GameObject exitBtn;
     [SerializeField] GameObject pageNum;
     [SerializeField] GameObject pagePanel;
+    [SerializeField] GameObject langPanel;
 
     [Header("VehicleData")]
     [SerializeField] TextMeshProUGUI title;
@@ -41,7 +43,7 @@ public class VehicleScene : MonoBehaviour
     private SceneState state;
     private DataLoader loader;
     private int galSlides;      //loading gallery slides
-    private bool showGal, showDescr, showBlueBG = false;  //indicator if gallery images are in use or not
+    private bool showGal, showDescr, showText = false;  //indicator if gallery images are in use or not
     private int displaySlideNum;
     private int displaySlides;
 
@@ -189,6 +191,8 @@ public class VehicleScene : MonoBehaviour
         if (showGal) { showGal = false; }
         else { showGal = true; }
 
+        magazinePanel.transform.SetAsLastSibling();
+
         magazinePanel.GetComponent<Animator>().SetBool("show", showGal);
         pageSlides.SetActive(!showGal);
         prevSlideBtn.SetActive(showGal);
@@ -196,6 +200,43 @@ public class VehicleScene : MonoBehaviour
         ExitBtn.SetActive(showGal);
         pageNum.SetActive(showGal);
         pagePanel.SetActive(showGal);
+    }
+
+    public bool GetShowText()
+    {
+        return showText;
+    }
+
+    public void FadeText()
+    {
+        if (showText)
+        {
+            showText = false;
+        }
+        else
+        {
+            showText = true;
+            blueBG.SetActive(showText);
+            exitBtn.SetActive(showText);
+        }
+
+        ReArrangeHirarchy();
+        StartAnimations();
+    }
+
+    private void ReArrangeHirarchy()
+    {
+        blueBG.transform.SetAsLastSibling();
+        exitBtn.transform.SetAsLastSibling();
+        descrPanel.transform.SetAsLastSibling();
+        langPanel.transform.SetAsLastSibling();
+    }
+
+    private void StartAnimations()
+    {
+        descrPanel.GetComponent<Animator>().SetBool("show", showText);
+        blueBG.GetComponent<Animator>().SetBool("show", showText);
+        exitBtn.GetComponent<Animator>().SetBool("show", showText);
     }
 
     public void StopRotationOnSlide()
