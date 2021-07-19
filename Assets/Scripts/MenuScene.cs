@@ -15,6 +15,7 @@ public class MenuScene : MonoBehaviour
 
     [Header("Text Panel")]
     [SerializeField] int pennyFarthIndex;
+    [SerializeField] int saenfteIndex;
 
     //non-accessable members
     private SceneState state;
@@ -77,6 +78,11 @@ public class MenuScene : MonoBehaviour
     public void UpdatePennyFarth()
     {
         LoadTitle(pennyFarthIndex);
+    }
+
+    public void UpdateSaenfte()
+    {
+        LoadTitle(saenfteIndex);
     }
 
     public void SwitchVehicle(int num)
