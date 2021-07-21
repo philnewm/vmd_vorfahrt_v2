@@ -34,7 +34,7 @@ public class SceneControl3D : MonoBehaviour
 
     private void CheckVehicleID()
     {
-        if (state.GetSelectedVehicle() == 2 && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
+        if (state.GetSelectedVehicle() == 3 && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
         {
             Display4rl();
         }

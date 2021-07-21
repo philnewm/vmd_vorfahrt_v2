@@ -18,7 +18,7 @@ public class ZoomControl : MonoBehaviour
     private Vector3 startCameraPosition;
     private float minFOV;
 
-    private void Awake()
+    private void Start()
     {
         startCameraPosition = camera.transform.localPosition;
         minFOV = camera.fieldOfView;

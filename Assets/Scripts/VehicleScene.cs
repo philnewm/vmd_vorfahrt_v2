@@ -7,34 +7,43 @@ public class VehicleScene : MonoBehaviour
 {
     //accessable members
     [SerializeField] SceneLoader sceneLoader;
-
     [SerializeField] SimpleRotation simpleRotation;
     [Header("Button")]
-    [SerializeField] TextMeshProUGUI threedFullBtn;
-    [SerializeField] TextMeshProUGUI textFullBtn;
-    [SerializeField] GameObject exitBtn;
-    [SerializeField] GameObject pageNum;
     [SerializeField] GameObject pagePanel;
     [SerializeField] GameObject langPanel;
 
     [Header("VehicleData")]
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI year;
-    [SerializeField] TextMeshProUGUI descr;
     [SerializeField] TextMeshProUGUI menuYear;
-    [SerializeField] GameObject magImg;
-    [SerializeField] GameObject magazinePanel;
+
+
+    [Header("TextData")]
+    [SerializeField] TextMeshProUGUI textFullBtn;
+    [SerializeField] TextMeshProUGUI descr;
     [SerializeField] GameObject descrPanel;
     [SerializeField] GameObject blueBG;
+    [SerializeField] GameObject exitBtnText;
+
+    [Header("Gallery Data")]
     [SerializeField] GameObject pageSlides;
+    [SerializeField] GameObject pageNum;
+    [SerializeField] GameObject galImg;
+    [SerializeField] GameObject galPanel;
     [SerializeField] GameObject nextSlideBtn;
     [SerializeField] GameObject prevSlideBtn;
-    [SerializeField] GameObject ExitBtn;
+    [SerializeField] GameObject exitBtnGal;
 
     [Header("3D Objects")]
+    [SerializeField] TextMeshProUGUI threedFullBtn;
+    [SerializeField] GameObject modelTexture;
+    [SerializeField] GameObject whiteBG;
     [SerializeField] GameObject modelCtl;
+    [SerializeField] GameObject zoomSlider;
     [SerializeField] Vector3 modelDefaultPosition;
     [SerializeField] Quaternion modelDefaultRotation;
+    [SerializeField] GameObject exitBtn3D;
+    [SerializeField] AdvancedRotation advancedRotation;
 
     //member variables
     private int slideNum;       //switch gallery slides
@@ -43,7 +52,7 @@ public class VehicleScene : MonoBehaviour
     private SceneState state;
     private DataLoader loader;
     private int galSlides;      //loading gallery slides
-    private bool showGal, showDescr, showText = false;  //indicator if gallery images are in use or not
+    private bool showGal, show3D, showText;
     private int displaySlideNum;
     private int displaySlides;
 
@@ -58,6 +67,9 @@ public class VehicleScene : MonoBehaviour
     private void Start()
     {
         state.SetCurScene();
+        show3D = false;
+        showGal = false;
+        showText = false;
         SetSlides();
         PrepopSlideNum();
         //CheckVehicleID();
@@ -131,7 +143,7 @@ public class VehicleScene : MonoBehaviour
 
     private void InsertGallery()
     {
-        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     private void Insert3DModel()
@@ -165,19 +177,19 @@ public class VehicleScene : MonoBehaviour
     private void MoveToStart()
     {
         slideNum = 0;
-        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     private void MoveToEnd()
     {
         slideNum = galSlides;
-        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     private void ChangeSlideNum(int direction)
     {
         slideNum += direction;
-        magImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
     }
 
     private void NumDisplayConversion()
@@ -191,13 +203,13 @@ public class VehicleScene : MonoBehaviour
         if (showGal) { showGal = false; }
         else { showGal = true; }
 
-        magazinePanel.transform.SetAsLastSibling();
+        galPanel.transform.SetAsLastSibling();
 
-        magazinePanel.GetComponent<Animator>().SetBool("show", showGal);
+        galPanel.GetComponent<Animator>().SetBool("show", showGal);
         pageSlides.SetActive(!showGal);
         prevSlideBtn.SetActive(showGal);
         nextSlideBtn.SetActive(showGal);
-        ExitBtn.SetActive(showGal);
+        exitBtnGal.SetActive(showGal);
         pageNum.SetActive(showGal);
         pagePanel.SetActive(showGal);
     }
@@ -217,26 +229,65 @@ public class VehicleScene : MonoBehaviour
         {
             showText = true;
             blueBG.SetActive(showText);
-            exitBtn.SetActive(showText);
+            exitBtnText.SetActive(showText);
         }
 
-        ReArrangeHirarchy();
-        StartAnimations();
+        ReArrangeHirarchyText();
+        StartTextAnimations();
     }
 
-    private void ReArrangeHirarchy()
+    private void ReArrangeHirarchyText()
     {
         blueBG.transform.SetAsLastSibling();
-        exitBtn.transform.SetAsLastSibling();
+        exitBtnText.transform.SetAsLastSibling();
         descrPanel.transform.SetAsLastSibling();
         langPanel.transform.SetAsLastSibling();
     }
 
-    private void StartAnimations()
+    private void StartTextAnimations()
     {
         descrPanel.GetComponent<Animator>().SetBool("show", showText);
         blueBG.GetComponent<Animator>().SetBool("show", showText);
-        exitBtn.GetComponent<Animator>().SetBool("show", showText);
+        exitBtnText.GetComponent<Animator>().SetBool("show", showText);
+    }
+
+    public bool GetShow3D()
+    {
+        return show3D;
+    }
+
+    public void Fade3D()
+    {
+        if (show3D)
+        {
+            show3D = false;
+        }
+        else
+        {
+            show3D = true;
+            whiteBG.SetActive(show3D);
+            exitBtn3D.SetActive(show3D);
+            zoomSlider.SetActive(show3D);
+        }
+
+        ReArrangeHirarchy3DView();
+        Start3DAnimations();
+    }
+
+    private void ReArrangeHirarchy3DView()
+    {
+        whiteBG.transform.SetAsLastSibling();
+        modelTexture.transform.SetAsLastSibling();
+        zoomSlider.transform.SetAsLastSibling();
+        exitBtn3D.transform.SetAsLastSibling();
+    }
+
+    private void Start3DAnimations()
+    {
+        whiteBG.GetComponent<Animator>().SetBool("show", show3D);
+        modelTexture.GetComponent<Animator>().SetBool("show", show3D);
+        zoomSlider.GetComponent<Animator>().SetBool("show", show3D);
+        exitBtn3D.GetComponent<Animator>().SetBool("show", show3D);
     }
 
     public void StopRotationOnSlide()
