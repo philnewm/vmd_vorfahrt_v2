@@ -7,7 +7,7 @@ public class VehicleScene : MonoBehaviour
 {
     //accessable members
     [SerializeField] SceneLoader sceneLoader;
-    [SerializeField] SimpleRotation simpleRotation;
+    [SerializeField] GameObject camCtl;
     [Header("Button")]
     [SerializeField] GameObject pagePanel;
     [SerializeField] GameObject langPanel;
@@ -44,6 +44,10 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] Quaternion modelDefaultRotation;
     [SerializeField] GameObject exitBtn3D;
     [SerializeField] AdvancedRotation advancedRotation;
+    [SerializeField] private Quaternion curRot;
+
+    [SerializeField] GameObject driverDoorBtn, coDriverDoorBtn, engineCoverBtn;
+
 
     //member variables
     private int slideNum;       //switch gallery slides
@@ -78,6 +82,7 @@ public class VehicleScene : MonoBehaviour
         Insert3DModel();
         prevSlideBtn.SetActive(showGal);
         nextSlideBtn.SetActive(showGal);
+        curRot = modelCtl.transform.rotation;
     }
 
     private void SetSlides()
@@ -268,32 +273,65 @@ public class VehicleScene : MonoBehaviour
             whiteBG.SetActive(show3D);
             exitBtn3D.SetActive(show3D);
             zoomSlider.SetActive(show3D);
+            if (state.GetSelectedVehicle() == 3 && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
+            {
+                Display4rl();
+            }
         }
 
         ReArrangeHirarchy3DView();
-        Start3DAnimations();
+        Start3DSceneAnimations();
+    }
+
+    private void Display4rl()
+    {
+        driverDoorBtn.SetActive(show3D);
+        coDriverDoorBtn.SetActive(show3D);
+        engineCoverBtn.SetActive(show3D);
     }
 
     private void ReArrangeHirarchy3DView()
     {
         whiteBG.transform.SetAsLastSibling();
         modelTexture.transform.SetAsLastSibling();
-        zoomSlider.transform.SetAsLastSibling();
         exitBtn3D.transform.SetAsLastSibling();
     }
 
-    private void Start3DAnimations()
+    private void Start3DSceneAnimations()
     {
         whiteBG.GetComponent<Animator>().SetBool("show", show3D);
         modelTexture.GetComponent<Animator>().SetBool("show", show3D);
         zoomSlider.GetComponent<Animator>().SetBool("show", show3D);
+        driverDoorBtn.GetComponent<Animator>().SetBool("show", show3D);
+        coDriverDoorBtn.GetComponent<Animator>().SetBool("show", show3D);
+        engineCoverBtn.GetComponent<Animator>().SetBool("show", show3D);
         exitBtn3D.GetComponent<Animator>().SetBool("show", show3D);
+    }
+
+    public Quaternion GetCurRot()
+    {
+        return curRot;
+    }
+
+    public void SetCurRot(Quaternion rot)
+    {
+        this.curRot = rot;
     }
 
     public void StopRotationOnSlide()
     {
-        simpleRotation.disableInput();
+        camCtl.GetComponent<SimpleRotation>().disableInput();
 
-        simpleRotation.enableInput();
+        camCtl.GetComponent<SimpleRotation>().enableInput();
+    }
+
+    public int CheckVehicle()
+    {
+        return state.GetSelectedVehicle();
+    }
+
+    public int CheckSide()
+    {
+        return state.GetLoadedSide();
     }
 }

@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VehicleView.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3DFullScreen.unity
     guid: 6a7632535f0b74a42ab45a656b62ae51
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TextFullScreen.unity
     guid: daee22344cfbbfe40ae6b733e8da512f
   m_configObjects:

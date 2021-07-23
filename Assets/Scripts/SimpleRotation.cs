@@ -39,7 +39,7 @@ public class SimpleRotation : MonoBehaviour
         Vector2 inputVector = controls.SceneController.RotationControl.ReadValue<Vector2>() * speed * Time.deltaTime;
         angle += inputVector.x;
         //TODO add boundaries
-        transform.eulerAngles = new Vector3(0, angle, 0);
+        transform.rotation = Quaternion.Euler(0, angle, 0);
     }
     public void disableInput()
     {

@@ -11,7 +11,7 @@ public class ObjectRotation : MonoBehaviour
     private Animator coverAnimator;
     private Animator driverDoorAnimator;
     private Animator coDoorAnimator;
-    [SerializeField] SceneControl3D ctrl3D;
+    [SerializeField] VehicleScene vehicleCtl;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class ObjectRotation : MonoBehaviour
     }
     private void Start()
     {
-        if (ctrl3D.CheckVehicle() == 2 && ctrl3D.CheckSide() == 0) //needs cleanup
+        if (vehicleCtl.CheckVehicle() == 3 && vehicleCtl.CheckSide() == 0) //needs cleanup
         {
             engineCover = GameObject.Find("paenomen_engine_cover");
             driverDoor = GameObject.Find("paenomen_driver_door");

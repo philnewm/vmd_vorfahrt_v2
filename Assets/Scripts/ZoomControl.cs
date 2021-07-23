@@ -16,12 +16,16 @@ public class ZoomControl : MonoBehaviour
     [Header("Camera Reference")]
     [SerializeField] Camera camera;
     private Vector3 startCameraPosition;
+    private Vector3 defaultCameraPosition;
     private float minFOV;
+    private float defaultFOV;
 
     private void Start()
     {
         startCameraPosition = camera.transform.localPosition;
+        defaultCameraPosition = camera.transform.localPosition;
         minFOV = camera.fieldOfView;
+        defaultFOV = 30;
     }
 
     public void SliderZoom(float zoomValue)
@@ -35,5 +39,11 @@ public class ZoomControl : MonoBehaviour
         camera.fieldOfView = minFOV + zoomValue * (maxFOV - minFOV);
 
         advancedRotation.enableInput();
+    }
+
+    public void ResetCam()
+    {
+        camera.fieldOfView = defaultFOV;
+        camera.transform.localPosition = defaultCameraPosition;
     }
 }
