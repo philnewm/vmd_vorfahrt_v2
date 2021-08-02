@@ -45,6 +45,7 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] GameObject exitBtn3D;
     [SerializeField] AdvancedRotation advancedRotation;
     [SerializeField] private Quaternion curRot;
+    [SerializeField] int animModelArrayPos;
 
     [SerializeField] GameObject driverDoorBtn, coDriverDoorBtn, engineCoverBtn;
 
@@ -273,7 +274,7 @@ public class VehicleScene : MonoBehaviour
             whiteBG.SetActive(show3D);
             exitBtn3D.SetActive(show3D);
             zoomSlider.SetActive(show3D);
-            if (state.GetSelectedVehicle() == 3 && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
+            if (state.GetSelectedVehicle() == animModelArrayPos && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
             {
                 Display4rl();
             }
@@ -333,5 +334,9 @@ public class VehicleScene : MonoBehaviour
     public int CheckSide()
     {
         return state.GetLoadedSide();
+    }
+    public int GetAnimModelArrayPos()
+    {
+        return animModelArrayPos;
     }
 }

@@ -6139,6 +6139,11 @@ PrefabInstance:
       objectReference: {fileID: 242947853}
     - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
         type: 3}
+      propertyPath: animModelArrayPos
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137597211776664008, guid: 6379655b7168e29498082710d8d6ddd2,
+        type: 3}
       propertyPath: modelDefaultRotation.w
       value: 0.25881907
       objectReference: {fileID: 0}

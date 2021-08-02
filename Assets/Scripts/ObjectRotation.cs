@@ -21,7 +21,7 @@ public class ObjectRotation : MonoBehaviour
     }
     private void Start()
     {
-        if (vehicleCtl.CheckVehicle() == 3 && vehicleCtl.CheckSide() == 0) //needs cleanup
+        if (vehicleCtl.CheckVehicle() == vehicleCtl.GetAnimModelArrayPos() && vehicleCtl.CheckSide() == 0) //needs cleanup
         {
             engineCover = GameObject.Find("paenomen_engine_cover");
             driverDoor = GameObject.Find("paenomen_driver_door");
