@@ -12,7 +12,6 @@ public class DisableObject : MonoBehaviour
         }
     }
 
-
     public void Disable3D()
     {
         if (!sceneCtl.GetShow3D())

@@ -149,7 +149,7 @@ public class VehicleScene : MonoBehaviour
 
     private void InsertGallery()
     {
-        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetGallery()[slideNum];
     }
 
     private void Insert3DModel()
@@ -183,19 +183,19 @@ public class VehicleScene : MonoBehaviour
     private void MoveToStart()
     {
         slideNum = 0;
-        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetGallery()[slideNum];
     }
 
     private void MoveToEnd()
     {
         slideNum = galSlides;
-        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetGallery()[slideNum];
     }
 
     private void ChangeSlideNum(int direction)
     {
         slideNum += direction;
-        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetMagazine()[slideNum];
+        galImg.GetComponent<RawImage>().texture = loader.vehicles[state.GetSelectedVehicle()].GetGallery()[slideNum];
     }
 
     private void NumDisplayConversion()

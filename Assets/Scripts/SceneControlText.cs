@@ -41,15 +41,4 @@ public class SceneControlText : MonoBehaviour
             + loader.vehicles[state.GetSelectedVehicle()].GetEngDescr();
         }
     }
-
-    public void ClosingDelay()
-    {
-        descrPanel.GetComponent<Animator>().SetBool("show", false);
-        Invoke("BackToVehicle", 2);
-    }
-
-    private void BackToVehicle()
-    {
-        sceneLoader.LoadVehicleScene();
-    }
 }

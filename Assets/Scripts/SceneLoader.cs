@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-	
+
     public void CheckPreloadScene()
     {
         GameObject check = GameObject.Find("__app");
@@ -31,18 +31,8 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    public void Load3DFullScene()
-    {
-        SceneManager.LoadScene(3);
-    }
-
-    public void LoadTextFullScene()
-    {
-        SceneManager.LoadScene(4);
-    }
-
     public void quit()
     {
         Application.Quit();
-	}
+    }
 }

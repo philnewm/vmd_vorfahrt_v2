@@ -101,10 +101,6 @@ public class Vehicle
         this.titlePicture.name = titlePicName;
     }
 
-    public void SetTitlePicName(string titlePicName)
-    {
-        this.titlePicture.name = titlePicName;
-    }
 
     public void SetMagazine(Texture2D loadedGallery, string vehicleName)
     {
@@ -112,12 +108,12 @@ public class Vehicle
         this.gallery[gallery.Count - 1].name = vehicleName;
     }
 
-    public List<Texture2D> GetMagazine()
+    public List<Texture2D> GetGallery()
     {
         return gallery;
     }
 
-    public Texture2D GetMagazine(int index)
+    public Texture2D GetGallery(int index)
     {
         return gallery[index];
     }

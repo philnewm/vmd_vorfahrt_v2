@@ -62,25 +62,4 @@ public class SceneControl3D : MonoBehaviour
     {
         GameObject vehicleModel = Instantiate(loader.vehicles[state.GetSelectedVehicle()].Get3DModel(), modelDefaultPosition, modelDefaultRotation, modelCtl.transform);
     }
-
-    public void ClosingDelay()
-    {
-        modellAsTexture.GetComponent<Animator>().SetBool("upscaled", false);
-        Invoke("BackToVehicle", 2);
-    }
-
-    public int CheckVehicle()
-    {
-        return state.GetSelectedVehicle();
-    }
-
-    public int CheckSide()
-    {
-        return state.GetLoadedSide();
-    }
-
-    private void BackToVehicle()
-    {
-        sceneLoader.LoadVehicleScene();
-    }
 }

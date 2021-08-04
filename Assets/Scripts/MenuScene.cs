@@ -20,7 +20,6 @@ public class MenuScene : MonoBehaviour
     //non-accessable members
     private SceneState state;
     private DataLoader loader;
-
     private void Awake()
     {
         //all operations in here depent on DontDestroyOnLoad-Feature ()SceneState.cs --> Awake-Methode
