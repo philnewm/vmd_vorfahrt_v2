@@ -1007,6 +1007,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleScene: {fileID: 712727332}
+  objectRotation: {fileID: 9137597212488309487}
+--- !u!114 &452542721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452542715}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a1d7787935e5aea8cc51b43ef83412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 3984482186507205586}
+  objectRotation: {fileID: 9137597212488309487}
 --- !u!1 &459196179
 GameObject:
   m_ObjectHideFlags: 0
@@ -5368,6 +5383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 3DObjectAsTexture
+      objectReference: {fileID: 0}
+    - target: {fileID: 6338928368938706718, guid: 1a941a5b7fafc8441a8d68650acfd04e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a941a5b7fafc8441a8d68650acfd04e, type: 3}

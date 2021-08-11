@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3fdb8d6f-c827-4e94-9312-929578fdfd7b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -125,7 +133,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""8cb394aa-6d17-4842-994c-ac967b829cde"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
@@ -136,7 +144,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f6e98672-6da4-418d-b109-3a58c1b9c9b1"",
                     ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
@@ -208,6 +216,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""vertical_rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2792d48f-da7f-40ec-981d-f7269799683a"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9063240b-88e2-42cc-9fa5-fb9be59560a1"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -219,6 +249,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_SceneController_RotationControl = m_SceneController.FindAction("RotationControl", throwIfNotFound: true);
         m_SceneController_Click = m_SceneController.FindAction("Click", throwIfNotFound: true);
         m_SceneController_vertical_rotation = m_SceneController.FindAction("vertical_rotation", throwIfNotFound: true);
+        m_SceneController_Position = m_SceneController.FindAction("Position", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +302,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_SceneController_RotationControl;
     private readonly InputAction m_SceneController_Click;
     private readonly InputAction m_SceneController_vertical_rotation;
+    private readonly InputAction m_SceneController_Position;
     public struct SceneControllerActions
     {
         private @Controls m_Wrapper;
@@ -278,6 +310,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @RotationControl => m_Wrapper.m_SceneController_RotationControl;
         public InputAction @Click => m_Wrapper.m_SceneController_Click;
         public InputAction @vertical_rotation => m_Wrapper.m_SceneController_vertical_rotation;
+        public InputAction @Position => m_Wrapper.m_SceneController_Position;
         public InputActionMap Get() { return m_Wrapper.m_SceneController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -296,6 +329,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @vertical_rotation.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnVertical_rotation;
                 @vertical_rotation.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnVertical_rotation;
                 @vertical_rotation.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnVertical_rotation;
+                @Position.started -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_SceneControllerActionsCallbackInterface.OnPosition;
             }
             m_Wrapper.m_SceneControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -309,6 +345,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @vertical_rotation.started += instance.OnVertical_rotation;
                 @vertical_rotation.performed += instance.OnVertical_rotation;
                 @vertical_rotation.canceled += instance.OnVertical_rotation;
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
             }
         }
     }
@@ -318,5 +357,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnRotationControl(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnVertical_rotation(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
     }
 }

@@ -74,4 +74,11 @@ public class ObjectRotation : MonoBehaviour
             openCoDoor = false;
         }
     }
+
+    public void ToggleOutline(bool toggle)
+    {
+        engineCover.GetComponent<Outline>().enabled = toggle;
+        driverDoor.GetComponent<Outline>().enabled = toggle;
+        coDriverDoor.GetComponent<Outline>().enabled = toggle;
+    }
 }

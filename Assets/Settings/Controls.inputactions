@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Position",
+                    "type": "PassThrough",
+                    "id": "3fdb8d6f-c827-4e94-9312-929578fdfd7b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -112,7 +120,7 @@
                     "name": "",
                     "id": "8cb394aa-6d17-4842-994c-ac967b829cde",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Click",
@@ -123,7 +131,7 @@
                     "name": "",
                     "id": "f6e98672-6da4-418d-b109-3a58c1b9c9b1",
                     "path": "<Touchscreen>/press",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Click",
@@ -195,6 +203,28 @@
                     "action": "vertical_rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2792d48f-da7f-40ec-981d-f7269799683a",
+                    "path": "<Mouse>/position",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9063240b-88e2-42cc-9fa5-fb9be59560a1",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

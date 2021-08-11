@@ -47,9 +47,6 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] private Quaternion curRot;
     [SerializeField] int animModelArrayPos;
 
-    [SerializeField] GameObject driverDoorBtn, coDriverDoorBtn, engineCoverBtn;
-
-
     //member variables
     private int slideNum;       //switch gallery slides
 
@@ -274,21 +271,10 @@ public class VehicleScene : MonoBehaviour
             whiteBG.SetActive(show3D);
             exitBtn3D.SetActive(show3D);
             zoomSlider.SetActive(show3D);
-            if (state.GetSelectedVehicle() == animModelArrayPos && state.GetLoadedSide() == 0) //check which vehicle to display, value found in state-class
-            {
-                Display4rl();
-            }
         }
 
         ReArrangeHirarchy3DView();
         Start3DSceneAnimations();
-    }
-
-    private void Display4rl()
-    {
-        driverDoorBtn.SetActive(show3D);
-        coDriverDoorBtn.SetActive(show3D);
-        engineCoverBtn.SetActive(show3D);
     }
 
     private void ReArrangeHirarchy3DView()
@@ -303,9 +289,6 @@ public class VehicleScene : MonoBehaviour
         whiteBG.GetComponent<Animator>().SetBool("show", show3D);
         modelTexture.GetComponent<Animator>().SetBool("show", show3D);
         zoomSlider.GetComponent<Animator>().SetBool("show", show3D);
-        driverDoorBtn.GetComponent<Animator>().SetBool("show", show3D);
-        coDriverDoorBtn.GetComponent<Animator>().SetBool("show", show3D);
-        engineCoverBtn.GetComponent<Animator>().SetBool("show", show3D);
         exitBtn3D.GetComponent<Animator>().SetBool("show", show3D);
     }
 
@@ -322,7 +305,6 @@ public class VehicleScene : MonoBehaviour
     public void StopRotationOnSlide()
     {
         camCtl.GetComponent<SimpleRotation>().disableInput();
-
         camCtl.GetComponent<SimpleRotation>().enableInput();
     }
 
