@@ -1,4 +1,9 @@
 {
 	"__comment_": "0 = linke Seite | 1 = rechte Seite",
-	"loadedSide": "0"
+	"loadedSide": "0",
+	"__comment01_": "der visibleCountdown entspricht die Sekunde ab der die Sekunden-Anzeige eingeblendet werden soll",
+	"visibleCountdown": "90",
+	"__comment02_": "der invisibleCountdown entspricht der Anzahl an Sekunden bevor Sekunden-Anzeige eingeblendet werden soll",
+	"invisibleCountdown": "10",
+	"__comment03_": "der gesamte Countdown ist damit die Summe der beiden Werte"
 }

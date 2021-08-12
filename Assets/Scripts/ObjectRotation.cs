@@ -12,6 +12,7 @@ public class ObjectRotation : MonoBehaviour
     private Animator driverDoorAnimator;
     private Animator coDoorAnimator;
     [SerializeField] VehicleScene vehicleCtl;
+    [SerializeField] Timer timer;
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class ObjectRotation : MonoBehaviour
 
     public void ToggleCover()
     {
+        timer.ResetTimer();
+
         if (!openCover)
         {
             coverAnimator.SetBool("open", true);
@@ -50,6 +53,8 @@ public class ObjectRotation : MonoBehaviour
 
     public void ToggleDriverDoor()
     {
+        timer.ResetTimer();
+
         if (!openDriverDoor)
         {
             driverDoorAnimator.SetBool("open", true);
@@ -63,6 +68,8 @@ public class ObjectRotation : MonoBehaviour
     }
     public void ToggleCoDoor()
     {
+        timer.ResetTimer();
+
         if (!openCoDoor)
         {
             coDoorAnimator.SetBool("open", true);

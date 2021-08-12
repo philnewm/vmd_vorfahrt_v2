@@ -4,6 +4,7 @@ public class SimpleRotation : MonoBehaviour
 {
     //accessible members
     [SerializeField] float speed;
+    [SerializeField] Timer timer;
 
     //non-accessible members
     private Controls controls;
@@ -16,6 +17,7 @@ public class SimpleRotation : MonoBehaviour
 
     private void OnEnable()
     {
+        angle = transform.rotation.y;
         controls.Enable();
     }
 
@@ -37,9 +39,13 @@ public class SimpleRotation : MonoBehaviour
     private void CameraYRotation()
     {
         Vector2 inputVector = controls.SceneController.RotationControl.ReadValue<Vector2>() * speed * Time.deltaTime;
-        angle += inputVector.x;
-        //TODO add boundaries
-        transform.rotation = Quaternion.Euler(0, angle, 0);
+        if (inputVector != new Vector2(0, 0))
+        {
+            angle += inputVector.x;
+            //TODO add boundaries
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+            timer.ResetTimer();
+        }
     }
     public void disableInput()
     {

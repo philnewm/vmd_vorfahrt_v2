@@ -321,4 +321,25 @@ public class VehicleScene : MonoBehaviour
     {
         return animModelArrayPos;
     }
+
+    public int GetStateInvisibleCountdown()
+    {
+        return state.GetInvisCountdown();
+    }
+
+    public int GetStateVisibleCountdown()
+    {
+        return state.GetVisCountdown();
+    }
+
+    public void GetCurrentRotation()
+    {
+        curRot = camCtl.transform.rotation;
+        Debug.Log("curRot from VehicleScene" + curRot);
+    }
+
+    public Quaternion GetCurRotValue()
+    {
+        return curRot;
+    }
 }

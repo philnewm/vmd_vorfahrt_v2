@@ -52,9 +52,5 @@ public class Clicker : MonoBehaviour
                 objectRotation.ToggleCoDoor();
             }
         }
-        else
-        {
-            Debug.Log("Missed");
-        }
     }
 }

@@ -9,6 +9,8 @@ public class SceneState : MonoBehaviour
     [SerializeField] int selectedVehicle;
     [SerializeField] int loadedSide;
     [SerializeField] string selectedSide;
+    [SerializeField] int visibleCountdown;
+    [SerializeField] int invisibleCountdown;
 
     private DataLoader loader;
 
@@ -68,5 +70,25 @@ public class SceneState : MonoBehaviour
     public string GetSelectedSide()
     {
         return selectedSide;
+    }
+
+    public void SetInvisCountdown(int invisCountdown)
+    {
+        invisibleCountdown = invisCountdown;
+    }
+
+    public void SetVisCountdown(int visCountdown)
+    {
+        visibleCountdown = visCountdown;
+    }
+
+    public int GetVisCountdown()
+    {
+        return visibleCountdown;
+    }
+
+    public int GetInvisCountdown()
+    {
+        return invisibleCountdown;
     }
 }
