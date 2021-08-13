@@ -44,7 +44,7 @@ public class VehicleScene : MonoBehaviour
     [SerializeField] Quaternion modelDefaultRotation;
     [SerializeField] GameObject exitBtn3D;
     [SerializeField] AdvancedRotation advancedRotation;
-    [SerializeField] private Quaternion curRot;
+    [SerializeField] private float curYRot;
     [SerializeField] int animModelArrayPos;
 
     //member variables
@@ -80,7 +80,6 @@ public class VehicleScene : MonoBehaviour
         Insert3DModel();
         prevSlideBtn.SetActive(showGal);
         nextSlideBtn.SetActive(showGal);
-        curRot = modelCtl.transform.rotation;
     }
 
     private void SetSlides()
@@ -292,16 +291,6 @@ public class VehicleScene : MonoBehaviour
         exitBtn3D.GetComponent<Animator>().SetBool("show", show3D);
     }
 
-    public Quaternion GetCurRot()
-    {
-        return curRot;
-    }
-
-    public void SetCurRot(Quaternion rot)
-    {
-        this.curRot = rot;
-    }
-
     public void StopRotationOnSlide()
     {
         camCtl.GetComponent<SimpleRotation>().disableInput();
@@ -332,14 +321,13 @@ public class VehicleScene : MonoBehaviour
         return state.GetVisCountdown();
     }
 
-    public void GetCurrentRotation()
+    public void SetCurrentRotationAngle(float angle)
     {
-        curRot = camCtl.transform.rotation;
-        Debug.Log("curRot from VehicleScene" + curRot);
+        curYRot = angle;
     }
 
-    public Quaternion GetCurRotValue()
+    public float GetCurRotValue()
     {
-        return curRot;
+        return curYRot;
     }
 }

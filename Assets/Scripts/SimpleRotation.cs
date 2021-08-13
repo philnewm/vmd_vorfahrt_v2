@@ -5,6 +5,8 @@ public class SimpleRotation : MonoBehaviour
     //accessible members
     [SerializeField] float speed;
     [SerializeField] Timer timer;
+    [SerializeField]
+    VehicleScene vehicleScene;
 
     //non-accessible members
     private Controls controls;
@@ -17,18 +19,14 @@ public class SimpleRotation : MonoBehaviour
 
     private void OnEnable()
     {
-        angle = transform.rotation.y;
+        angle = vehicleScene.GetCurRotValue();
         controls.Enable();
     }
 
     private void OnDisable()
     {
+        vehicleScene.SetCurrentRotationAngle(angle);
         controls.Disable();
-    }
-
-    private void Start()
-    {
-        angle = transform.rotation.y;
     }
 
     void Update()

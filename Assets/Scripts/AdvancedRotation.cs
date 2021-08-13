@@ -8,11 +8,13 @@ public class AdvancedRotation : MonoBehaviour
     [SerializeField] private float rotationMinAngle;
     [SerializeField] private float rotationMaxAngle;
     [SerializeField] private VehicleScene vehicleScene;
-    private Quaternion startRot;
+    private float curRotY;
 
     private float extractedXRotation;
     private float extractedYRotation;
     private Controls controls;
+
+    private float curYValue;
 
     private void Awake()
     {
@@ -21,11 +23,13 @@ public class AdvancedRotation : MonoBehaviour
 
     private void OnEnable()
     {
+        extractedYRotation = vehicleScene.GetCurRotValue();
         controls.Enable();
     }
 
     private void OnDisable()
     {
+        vehicleScene.SetCurrentRotationAngle(extractedYRotation);
         controls.Disable();
     }
 
