@@ -53,6 +53,12 @@ public class AdvancedRotation : MonoBehaviour
         }
     }
 
+    public void ResetXRotation()
+    {
+        extractedXRotation = 0;
+        transform.rotation = Quaternion.Euler(extractedXRotation, extractedYRotation, 0);
+    }
+
     public void disableInput()
     {
         controls.Disable();

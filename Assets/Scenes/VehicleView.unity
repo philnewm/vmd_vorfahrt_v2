@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
@@ -296,6 +296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 712727332}
@@ -318,10 +323,15 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 452542720}
+      objectReference: {fileID: 452542717}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 452542720}
+    - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
       objectReference: {fileID: 452542720}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
@@ -351,6 +361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Fade3D
       objectReference: {fileID: 0}
@@ -372,11 +387,16 @@ PrefabInstance:
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: SwitchAdvRotation
+      value: ResetXRotation
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: SwitchAdvRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
       value: SwitchSimpleRotation
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
@@ -402,6 +422,11 @@ PrefabInstance:
     - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147722259388394081, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4147722259388394111, guid: fbb8d9f11e72c3b40adaa7fc212a6af3,
@@ -4999,7 +5024,7 @@ PrefabInstance:
     - target: {fileID: 2567332443376759981, guid: e48a7ae87662b1c498f9a3251171028a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2567332443376759982, guid: e48a7ae87662b1c498f9a3251171028a,
         type: 3}
