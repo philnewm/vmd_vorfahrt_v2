@@ -1,0 +1,197 @@
+\chapter{Public Methods}
+\label{cha:public_meth}
+%
+In diesem Kapitel werden alle public methods der wichtigsten Klassen genannt und ihre Funktion erläutert.
+%
+\section{\ssc}
+\label{sec:statemeth}
+%
+\textbf{public string GetLanguage()}\\
+gibt die aktuell gewählte Sprache zurück\\
+\\
+\textbf{public void SetLanguage(string language)}\\
+aktualisiert die ausgewählte Sprache\\
+\\
+\textbf{public void SetCurScene()}\\
+ermittelt die aktuelle Scene auf Basis von Unitys Scene Index\\
+\\
+\textbf{public int GetSelectedVehicle()}\\
+gibt den Listen Index des aktuell ausgewählten Fahrzeugs zurück\\
+\\
+\textbf{public void SetSelectedVehicle(int VehicleNumber)}\\
+aktualisiert den Index des ausgewählten Fahrzeugs\\
+\\
+\textbf{public void SetSelectedSide(string jsonData)}\\
+setzt die ausgewählte Seite abhängig von settings.json im \sad \\
+0 = left | 1 = right\\
+\\
+\textbf{public int GetLoadedSide()}\\
+gibt die ausgewählte Seite als Integer zurück\\
+0 = left | 1 = right\\
+\\
+\textbf{public string GetSelectedSide()}\\
+gibt die ausgewählte Seite als String (left | right) zurück\\
+%
+\section{\vhc}
+\label{sec:vhmeth}
+%
+\textbf{public Vehicle(string name)}\\
+Constructor der \vhc:\\
+String Parameter wird als \enquote{name}-Attribute an die neu erzeugte \vhi übergeben\\
+ABER: nicht verwechseln mit dem Titel des Fahrzeugs\\
+\\
+\textbf{public void LoadText(string jsonData)}\\
+bekommt einen rohen json-String übergeben und ordnet die json-Attribute den identischen Variablen der Klasse zu\\
+\\
+\textbf{public string GetName()}\\
+gibt den Namen des Fahrzeugs zurück\\
+ABER: nicht verwechseln mit dem Titel des Fahrzeugs\\
+\\
+\textbf{public string GetGerTitle()}\\
+gibt den vollständigen Titel des Fahrzeugs auf deutsch zurück\\
+\\
+\textbf{public string GetEngTitle()}\\
+gibt den vollständigen Titel des Fahrzeugs auf englisch zurück\\
+\\
+\textbf{public string GetYear()}\\
+gibt das Erscheinungsjahr des Fahrzeugs zurück\\
+\\
+\textbf{public string GetGerHeader()}\\
+gibt den Header (Titel + Jahr kombiniert) des Fahrzeugs auf deutsch zurück\\
+\\
+\textbf{public string GetEngHeader()}\\
+gibt den Header (Titel + Jahr kombiniert) des Fahrzeugs auf englisch zurück\\
+\\
+\textbf{public string GetGerPreDescr()}\\
+gibt die technischen Eckdaten des Fahrzeugs auf deutsch zurück\\
+\\
+\textbf{public string GetEngPreDescr()}\\
+gibt die technischen Eckdaten des Fahrzeugs auf englisch zurück\\
+\\
+\textbf{public string GetGerDescr()}\\
+gibt die Beschreibung des Fahrzeugs auf deutsch zurück\\
+\\
+\textbf{public string GetEngDescr()}\\
+gibt die Beschreibung des Fahrzeugs auf englisch zurück\\
+\\
+\textbf{public Texture2D GetTitlePic()}\\
+gibt das Titelbild des Fahrzeugs als Texture2D zurück\\
+\\
+\textbf{public void SetTitlePic(Texture2D titlePic, string titlePicName)}\\
+setzt bzw. überschreibt das Titelbild und dessen Bezeichnung\\
+\\
+\textbf{public void SetMagazine(Texture2D loadedGallery, string vehicleName)}\\
+fügt der Galeriebilder-Liste einen Eintrag hinzu und weist diesem einen Namen zu\\
+\\
+\textbf{public List<Texture2D> GetGallery()}\\
+gibt die Galeriebilder als Liste vom Typ Texture2D zurück\\
+\\
+\textbf{public Texture2D GetGallery(int index)}\\
+gibt ein einzelnes Galeriebild auf Basis das übergebenen Index zurück\\
+\\
+\textbf{public void Set3DModel(GameObject vehiclePrefFab)}\\
+fügt das 3D-Model des Fahrzeugs der Instanz hinzu\\
+\\
+\textbf{public GameObject Get3DModel()}\\
+gibt das 3D-Model als GameObject zurück\\
+%
+\section{\lsc}
+\label{sec:lsc}
+%
+\textbf{public void SwitchLanguage()}\\
+wechselt die aktuelle Sprache von deutsch zu englisch bzw. von englisch zu deutsch\\
+%
+\section{\ctlsc}
+\label{sec:csc}
+%
+\textbf{public void ControlSwitcher()}\\
+wechselt die aktiven Steuerungs-Scripte zwischen der Vehicle-Ansicht und der 3D-Vollbildansicht\\
+%
+\section{\doc}
+%
+\textbf{public void DisableText()}\\
+deaktiviert nicht länger benötigte Objekte der Text-Vollbildansicht\\
+wird in diesem Fall am Ende einer Animation gestartet\\
+\\
+\textbf{public void Disable3D()}\\
+deaktiviert nicht länger benötigte Objekte der 3D-Vollbildansicht\\
+wird in diesem Fall am Ende einer Animation gestartet\\
+%
+\section{\slc}
+%
+\textbf{public void LoadNextScene()}\\
+erhöht den Scene Index um 1 und wechselt damit zur nächsten Scene\\
+\\
+\textbf{public void LoadNextScene(int sceneID)}\\
+hier wird der Scene Index direkt übergeben, um eine bestimmte Scene zu laden\\
+\\
+\textbf{public void CheckPreloadScene()}\\
+prüft anhand des \emph{\_\_app}-GameObject ob die \pres{} bereits gestartet wurde oder nicht\\
+nur während der Entwicklung relevant, das fertige Build startet immer von der \pres{}\\
+\\
+\textbf{public void LoadMenuScene()}\\
+lädt direkt in die \mms\\
+\\
+\textbf{public void LoadVehicleScene()}\\
+lädt direkt in die \vhs\\
+\\
+\textbf{public void quit()}\\
+schließt das Programm
+%
+\section{\mec}
+%
+\textbf{public void SetYear(string importedYear)}\\
+weist dem entsprechenden Textfeld im MenuEntry-Prefab das Erscheinungsjahr zu\\
+wird von der \mms{} \ref{sec:mms} aufgerufen, um die Einträge zuzuweisen\\
+\\
+\textbf{public void Setname(string importedName)}\\
+weist dem entsprechenden Textfeld im MenuEntry-Prefab den Titel zu\\
+wird von der \mms{} \ref{sec:mms} aufgerufen, um die Einträge zuzuweisen\\
+%
+\section{\msc}
+%
+\textbf{public void UpdateSaenfte()}\\
+aktualisiert den Titel der Sänfte in der \mms{} auf deutsch bzw. englisch\\
+\\
+\textbf{public void UpdatePennyFarth()}\\
+aktualisiert den Titel des Hochrads in der \mms{} auf deutsch bzw. englisch\\
+\\
+\textbf{public void SwitchVehicle(int num)}\\
+aktualisiert das ausgewählte Fahrzeug im \ssc\\
+%
+\section{\orc}
+%
+\textbf{public void ToggleCover()}\\
+toggelt die Animation der Motorhaube des Phänomen 4RL Modells\\
+\\
+\textbf{public void ToggleDriverDoor()}\\
+toggelt die Animation der Fahrertür des Phänomen 4RL Modells\\
+\\
+\textbf{public void ToggleCoDoor()}\\
+toggelt die Animation der Beifahrertür des Phänomen 4RL Modells\\
+%
+\section{\ars}
+%
+\textbf{public void disableInput()}\\
+deaktiviert das \ars\\
+\\
+\textbf{public void enableInput()}\\
+aktiviert das \ars\\
+%
+\section{\srs}
+%
+\textbf{public void disableInput()}\\
+deaktiviert das \srs\\
+\\
+\textbf{public void enableInput()}\\
+aktiviert das \srs\\
+%
+\section{\zcs}
+%
+\textbf{public void SliderZoom(float zoomValue)}\\
+verschiebt die Kameraposition entlang der ihrer lokalen Z-Achse und den FOV-Wert um den übergebenen Float-Wert\\
+kommt beim Zoom-Slider zum Einsatz\\
+\\
+\textbf{public void ResetCam()}\\
+setzt die Kameraposition und den FOV-Wert auf den Standard-Wert zurück
+%

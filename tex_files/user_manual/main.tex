@@ -1,0 +1,35 @@
+\documentclass[a4paper,12pt]{scrarticle}
+%
+\input{chapters/00_initial_setup}
+%
+\input{praeambel/commands}
+%
+%opening
+\title{Benutzer Anleitung\\
+	   -\\
+   	   VMD Vorfahrt App}
+\author{Philipp Neumann}
+\date{\today}
+%
+\begin{document}
+%
+\maketitle
+%
+%\tableofcontents
+%
+\section{Einführung}
+\label{chap:intro}
+In diesem kurzen Handbuch werden die Funktionen erklärt, über die der Nutzer Einstellungen und halte der App verändern kann. 
+%
+\section{Einstellungsdatei}
+\label{sec:setttings}
+%
+Im Verzeichnis \path{/VMD_Vorfahrt_Data/StreamingAssets/} liegt die \emph{settings.json}-Datei. Mit dieser Datei lässt sich die Seite zwischen linker und rechter Seite Wechseln. Die Einstellung wird mit einer Zahl festgelegt: \enquote{0} steht hier für die linke Seite und \enquote{1} für die rechte Seite.\\
+Außerdem stehen zwei Zahlen Werte für den Reset-Timer zur Verfügung. Hier wird in Sekunden angegeben, wie lange die App warten soll bis sie sich zum Menü zurücksetzt. Der erste Wert mit dem Namen \enquote{invisibleCountdown} steht für die Sekundenanzahl, die im Hintergrund heruntergezählt wird, ohne eine Ausgabe auf dem Display anzuzeigen. Sobald diese Zeit abgelaufen ist, wir der Wert unter \enquote{visibleCountdown} aktiv und anschließend als Count-Down auf dem Display angezeigt. Der Reset-Timer setzt sich damit aus der Summe der Beiden Sekunden-Werte zusammen.
+%
+\section{Bild- Und Textdaten}
+\label{sec:content}
+%
+Im Verzeichnis \path{/VMD_Vorfahrt_Data/StreamingAssets/} liegen, unterteilt nach linker und rechter Seite, alle Bild und Textdaten der verfügbaren Fahrzeuge. Diese können beliebig bearbeitet, gelöscht oder erweitert werden. wichtig ist dabei nur, dass die Verzeichnisstruktur eingehalten wird. Die Änderungen werden hier ebenfalls nach einem Neustart der App übernommen.
+%
+\end{document}

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta property="og:image" content="https://theslidefactory.com/wp-content/uploads/2019/05/logo_on_blue.jpg" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="pingback" href="https://theslidefactory.com/xmlrpc.php" />
+<script type="text/javascript">
+		document.documentElement.className = 'js';
+	</script>
+<meta name='robots' content='max-image-preview:large' />
+
+<title>Loading 3D Models from the Web at Runtime in Unity - slidefactory</title>
+<meta name="description" content="Learn how loading 3D models (GLTF and GLB) from a web server works and then load them into Unity at runtime with local file caching." />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<link rel="canonical" href="https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Loading 3D Models from the Web at Runtime in Unity - slidefactory" />
+<meta property="og:description" content="Learn how loading 3D models (GLTF and GLB) from a web server works and then load them into Unity at runtime with local file caching." />
+<meta property="og:url" content="https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/" />
+<meta property="og:site_name" content="slidefactory" />
+<meta property="article:published_time" content="2020-04-11T15:27:35+00:00" />
+<meta property="article:modified_time" content="2020-05-07T18:51:53+00:00" />
+<meta property="og:image" content="https://theslidefactory.com/wp-content/uploads/2020/04/Download3DModelTut.jpg" />
+<meta property="og:image:width" content="1500" />
+<meta property="og:image:height" content="572" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@slidefactoryllc" />
+<meta name="twitter:site" content="@slidefactoryllc" />
+<meta name="twitter:label1" content="Written by">
+<meta name="twitter:data1" content="SlideFactory">
+<meta name="twitter:label2" content="Est. reading time">
+<meta name="twitter:data2" content="6 minutes">
+<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theslidefactory.com/#organization","name":"SlideFactory","url":"https://theslidefactory.com/","sameAs":["http://theslidefactory","https://www.linkedin.com/company/slidefactory/","https://www.youtube.com/channel/UCl-DBjRWv4takJXCozyulVA","https://twitter.com/slidefactoryllc"],"logo":{"@type":"ImageObject","@id":"https://theslidefactory.com/#logo","inLanguage":"en-US","url":"https://theslidefactory.com/wp-content/uploads/2019/05/logo_on_blue.jpg","width":1000,"height":1000,"caption":"SlideFactory"},"image":{"@id":"https://theslidefactory.com/#logo"}},{"@type":"WebSite","@id":"https://theslidefactory.com/#website","url":"https://theslidefactory.com/","name":"SlideFactory","description":"An Experience Design Agency in Portland, Oregon.","publisher":{"@id":"https://theslidefactory.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://theslidefactory.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#primaryimage","inLanguage":"en-US","url":"https://theslidefactory.com/wp-content/uploads/2020/04/Download3DModelTut.jpg","width":1500,"height":572},{"@type":"WebPage","@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#webpage","url":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/","name":"Loading 3D Models from the Web at Runtime in Unity - slidefactory","isPartOf":{"@id":"https://theslidefactory.com/#website"},"primaryImageOfPage":{"@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#primaryimage"},"datePublished":"2020-04-11T15:27:35+00:00","dateModified":"2020-05-07T18:51:53+00:00","description":"Learn how loading 3D models (GLTF and GLB) from a web server works and then load them into Unity at runtime with local file caching.","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/"]}]},{"@type":"Article","@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#article","isPartOf":{"@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#webpage"},"author":{"@id":"https://theslidefactory.com/#/schema/person/73af62cfe89c45cfb39c8ae193ebe923"},"headline":"Loading 3D Models from the Web at Runtime in Unity","datePublished":"2020-04-11T15:27:35+00:00","dateModified":"2020-05-07T18:51:53+00:00","mainEntityOfPage":{"@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#webpage"},"commentCount":2,"publisher":{"@id":"https://theslidefactory.com/#organization"},"image":{"@id":"https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#primaryimage"},"articleSection":"Unity 3D","inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#respond"]}]},{"@type":"Person","@id":"https://theslidefactory.com/#/schema/person/73af62cfe89c45cfb39c8ae193ebe923","name":"SlideFactory","image":{"@type":"ImageObject","@id":"https://theslidefactory.com/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/ecfeb9857292d3ac574ead8f74c84c91?s=96&d=mm&r=g","caption":"SlideFactory"}}]}</script>
+
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="slidefactory &raquo; Feed" href="https://theslidefactory.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="slidefactory &raquo; Comments Feed" href="https://theslidefactory.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="slidefactory &raquo; Loading 3D Models from the Web at Runtime in Unity Comments Feed" href="https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/feed/" />
+
+<script type="text/javascript" data-cfasync="false">
+    (window.gaDevIds=window.gaDevIds||[]).push("dZGIzZG");
+	var mi_version         = '7.15.1';
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-139426386-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
+	}
+	
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-139426386-1', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('require', 'displayfeatures');
+		__gaTracker('require', 'linkid', 'linkid.js');
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/theslidefactory.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<meta content="Divi Child v.4.21.1.1555019547" name="generator" /><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sb_instagram_styles-css' href='https://theslidefactory.com/wp-content/plugins/instagram-feed/css/sbi-styles.min.css?ver=2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css' href='https://theslidefactory.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='essential-grid-plugin-settings-css' href='https://theslidefactory.com/wp-content/plugins/essential-grid/public/assets/css/settings.css?ver=2.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='tp-open-sans-css' href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%2C800&#038;ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='tp-raleway-css' href='https://fonts.googleapis.com/css?family=Raleway%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='tp-droid-serif-css' href='https://fonts.googleapis.com/css?family=Droid+Serif%3A400%2C700&#038;ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='tp-fontello-css' href='https://theslidefactory.com/wp-content/plugins/essential-grid/public/assets/font/fontello/css/fontello.css?ver=2.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sf_code_style_prism-css' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css?ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='monsterinsights-popular-posts-style-css' href='https://theslidefactory.com/wp-content/plugins/google-analytics-for-wordpress/assets/css/frontend.min.css?ver=7.15.1' type='text/css' media='all' />
+<link rel='stylesheet' id='chld_thm_cfg_parent-css' href='https://theslidefactory.com/wp-content/themes/Divi/style.css?ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='divi-style-css' href='https://theslidefactory.com/wp-content/themes/Divi-child/style.css?ver=4.21.1.1555019547' type='text/css' media='all' />
+<link rel='stylesheet' id='et-builder-googlefonts-cached-css' href='https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic|EB+Garamond:regular&#038;subset=latin-ext,vietnamese,cyrillic,latin,cyrillic-ext,greek,greek-ext&#038;display=swap' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://theslidefactory.com/wp-includes/css/dashicons.min.css?ver=5.8' type='text/css' media='all' />
+<link rel='stylesheet' id='addtoany-css' href='https://theslidefactory.com/wp-content/plugins/add-to-any/addtoany.min.css?ver=1.15' type='text/css' media='all' />
+<script type='text/javascript' id='monsterinsights-frontend-script-js-extra'>
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/theslidefactory.com","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend.min.js?ver=7.15.1' id='monsterinsights-frontend-script-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/plugins/add-to-any/addtoany.min.js?ver=1.1' id='addtoany-js'></script>
+<link rel="https://api.w.org/" href="https://theslidefactory.com/wp-json/" /><link rel="alternate" type="application/json" href="https://theslidefactory.com/wp-json/wp/v2/posts/2289" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://theslidefactory.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://theslidefactory.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 5.8" />
+<link rel='shortlink' href='https://theslidefactory.com/?p=2289' />
+<link rel="alternate" type="application/json+oembed" href="https://theslidefactory.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftheslidefactory.com%2Floading-3d-models-from-the-web-at-runtime-in-unity%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://theslidefactory.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftheslidefactory.com%2Floading-3d-models-from-the-web-at-runtime-in-unity%2F&#038;format=xml" />
+<script data-cfasync="false">
+window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};
+(function(d,s,a,b){a=d.createElement(s);b=d.getElementsByTagName(s)[0];a.async=1;a.src="https://static.addtoany.com/menu/page.js";b.parentNode.insertBefore(a,b);})(document,"script");
+</script>
+<script>
+		(function(h,o,t,j,a,r){
+			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+			h._hjSettings={hjid:1798491,hjsv:5};
+			a=o.getElementsByTagName('head')[0];
+			r=o.createElement('script');r.async=1;
+			r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+			a.appendChild(r);
+		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+		</script>
+<script>
+			document.documentElement.className = document.documentElement.className.replace( 'no-js', 'js' );
+		</script>
+<style>
+			.no-js img.lazyload { display: none; }
+			figure.wp-block-image img.lazyloading { min-width: 150px; }
+							.lazyload, .lazyloading { opacity: 0; }
+				.lazyloaded {
+					opacity: 1;
+					transition: opacity 400ms;
+					transition-delay: 0ms;
+				}
+					</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #e5e5e5; background-image: url("https://theslidefactory.com/wp-content/uploads/2019/04/white_carbon.png"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: fixed; }
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139426386-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-139426386-1');
+</script>
+<script>
+	
+	jQuery(document).delegate(".et_pb_ajax_pagination_container article", "click", function() {
+		window.location = jQuery(this).find("a").attr("href");
+		return false;
+	});
+
+	// Check for spam
+	jQuery(document).on('click', '.et_pb_contact_submit', function(e) {
+		var $ = jQuery;
+		var forms = $(this).parents('.contact-form')
+		var formId = forms.attr('data-form_unique_num');
+		var role = forms.find('#et_pb_contact_role_' + formId).val();
+		if (role) {
+			e.preventDefault();
+			console.log('Error with form submission');
+		}
+	});
+</script><link rel="icon" href="https://theslidefactory.com/wp-content/uploads/2020/05/cropped-cropped-sf-logo-crisp-32x32-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://theslidefactory.com/wp-content/uploads/2020/05/cropped-cropped-sf-logo-crisp-32x32-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://theslidefactory.com/wp-content/uploads/2020/05/cropped-cropped-sf-logo-crisp-32x32-1-180x180.png" />
+<meta name="msapplication-TileImage" content="https://theslidefactory.com/wp-content/uploads/2020/05/cropped-cropped-sf-logo-crisp-32x32-1-270x270.png" />
+<style id="et-divi-customizer-global-cached-inline-styles">body,.et_pb_column_1_2 .et_quote_content blockquote cite,.et_pb_column_1_2 .et_link_content a.et_link_main_url,.et_pb_column_1_3 .et_quote_content blockquote cite,.et_pb_column_3_8 .et_quote_content blockquote cite,.et_pb_column_1_4 .et_quote_content blockquote cite,.et_pb_blog_grid .et_quote_content blockquote cite,.et_pb_column_1_3 .et_link_content a.et_link_main_url,.et_pb_column_3_8 .et_link_content a.et_link_main_url,.et_pb_column_1_4 .et_link_content a.et_link_main_url,.et_pb_blog_grid .et_link_content a.et_link_main_url,body .et_pb_bg_layout_light .et_pb_post p,body .et_pb_bg_layout_dark .et_pb_post p{font-size:18px}.et_pb_slide_content,.et_pb_best_value{font-size:20px}body{line-height:2em}.container,.et_pb_row,.et_pb_slider .et_pb_container,.et_pb_fullwidth_section .et_pb_title_container,.et_pb_fullwidth_section .et_pb_title_featured_container,.et_pb_fullwidth_header:not(.et_pb_fullscreen) .et_pb_fullwidth_header_container{max-width:1413px}.et_boxed_layout #page-container,.et_boxed_layout.et_non_fixed_nav.et_transparent_nav #page-container #top-header,.et_boxed_layout.et_non_fixed_nav.et_transparent_nav #page-container #main-header,.et_fixed_nav.et_boxed_layout #page-container #top-header,.et_fixed_nav.et_boxed_layout #page-container #main-header,.et_boxed_layout #page-container .container,.et_boxed_layout #page-container .et_pb_row{max-width:1573px}#main-header,#main-header .nav li ul,.et-search-form,#main-header .et_mobile_menu{background-color:rgba(255,255,255,0)}.et_header_style_centered .mobile_nav .select_page,.et_header_style_split .mobile_nav .select_page,.et_nav_text_color_light #top-menu>li>a,.et_nav_text_color_dark #top-menu>li>a,#top-menu a,.et_mobile_menu li a,.et_nav_text_color_light .et_mobile_menu li a,.et_nav_text_color_dark .et_mobile_menu li a,#et_search_icon:before,.et_search_form_container input,span.et_close_search_field:after,#et-top-navigation .et-cart-info{color:#ffffff}.et_search_form_container input::-moz-placeholder{color:#ffffff}.et_search_form_container input::-webkit-input-placeholder{color:#ffffff}.et_search_form_container input:-ms-input-placeholder{color:#ffffff}#top-menu li a,.et_search_form_container input{font-weight:normal;font-style:normal;text-transform:uppercase;text-decoration:none}.et_search_form_container input::-moz-placeholder{font-weight:normal;font-style:normal;text-transform:uppercase;text-decoration:none}.et_search_form_container input::-webkit-input-placeholder{font-weight:normal;font-style:normal;text-transform:uppercase;text-decoration:none}.et_search_form_container input:-ms-input-placeholder{font-weight:normal;font-style:normal;text-transform:uppercase;text-decoration:none}#top-menu li.current-menu-ancestor>a,#top-menu li.current-menu-item>a,#top-menu li.current_page_item>a,.et_color_scheme_red #top-menu li.current-menu-ancestor>a,.et_color_scheme_red #top-menu li.current-menu-item>a,.et_color_scheme_red #top-menu li.current_page_item>a,.et_color_scheme_pink #top-menu li.current-menu-ancestor>a,.et_color_scheme_pink #top-menu li.current-menu-item>a,.et_color_scheme_pink #top-menu li.current_page_item>a,.et_color_scheme_orange #top-menu li.current-menu-ancestor>a,.et_color_scheme_orange #top-menu li.current-menu-item>a,.et_color_scheme_orange #top-menu li.current_page_item>a,.et_color_scheme_green #top-menu li.current-menu-ancestor>a,.et_color_scheme_green #top-menu li.current-menu-item>a,.et_color_scheme_green #top-menu li.current_page_item>a{color:#b5b5b5}#footer-widgets .footer-widget a,#footer-widgets .footer-widget li a,#footer-widgets .footer-widget li a:hover{color:#ffffff}.footer-widget{color:#ffffff}#footer-widgets .footer-widget li:before{top:12.3px}#main-header{box-shadow:none}body .et_pb_button,.woocommerce a.button.alt,.woocommerce-page a.button.alt,.woocommerce button.button.alt,.woocommerce button.button.alt.disabled,.woocommerce-page button.button.alt,.woocommerce-page button.button.alt.disabled,.woocommerce input.button.alt,.woocommerce-page input.button.alt,.woocommerce #respond input#submit.alt,.woocommerce-page #respond input#submit.alt,.woocommerce #content input.button.alt,.woocommerce-page #content input.button.alt,.woocommerce a.button,.woocommerce-page a.button,.woocommerce button.button,.woocommerce-page button.button,.woocommerce input.button,.woocommerce-page input.button,.woocommerce #respond input#submit,.woocommerce-page #respond input#submit,.woocommerce #content input.button,.woocommerce-page #content input.button,.woocommerce-message a.button.wc-forward{font-size:14px;background-color:rgba(255,255,255,0);border-width:1px!important;border-color:#000000;border-radius:5px;font-weight:bold;font-style:normal;text-transform:uppercase;text-decoration:none;}body.et_pb_button_helper_class .et_pb_button,body.et_pb_button_helper_class .et_pb_module.et_pb_button,.woocommerce.et_pb_button_helper_class a.button.alt,.woocommerce-page.et_pb_button_helper_class a.button.alt,.woocommerce.et_pb_button_helper_class button.button.alt,.woocommerce.et_pb_button_helper_class button.button.alt.disabled,.woocommerce-page.et_pb_button_helper_class button.button.alt,.woocommerce-page.et_pb_button_helper_class button.button.alt.disabled,.woocommerce.et_pb_button_helper_class input.button.alt,.woocommerce-page.et_pb_button_helper_class input.button.alt,.woocommerce.et_pb_button_helper_class #respond input#submit.alt,.woocommerce-page.et_pb_button_helper_class #respond input#submit.alt,.woocommerce.et_pb_button_helper_class #content input.button.alt,.woocommerce-page.et_pb_button_helper_class #content input.button.alt,.woocommerce.et_pb_button_helper_class a.button,.woocommerce-page.et_pb_button_helper_class a.button,.woocommerce.et_pb_button_helper_class button.button,.woocommerce-page.et_pb_button_helper_class button.button,.woocommerce.et_pb_button_helper_class input.button,.woocommerce-page.et_pb_button_helper_class input.button,.woocommerce.et_pb_button_helper_class #respond input#submit,.woocommerce-page.et_pb_button_helper_class #respond input#submit,.woocommerce.et_pb_button_helper_class #content input.button,.woocommerce-page.et_pb_button_helper_class #content input.button{color:#000000}body .et_pb_button:after,.woocommerce a.button.alt:after,.woocommerce-page a.button.alt:after,.woocommerce button.button.alt:after,.woocommerce-page button.button.alt:after,.woocommerce input.button.alt:after,.woocommerce-page input.button.alt:after,.woocommerce #respond input#submit.alt:after,.woocommerce-page #respond input#submit.alt:after,.woocommerce #content input.button.alt:after,.woocommerce-page #content input.button.alt:after,.woocommerce a.button:after,.woocommerce-page a.button:after,.woocommerce button.button:after,.woocommerce-page button.button:after,.woocommerce input.button:after,.woocommerce-page input.button:after,.woocommerce #respond input#submit:after,.woocommerce-page #respond input#submit:after,.woocommerce #content input.button:after,.woocommerce-page #content input.button:after{font-size:22.4px}body .et_pb_button:hover,.woocommerce a.button.alt:hover,.woocommerce-page a.button.alt:hover,.woocommerce button.button.alt:hover,.woocommerce button.button.alt.disabled:hover,.woocommerce-page button.button.alt:hover,.woocommerce-page button.button.alt.disabled:hover,.woocommerce input.button.alt:hover,.woocommerce-page input.button.alt:hover,.woocommerce #respond input#submit.alt:hover,.woocommerce-page #respond input#submit.alt:hover,.woocommerce #content input.button.alt:hover,.woocommerce-page #content input.button.alt:hover,.woocommerce a.button:hover,.woocommerce-page a.button:hover,.woocommerce button.button:hover,.woocommerce-page button.button:hover,.woocommerce input.button:hover,.woocommerce-page input.button:hover,.woocommerce #respond input#submit:hover,.woocommerce-page #respond input#submit:hover,.woocommerce #content input.button:hover,.woocommerce-page #content input.button:hover{color:#ffffff!important;background-color:#0a0002!important;border-radius:6px}h1,h2,h3,h4,h5,h6,.et_quote_content blockquote p,.et_pb_slide_description .et_pb_slide_title{line-height:1.4em}.et_slide_in_menu_container,.et_slide_in_menu_container .et-search-field{letter-spacing:px}.et_slide_in_menu_container .et-search-field::-moz-placeholder{letter-spacing:px}.et_slide_in_menu_container .et-search-field::-webkit-input-placeholder{letter-spacing:px}.et_slide_in_menu_container .et-search-field:-ms-input-placeholder{letter-spacing:px}@media only screen and (min-width:981px){.et-fixed-header#main-header,.et-fixed-header#main-header .nav li ul,.et-fixed-header .et-search-form{background-color:#262626}.et-fixed-header #top-menu a,.et-fixed-header #et_search_icon:before,.et-fixed-header #et_top_search .et-search-form input,.et-fixed-header .et_search_form_container input,.et-fixed-header .et_close_search_field:after,.et-fixed-header #et-top-navigation .et-cart-info{color:#ffffff!important}.et-fixed-header .et_search_form_container input::-moz-placeholder{color:#ffffff!important}.et-fixed-header .et_search_form_container input::-webkit-input-placeholder{color:#ffffff!important}.et-fixed-header .et_search_form_container input:-ms-input-placeholder{color:#ffffff!important}.et-fixed-header #top-menu li.current-menu-ancestor>a,.et-fixed-header #top-menu li.current-menu-item>a,.et-fixed-header #top-menu li.current_page_item>a{color:#b5b5b5!important}}@media only screen and (min-width:1766px){.et_pb_row{padding:35px 0}.et_pb_section{padding:70px 0}.single.et_pb_pagebuilder_layout.et_full_width_page .et_post_meta_wrapper{padding-top:105px}.et_pb_fullwidth_section{padding:0}}h1,h1.et_pb_contact_main_title,.et_pb_title_container h1{font-size:28px}h2,.product .related h2,.et_pb_column_1_2 .et_quote_content blockquote p{font-size:24px}h3{font-size:20px}h4,.et_pb_circle_counter h3,.et_pb_number_counter h3,.et_pb_column_1_3 .et_pb_post h2,.et_pb_column_1_4 .et_pb_post h2,.et_pb_blog_grid h2,.et_pb_column_1_3 .et_quote_content blockquote p,.et_pb_column_3_8 .et_quote_content blockquote p,.et_pb_column_1_4 .et_quote_content blockquote p,.et_pb_blog_grid .et_quote_content blockquote p,.et_pb_column_1_3 .et_link_content h2,.et_pb_column_3_8 .et_link_content h2,.et_pb_column_1_4 .et_link_content h2,.et_pb_blog_grid .et_link_content h2,.et_pb_column_1_3 .et_audio_content h2,.et_pb_column_3_8 .et_audio_content h2,.et_pb_column_1_4 .et_audio_content h2,.et_pb_blog_grid .et_audio_content h2,.et_pb_column_3_8 .et_pb_audio_module_content h2,.et_pb_column_1_3 .et_pb_audio_module_content h2,.et_pb_gallery_grid .et_pb_gallery_item h3,.et_pb_portfolio_grid .et_pb_portfolio_item h2,.et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2{font-size:16px}h5{font-size:14px}h6{font-size:13px}.et_pb_slide_description .et_pb_slide_title{font-size:42px}.woocommerce ul.products li.product h3,.woocommerce-page ul.products li.product h3,.et_pb_gallery_grid .et_pb_gallery_item h3,.et_pb_portfolio_grid .et_pb_portfolio_item h2,.et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2,.et_pb_column_1_4 .et_pb_audio_module_content h2{font-size:14px}@media only screen and (max-width:980px){#main-header,#main-header .nav li ul,.et-search-form,#main-header .et_mobile_menu{background-color:#000000}}	h1,h2,h3,h4,h5,h6{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif}body,input,textarea,select{font-family:'EB Garamond',Georgia,"Times New Roman",serif}.et_pb_button{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif}#main-header,#et-top-navigation{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif}.et_pb_section_0.et_pb_section.et_pb_with_background{padding-top:80px!important}</style></head>
+<body class="post-template-default single single-post postid-2289 single-format-standard custom-background et-tb-has-template et-tb-has-footer et_button_no_icon et_pb_button_helper_class et_transparent_nav et_fixed_nav et_show_nav et_pb_show_title et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_gutter linux et_pb_gutters3 et_right_sidebar et_divi_theme et-db et_minified_js et_minified_css">
+<div id="page-container">
+<div id="et-boc" class="et-boc">
+<header id="main-header" data-height-onload="66">
+<div class="container clearfix et_menu_container">
+<div class="logo_container">
+<span class="logo_helper"></span>
+<a href="https://theslidefactory.com/">
+<img alt="slidefactory" id="logo" data-height-percentage="54" data-src="https://theslidefactory.com/wp-content/uploads/2019/04/logo_white.png" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img src="https://theslidefactory.com/wp-content/uploads/2019/04/logo_white.png" alt="slidefactory" id="logo" data-height-percentage="54" /></noscript>
+</a>
+</div>
+<div id="et-top-navigation" data-height="66" data-fixed-height="40">
+<nav id="top-menu-nav">
+<ul id="top-menu" class="nav"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2833"><a href="https://theslidefactory.com/about-sf/">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-988"><a href="https://theslidefactory.com/services/">Services</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-960"><a href="https://theslidefactory.com/our-work/">Our Work</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2268"><a href="https://theslidefactory.com/contact-us/">Contact</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488"><a href="https://theslidefactory.com/blog/">Blog</a></li>
+</ul> </nav>
+<div id="et_mobile_nav_menu">
+<div class="mobile_nav closed">
+<span class="select_page">Select Page</span>
+<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
+</div>
+</div> </div> 
+</div> 
+<div class="et_search_outer">
+<div class="container et_search_form_container">
+<form role="search" method="get" class="et-search-form" action="https://theslidefactory.com/">
+<input type="search" class="et-search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" /> </form>
+<span class="et_close_search_field"></span>
+</div>
+</div>
+</header> 
+<div id="et-main-area">
+<div id="main-content">
+<div class="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular">
+<div class="et_pb_row et_pb_row_0 blog-single-header">
+<div class="et_pb_column et_pb_column_4_4 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough et-last-child et_pb_column_empty">
+</div> 
+</div> 
+</div>  <div class="container">
+<div id="content-area" class="clearfix">
+<div id="left-area">
+<article id="post-2289" class="et_pb_post post-2289 post type-post status-publish format-standard has-post-thumbnail hentry category-unity-3d">
+<div class="et_post_meta_wrapper blog-header-title">
+<h1 class="entry-title">Loading 3D Models from the Web at Runtime in Unity</h1>
+<p class="post-meta"> by <span class="author vcard"><a href="https://theslidefactory.com/author/admin/" title="Posts by SlideFactory" rel="author">SlideFactory</a></span> | <span class="published">Apr 11, 2020</span> | <a href="https://theslidefactory.com/category/unity-3d/" rel="category tag">Unity 3D</a> | <span class="comments-number"><a href="https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/#respond">1 comment</a></span></p>
+</div> 
+<div class="entry-content blog-content">
+<h2 class="quote">&#8220;Learn how loading 3D models (GLTF and GLB) from a web server works and then load them into Unity at runtime with local file caching.&#8221;</h2>
+<h2>Overview</h2>
+<p>In this blog post, we&#8217;re going to learn about loading 3D models from a web server into Unity and then displaying them at run time (while the app is running). Previously, we learned how to use <a href="https://theslidefactory.com/using-unitywebrequest-to-download-resources-in-unity/">UnityWebRequest to download various file types</a> in Part I. A lot of the same concepts apply here, but we&#8217;ll be focusing specifically on downloading GLTF and GLB files using the DownloadHandlerFile helper class from Unity.</p>
+<p>GLTF and GLB model files are an open source file type that use JSON to enable users to share and download 3D models over the web with ease. They are becoming more popular as data from the web is integrated into apps more frequently. It&#8217;s going to be good to be familiar with these file types, so let&#8217;s get started!</p>
+<p class="hide"><strong>If you are coming from the video you can find the scripts inside the <a href="#scripts">scripts section below</a>.</strong></p>
+<h2>Requirements for Loading 3D Models</h2>
+<p>In a fresh Unity project, we&#8217;ll need a couple dependencies.</p>
+<ul><li>Json.NET &#8211; Required to read our GLTF/GLB files.</li><li>GLTFUtility &#8211; Required to load the files at runtime.</li></ul>
+<h3>Installing Json.Net</h3>
+<p>The easiest way to install Json.Net is by opening up the asset store and searching for &#8220;JSON .NET For Unity.&#8221; Once you find it, download it and import it into your project.</p>
+<h3>Installing GLTFUtility</h3>
+<p>There are a couple of ways to install the package <a href="https://github.com/Siccity/GLTFUtility">documented on Github</a>. However, to get the latest and greatest, we recommend downloading the<a href="https://github.com/Siccity/GLTFUtility/archive/master.zip"> zip file of master</a>. Then, extracting it and moving the GLTFUtility-master folder into your Unity project&#8217;s Assets folder.</p>
+<h2>Unity Scene Setup</h2>
+<p>Once we have our dependencies installed, let&#8217;s quickly set up our scene with the basics we&#8217;ll need to get started. Click Create -&gt; UI -&gt; Button. In the Button&#8217;s Inspector click the Anchor Presets box, hold shift + alt and click the top left. This will position the button at the top left of the canvas. Add an empty GameObject and call it ModelLoader, then create the ModelLoader.cs script and add it to the new GameObject. Click on Main Camera and set it&#8217;s Z to -5. That&#8217;s it for now.</p>
+<h2>Downloading Models from the Web</h2>
+<p>With our UI setup, let&#8217;s focus on downloading our model file from the web into Unity at runtime. If you followed along with Part I, using the UnityWebRequest class should be pretty familiar. Let&#8217;s open up the ModelLoader.cs script and add the following:</p>
+<pre class="wp-block-code lang-cs"><code>using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class ModelLoader : MonoBehaviour
+{
+    string filePath;
+
+    private void Start()
+    {
+        // An example file path we'll use later
+        filePath = $"{Application.persistentDataPath}/Files/test.gltf";
+    }
+    public void DownloadFile(string url)
+    {
+        StartCoroutine(GetFileRequest(url, (UnityWebRequest req) =>
+        {
+            if (req.isNetworkError || req.isHttpError)
+            {
+                // Log any errors that may happen
+                Debug.Log($"{req.error} : {req.downloadHandler.text}");
+            } else
+            {
+                // Success!
+                Debug.Log(req.downloadHandler.text);
+            }
+        }));
+    }
+
+    IEnumerator GetFileRequest(string url, Action&lt;UnityWebRequest> callback)
+    {
+        using(UnityWebRequest req = UnityWebRequest.Get(url))
+        {
+            yield return req.SendWebRequest();
+            callback(req);
+        }
+    }
+}
+</code></pre>
+<p>All we are doing here is sending a GET request to a web server and logging the returned file. Let&#8217;s test it out. Go to your scene and click on your Button. Then add a click listener and drag in the ModelLoader GameObject. After that, select the DownloadFile method and add a GLTF or GLB file URL on the click event. We are using <a rel="noreferrer noopener" aria-label="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf (opens in a new tab)" href="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf" target="_blank">https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf</a> to test. Hit Play and click on your button. You should see the log match the file contents from the URL.</p>
+<h2>Loading 3D Models at Runtime</h2>
+<p>Now that we have our files downloading, let&#8217;s work on loading the 3D Models into Unity at runtime. First, we need to save our downloaded data into a local file. Second, we can load that file with GLTFUtility. Luckily, UnityWebRequest has the DownloadHandlerFile helper class that automatically downloads the data into a file. In GetFileRequest, right above where we</p>
+<pre class="wp-block-code lang-cs"><code>yield return req.SendWebRequest();</code></pre>
+<p>add the following:</p>
+<pre class="wp-block-code lang-cs"><code>req.downloadHandler = new DownloadHandlerFile(filePath);</code></pre>
+<p>After that, we need to remove our Debug.Log after our &#8220;Success!&#8221; comment and load our 3D Model.</p>
+<pre class="wp-block-code lang-cs"><code>// ...
+using Siccity.GLTFUtility;
+
+public class ModelLoader : MonoBehaviour
+{
+    GameObject wrapper;
+    string filePath;
+
+    private void Start()
+    {
+        filePath = $"{Application.persistentDataPath}/Files/test.gltf";
+        wrapper = new GameObject
+        {
+            name = "Model"
+        };
+    }
+
+    public void DownloadFile(string url)
+    {
+        StartCoroutine(GetFileRequest(url, (UnityWebRequest req) =>
+        {
+            if (req.isNetworkError || req.isHttpError)
+            {
+                // Log any errors that may happen
+                Debug.Log($"{req.error} : {req.downloadHandler.text}");
+            } else
+            {
+                // Save the model into our wrapper
+                ResetWrapper();
+                GameObject model = Importer.LoadFromFile(filePath);
+                model.transform.SetParent(wrapper.transform);
+            }
+        }));
+    }
+    
+    // ...
+
+    void ResetWrapper()
+    {
+        if (wrapper != null)
+        {
+            foreach(Transform trans in wrapper.transform)
+            {
+                Destroy(trans.gameObject);
+            }
+        }
+    }
+}
+</code></pre>
+<p>After making the script updates, go back to your Unity scene and hit Play. When you click your button, the model at the URL you selected should load into the scene.</p>
+<h2>Loading 3D Models from Cache</h2>
+<p>We have our 3D models loading, but we can make our loading even faster for larger models by first checking if we already have the file saved locally before downloading it.</p>
+<pre class="wp-block-code lang-cs"><code>// ...
+using System.IO    
+// ...
+    
+    public void DownloadFile(string url)
+    {
+        if (File.Exists(filePath))
+        {
+            Debug.Log("Found file locally, loading...");
+            LoadModel();
+            return;
+        }
+
+        StartCoroutine(GetFileRequest(url, (UnityWebRequest req) =>
+        {
+            if (req.isNetworkError || req.isHttpError)
+            {
+                // Log any errors that may happen
+                Debug.Log($"{req.error} : {req.downloadHandler.text}");
+            } else
+            {
+                // Save the model into our wrapper
+                LoadModel();
+            }
+        }));
+    }
+
+    void LoadModel()
+    {
+        ResetWrapper();
+        GameObject model = Importer.LoadFromFile(filePath);
+        model.transform.SetParent(wrapper.transform);
+    }
+    // ...</code></pre>
+<p>One thing to note, because we set our filePath to always be the same place different files won&#8217;t benefit from caching. To fix that, we&#8217;d need to save the downloaded models into different files. The completed ModelLoader.cs script below includes a basic version of this. It extracts and uses the filename from the URL.</p>
+<h2>Conclusion</h2>
+<p>There you have it, loading 3D Models into Unity at runtime can be a very powerful feature. This allows you the flexibility of adding additional content to your game without requiring a new build. Alternatively, you can let your users choose their own 3D models to load into your apps. GTLFUtility has additional features, such as loading animations from 3D models, so be sure to check it out!</p>
+<h2 id="scripts">Scripts</h2>
+<pre class="wp-block-code lang-cs"><code>using System;
+using System.IO;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
+using Siccity.GLTFUtility;
+
+public class ModelLoader : MonoBehaviour
+{
+    GameObject wrapper;
+    string filePath;
+
+    private void Start()
+    {
+        filePath = $"{Application.persistentDataPath}/Files/";
+        wrapper = new GameObject
+        {
+            name = "Model"
+        };
+    }
+    public void DownloadFile(string url)
+    {
+        string path = GetFilePath(url);
+        if (File.Exists(path))
+        {
+            Debug.Log("Found file locally, loading...");
+            LoadModel(path);
+            return;
+        }
+
+        StartCoroutine(GetFileRequest(url, (UnityWebRequest req) =>
+        {
+            if (req.isNetworkError || req.isHttpError)
+            {
+                // Log any errors that may happen
+                Debug.Log($"{req.error} : {req.downloadHandler.text}");
+            } else
+            {
+                // Save the model into a new wrapper
+                LoadModel(path);
+            }
+        }));
+    }
+
+    string GetFilePath(string url)
+    {
+        string&#91;] pieces = url.Split('/');
+        string filename = pieces&#91;pieces.Length - 1];
+
+        return $"{filePath}{filename}";
+    }
+
+    void LoadModel(string path)
+    {
+        ResetWrapper();
+        GameObject model = Importer.LoadFromFile(path);
+        model.transform.SetParent(wrapper.transform);
+    }
+
+    IEnumerator GetFileRequest(string url, Action&lt;UnityWebRequest> callback)
+    {
+        using(UnityWebRequest req = UnityWebRequest.Get(url))
+        {
+            req.downloadHandler = new DownloadHandlerFile(GetFilePath(url));
+            yield return req.SendWebRequest();
+            callback(req);
+        }
+    }
+
+    void ResetWrapper()
+    {
+        if (wrapper != null)
+        {
+            foreach(Transform trans in wrapper.transform)
+            {
+                Destroy(trans.gameObject);
+            }
+        }
+    }
+}</code></pre>
+<p></p>
+<div class="addtoany_share_save_container addtoany_content addtoany_content_bottom"><div class="addtoany_header">Share this article:</div><div class="a2a_kit a2a_kit_size_32 addtoany_list" data-a2a-url="https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/" data-a2a-title="Loading 3D Models from the Web at Runtime in Unity"><a class="a2a_button_facebook" href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Ftheslidefactory.com%2Floading-3d-models-from-the-web-at-runtime-in-unity%2F&amp;linkname=Loading%203D%20Models%20from%20the%20Web%20at%20Runtime%20in%20Unity" title="Facebook" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_twitter" href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Ftheslidefactory.com%2Floading-3d-models-from-the-web-at-runtime-in-unity%2F&amp;linkname=Loading%203D%20Models%20from%20the%20Web%20at%20Runtime%20in%20Unity" title="Twitter" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_linkedin" href="https://www.addtoany.com/add_to/linkedin?linkurl=https%3A%2F%2Ftheslidefactory.com%2Floading-3d-models-from-the-web-at-runtime-in-unity%2F&amp;linkname=Loading%203D%20Models%20from%20the%20Web%20at%20Runtime%20in%20Unity" title="LinkedIn" rel="nofollow noopener" target="_blank"></a></div></div> </div> 
+<div class="et_post_meta_wrapper">
+
+<section id="comment-wrap">
+<h1 id="comments" class="page_title">1 Comment</h1>
+<ol class="commentlist clearfix">
+<li class="comment even thread-even depth-1" id="li-comment-12">
+<article id="comment-12" class="comment-body clearfix">
+<div class="comment_avatar">
+<img alt='christophe rousselot' data-srcset='https://secure.gravatar.com/avatar/4661afaff1f2466bab6f29b91acbb081?s=160&#038;d=mm&#038;r=g 2x' height='80' width='80' loading='lazy' data-src='https://secure.gravatar.com/avatar/4661afaff1f2466bab6f29b91acbb081?s=80&#038;d=mm&#038;r=g' class='avatar avatar-80 photo lazyload' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' /><noscript><img alt='christophe rousselot' src='https://secure.gravatar.com/avatar/4661afaff1f2466bab6f29b91acbb081?s=80&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4661afaff1f2466bab6f29b91acbb081?s=160&#038;d=mm&#038;r=g 2x' class='avatar avatar-80 photo' height='80' width='80' loading='lazy'/></noscript> </div>
+<div class="comment_postinfo">
+<span class="fn">christophe rousselot</span> <span class="comment_date">
+on May 2, 2020 at 11:33 am </span>
+</div> 
+<div class="comment_area">
+<div class="comment-content clearfix">
+<p>Hello,<br />
+You created a very good tutorial : it works well on windows PC with my glb file.<br />
+I try to do the same in webgl.<br />
+I modify in your ModelLoader script :<br />
+private void Start()<br />
+{<br />
+filePath = $&#8221;{Application.persistentDataPath}/Files/&#8221;;<br />
+by filePath = Application.dataPath;<br />
+I put my 3dfile in <a href="https://mywebsite.com/gltfreader/build/my.glb" rel="nofollow ugc">https://mywebsite.com/gltfreader/build/my.glb</a> file.<br />
+I build and I put to my website the webgl publish in <a href="https://mywebsite.com/gltfreader/" rel="nofollow ugc">https://mywebsite.com/gltfreader/</a><br />
+But when I click online on the button there is no 3D object .<br />
+Could you help me ?</p>
+<span class="reply-container"><a rel='nofollow' class='comment-reply-link' href='#comment-12' data-commentid="12" data-postid="2289" data-belowelement="comment-12" data-respondelement="respond" data-replyto="Reply to christophe rousselot" aria-label='Reply to christophe rousselot'>Reply</a></span> </div> 
+</div> 
+</article> 
+</li>
+</ol>
+<div id="trackbacks">
+<h3 id="trackbacks-title">Trackbacks/Pingbacks</h3>
+<ol class="pinglist">
+<li id="comment-14"><a href='https://theslidefactory.com/using-unitywebrequest-to-download-resources-in-unity/' rel='external nofollow ugc' class='url'>Using UnityWebRequest to Download Resources in Unity - slidefactory</a> - [&#8230;] You can find it on this page. [&#8230;]</li>
+</ol>
+</div>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title"><span>Submit a Comment</span> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/loading-3d-models-from-the-web-at-runtime-in-unity/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://theslidefactory.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit et_pb_button" value="Submit Comment" /> <input type='hidden' name='comment_post_ID' value='2289' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><input type="hidden" id="ak_js" name="ak_js" value="9" /><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea></form> </div>
+</section> </div> 
+</article> 
+</div> 
+<div id="sidebar">
+<div class="categories-sidebar blue-corner">
+<h1>Categories</h1>
+<ul class="categories">
+<li><a href="https://theslidefactory.com/category/general/">General</a></li>
+<li><a href="https://theslidefactory.com/category/healthcare/">HealthCare</a></li>
+<li><a href="https://theslidefactory.com/category/unity-3d/">Unity 3D</a></li>
+<li><a href="https://theslidefactory.com/category/vr-ar/">VR / AR</a></li>
+<li><a href="https://theslidefactory.com/category/web/">Web</a></li>
+</ul>
+</div>
+</div>
+</div> 
+</div> 
+</div> 
+<footer class="et-l et-l--footer">
+<div class="et_builder_inner_content et_pb_gutters3">
+<div id="footer-form-holder" class="et_pb_section et_pb_section_0_tb_footer et_section_regular">
+<div class="et_pb_row et_pb_row_0_tb_footer">
+<div class="et_pb_column et_pb_column_1_2 et_pb_column_0_tb_footer  et_pb_css_mix_blend_mode_passthrough">
+<div class="et_pb_module et_pb_text et_pb_text_0_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+<div class="et_pb_text_inner"><h2>We&#8217;d love to meet you!</h2></div>
+</div> <div class="et_pb_module et_pb_divider et_pb_divider_0_tb_footer et_pb_divider_position_ et_pb_space"><div class="et_pb_divider_internal"></div></div><div class="et_pb_module et_pb_text et_pb_text_1_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+<div class="et_pb_text_inner"><p>If you’re looking for an innovation partner, mobile application, or VR/AR experience, drop us a line and say hello!</p></div>
+</div> <div class="et_pb_module et_pb_code et_pb_code_0_tb_footer">
+<div class="et_pb_code_inner"><div class="inline-icon">
+<div class="img-container">
+<img alt="Phone Icon" style="width:30px;" data-src="/wp-content/uploads/2019/04/phone.png" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><noscript><img src="/wp-content/uploads/2019/04/phone.png" alt="Phone Icon" style="width:30px;"></noscript>
+</div>
+<span>503.319.1205</span>
+</div>
+<div class="inline-icon">
+<div class="img-container">
+<img alt="Location Pin Icon" data-src="/wp-content/uploads/2019/04/pin.png" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><noscript><img src="/wp-content/uploads/2019/04/pin.png" alt="Location Pin Icon"></noscript>
+</div>
+<span>431 NW Flanders St, Ste 105<br />Portland, OR, 97209</span>
+</div></div>
+</div> 
+</div> <div class="et_pb_column et_pb_column_1_2 et_pb_column_1_tb_footer form-block blue-corner box-shadow  et_pb_css_mix_blend_mode_passthrough et-last-child">
+<div class="et_pb_module et_pb_text et_pb_text_2_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+<div class="et_pb_text_inner"><h2>Contact Us!</h2></div>
+</div> <div class="et_pb_module et_pb_divider et_pb_divider_1_tb_footer et_pb_divider_position_ et_pb_space"><div class="et_pb_divider_internal"></div></div>
+<div id="et_pb_contact_form_0" class="et_pb_with_border et_pb_module et_pb_contact_form_0_tb_footer contact-form et_pb_recaptcha_enabled et_pb_contact_form_container clearfix" data-form_unique_num="0">
+<div class="et-pb-contact-message"></div>
+<div class="et_pb_contact">
+<form class="et_pb_contact_form clearfix" method="post" action="https://theslidefactory.com/loading-3d-models-from-the-web-at-runtime-in-unity/">
+<p class="et_pb_contact_field et_pb_contact_field_0_tb_footer et_pb_contact_field_half" data-id="name" data-type="input">
+<label for="et_pb_contact_name_0" class="et_pb_contact_form_label">Full Name</label>
+<input type="text" id="et_pb_contact_name_0" class="input" value="" name="et_pb_contact_name_0" data-required_mark="required" data-field_type="input" data-original_id="name" placeholder="Full Name">
+</p><p class="et_pb_contact_field et_pb_contact_field_1_tb_footer et_pb_contact_field_half et_pb_contact_field_last" data-id="email" data-type="email">
+<label for="et_pb_contact_email_0" class="et_pb_contact_form_label">Email Address</label>
+<input type="text" id="et_pb_contact_email_0" class="input" value="" name="et_pb_contact_email_0" data-required_mark="required" data-field_type="email" data-original_id="email" placeholder="Email Address">
+</p><p class="et_pb_contact_field et_pb_contact_field_2_tb_footer et_pb_contact_field_half" data-id="phone" data-type="input">
+<label for="et_pb_contact_phone_0" class="et_pb_contact_form_label">Phone</label>
+<input type="text" id="et_pb_contact_phone_0" class="input" value="" name="et_pb_contact_phone_0" data-required_mark="required" data-field_type="input" data-original_id="phone" placeholder="Phone">
+</p><p class="et_pb_contact_field et_pb_contact_field_3_tb_footer et_pb_contact_field_half et_pb_contact_field_last" data-id="company" data-type="input">
+<label for="et_pb_contact_company_0" class="et_pb_contact_form_label">Company</label>
+<input type="text" id="et_pb_contact_company_0" class="input" value="" name="et_pb_contact_company_0" data-required_mark="required" data-field_type="input" data-original_id="company" placeholder="Company">
+</p><p class="et_pb_contact_field et_pb_contact_field_4_tb_footer et_pb_contact_field_half" data-id="projecttype" data-type="select">
+<label for="et_pb_contact_projecttype_0" class="et_pb_contact_form_label">Project Type</label>
+<select id="et_pb_contact_projecttype_0" class="et_pb_contact_select input" name="et_pb_contact_projecttype_0" data-required_mark="required" data-field_type="select" data-original_id="projecttype">
+<option value="">Project Type</option><option value="Mobile">Mobile</option><option value="Web Development">Web Development</option><option value="VR / AR">VR / AR</option><option value="Design / UX / Creative">Design / UX / Creative</option><option value="Other">Other</option>
+</select>
+</p><p class="et_pb_contact_field et_pb_contact_field_5_tb_footer et_pb_contact_field_half et_pb_contact_field_last" data-id="budget" data-type="select">
+<label for="et_pb_contact_budget_0" class="et_pb_contact_form_label">Budget</label>
+<select id="et_pb_contact_budget_0" class="et_pb_contact_select input" name="et_pb_contact_budget_0" data-required_mark="required" data-field_type="select" data-original_id="budget">
+<option value="">Budget</option><option value="less than $5,000">less than $5,000</option><option value="$5,000 - $20,000">$5,000 - $20,000</option><option value="$20,000 - $50,000">$20,000 - $50,000</option><option value="$50,000 - $100,000">$50,000 - $100,000</option><option value="Over $100,000">Over $100,000</option>
+</select>
+</p><p class="et_pb_with_border et_pb_contact_field et_pb_contact_field_6_tb_footer et_pb_contact_field_last" data-conditional-logic="[[&quot;projecttype&quot;,&quot;is not empty&quot;,&quot;Mobile&quot;]]" data-conditional-relation="any" data-id="brief_description" data-type="text">
+<label for="et_pb_contact_brief_description_0" class="et_pb_contact_form_label">Description</label>
+<textarea name="et_pb_contact_brief_description_0" id="et_pb_contact_brief_description_0" class="et_pb_contact_message input" data-required_mark="required" data-field_type="text" data-original_id="brief_description" placeholder="Description"></textarea>
+</p>
+<input type="hidden" value="et_contact_proccess" name="et_pb_contactform_submit_0" />
+<div class="et_contact_bottom_container">
+<button type="submit" name="et_builder_submit_button" class="et_pb_contact_submit et_pb_button">Submit</button>
+</div>
+<input type="hidden" id="_wpnonce-et-pb-contact-form-submitted-0" name="_wpnonce-et-pb-contact-form-submitted-0" value="30cc475b2d" /><input type="hidden" name="_wp_http_referer" value="/loading-3d-models-from-the-web-at-runtime-in-unity/" />
+</form>
+</div> 
+</div> 
+</div> 
+</div> 
+</div> <div id="footer-bottom-block" class="et_pb_section et_pb_section_1_tb_footer et_pb_with_background et_section_regular">
+<div class="et_pb_row et_pb_row_1_tb_footer">
+<div class="et_pb_column et_pb_column_4_4 et_pb_column_2_tb_footer  et_pb_css_mix_blend_mode_passthrough et-last-child">
+<div class="et_pb_module et_pb_text et_pb_text_3_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+<div class="et_pb_text_inner"><p style="text-align: center;">A Portland based design &#038; development studio creating digital-first solutions across mobile devices, websites, and virtual reality (VR /AR).</p></div>
+</div> <ul class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_0_tb_footer clearfix  et_pb_text_align_center et_pb_bg_layout_light">
+<li class='et_pb_social_media_follow_network_0_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-linkedin et_pb_social_media_follow_network_0_tb_footer'><a href='https://www.linkedin.com/company/slidefactory' class='icon et_pb_with_border' title='Follow on LinkedIn' target="_blank"><span class='et_pb_social_media_follow_network_name' aria-hidden='true'>Follow</span></a></li><li class='et_pb_social_media_follow_network_1_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-twitter et_pb_social_media_follow_network_1_tb_footer'><a href="https://www.twitter.com/slidefactoryllc" class='icon et_pb_with_border' title='Follow on Twitter' target="_blank"><span class='et_pb_social_media_follow_network_name' aria-hidden='true'>Follow</span></a></li><li class='et_pb_social_media_follow_network_2_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-instagram et_pb_social_media_follow_network_2_tb_footer'><a href='https://www.instagram.com/theslidefactory' class='icon et_pb_with_border' title='Follow on Instagram' target="_blank"><span class='et_pb_social_media_follow_network_name' aria-hidden='true'>Follow</span></a></li>
+</ul> 
+</div> 
+</div> 
+</div> <div class="et_pb_with_border et_pb_section et_pb_section_2_tb_footer et_pb_with_background et_section_regular">
+<div class="et_pb_row et_pb_row_2_tb_footer">
+<div class="et_pb_column et_pb_column_1_5 et_pb_column_3_tb_footer  et_pb_css_mix_blend_mode_passthrough et_pb_column_empty">
+</div> <div class="et_pb_column et_pb_column_3_5 et_pb_column_4_tb_footer  et_pb_css_mix_blend_mode_passthrough">
+<div class="et_pb_module et_pb_image et_pb_image_0_tb_footer">
+<span class="et_pb_image_wrap "><img loading="lazy" alt="" title="" height="auto" width="auto" data-srcset="https://portland-web-design.com/wp-content/uploads/2019/04/sf-logo.png 200w, https://portland-web-design.com/wp-content/uploads/2019/04/sf-logo-150x150.png 150w" data-src="https://theslidefactory.com/wp-content/uploads/2019/04/sf-logo.png" data-sizes="(max-width: 200px) 100vw, 200px" class="wp-image-32 lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img loading="lazy" src="https://theslidefactory.com/wp-content/uploads/2019/04/sf-logo.png" alt="" title="" height="auto" width="auto" srcset="https://portland-web-design.com/wp-content/uploads/2019/04/sf-logo.png 200w, https://portland-web-design.com/wp-content/uploads/2019/04/sf-logo-150x150.png 150w" sizes="(max-width: 200px) 100vw, 200px" class="wp-image-32" /></noscript></span>
+</div><div class="et_pb_module et_pb_code et_pb_code_1_tb_footer  et_pb_text_align_center">
+<div class="et_pb_code_inner"><p>
+Copyright <span id="copyright-date">2019</span> SlideFactory LLC. All Rights Reserved.
+</p>
+<script>
+  const copyright = document.getElementById('copyright-date');
+  copyright.innerHTML = new Date().getFullYear();
+</script></div>
+</div> 
+</div> <div class="et_pb_column et_pb_column_1_5 et_pb_column_5_tb_footer  et_pb_css_mix_blend_mode_passthrough et-last-child et_pb_column_empty">
+</div> 
+</div> 
+</div>  </div>
+</footer>
+</div> 
+</div>
+</div> 
+
+<script type="text/javascript">
+var sbiajaxurl = "https://theslidefactory.com/wp-admin/admin-ajax.php";
+</script>
+<link rel='stylesheet' id='et-builder-googlefonts-css' href='https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic|EB+Garamond:regular,500,600,700,800,italic,500italic,600italic,700italic,800italic&#038;subset=latin-ext,vietnamese,cyrillic,latin,cyrillic-ext,greek,greek-ext&#038;display=swap' type='text/css' media='all' />
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js?ver=5.8' id='sf_code_style_prism-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js?ver=5.8' id='sf_code_style_prism-autoload-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/plugins/sf-prism/setup.js?ver=5.8' id='sf_code_style_prism-setup-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/plugins/wp-smushit/app/assets/js/smush-lazy-load.min.js?ver=3.8.2' id='smush-lazy-load-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/themes/Divi-child/waypoints/noframework.waypoints.min.js?ver=5.8' id='waypoints_js_vr-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-includes/js/comment-reply.min.js?ver=5.8' id='comment-reply-js'></script>
+<script type='text/javascript' id='divi-custom-script-js-extra'>
+/* <![CDATA[ */
+var DIVI = {"item_count":"%d Item","items_count":"%d Items"};
+var et_shortcodes_strings = {"previous":"Previous","next":"Next"};
+var et_pb_custom = {"ajaxurl":"https:\/\/theslidefactory.com\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/theslidefactory.com\/wp-content\/themes\/Divi\/images","builder_images_uri":"https:\/\/theslidefactory.com\/wp-content\/themes\/Divi\/includes\/builder\/images","et_frontend_nonce":"a4976fa855","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","et_ab_log_nonce":"70e9794c30","fill_message":"Please, fill in the following fields:","contact_error_message":"Please, fix the following errors:","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"Previous","next":"Next","wrong_captcha":"You entered the wrong number in captcha.","wrong_checkbox":"Checkbox","ignore_waypoints":"no","is_divi_theme_used":"1","widget_search_selector":".widget_search","ab_tests":[],"is_ab_testing_active":"","page_id":"2289","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"yes","is_shortcode_tracking":"","tinymce_uri":""}; var et_builder_utils_params = {"condition":{"diviTheme":true,"extraTheme":false},"scrollLocations":["app","top"],"builderScrollLocations":{"desktop":"app","tablet":"app","phone":"app"},"onloadScrollLocation":"app","builderType":"fe"}; var et_frontend_scripts = {"builderCssContainerPrefix":"#et-boc","builderCssLayoutPrefix":"#et-boc .et-l"};
+var et_pb_box_shadow_elements = [];
+var et_pb_motion_elements = {"desktop":[],"tablet":[],"phone":[]};
+var et_pb_sticky_elements = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/themes/Divi/js/custom.unified.js?ver=4.7.4' id='divi-custom-script-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/themes/Divi/core/admin/js/es6-promise.auto.min.js?ver=4.7.4' id='es6-promise-js'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?render=6LeU7EUaAAAAAIHiZyaZwhBKshD8wAlhM-QmOlR4&#038;ver=4.7.4' id='recaptcha-v3-js'></script>
+<script type='text/javascript' id='et-core-api-spam-recaptcha-js-extra'>
+/* <![CDATA[ */
+var et_core_api_spam_recaptcha = {"site_key":"6LeU7EUaAAAAAIHiZyaZwhBKshD8wAlhM-QmOlR4","page_action":{"action":"loading_3d_models_from_the_web_at_runtime_in_unity"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/themes/Divi/core/admin/js/recaptcha.js?ver=4.7.4' id='et-core-api-spam-recaptcha-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-content/themes/Divi/core/admin/js/common.js?ver=4.7.4' id='et-core-common-js'></script>
+<script type='text/javascript' src='https://theslidefactory.com/wp-includes/js/wp-embed.min.js?ver=5.8' id='wp-embed-js'></script>
+<style id="et-builder-module-design-tb-2396-2289-cached-inline-styles">.contact-form{min-height:200px}@media only screen and (min-width:1600px){#footer-form-holder .et_pb_column_0_tb_footer:first-child{min-height:410px}#footer-bottom-block{margin-top:-150px}}.et_pb_section_0_tb_footer.et_pb_section{padding-top:1px}.et_pb_row_0_tb_footer.et_pb_row{padding-top:20px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;padding-top:20px;padding-right:0px;padding-bottom:0;padding-left:0px}.et_pb_text_0_tb_footer{font-weight:300;padding-bottom:0px!important;margin-bottom:15px!important}.et_pb_text_0_tb_footer h1{font-weight:300}.et_pb_divider_0_tb_footer{padding-top:0px;padding-bottom:0px;margin-top:0px!important;margin-bottom:0px!important;max-width:20%}.et_pb_divider_1_tb_footer{padding-top:0px;padding-bottom:0px;margin-top:0px!important;margin-bottom:0px!important;max-width:20%}.et_pb_divider_0_tb_footer:before{border-top-color:#000000;width:auto;top:0px;right:0px;left:0px}.et_pb_divider_1_tb_footer:before{border-top-color:#000000;width:auto;top:0px;right:0px;left:0px}.et_pb_text_1_tb_footer{margin-bottom:20px!important}.et_pb_code_0_tb_footer{padding-top:0px}.et_pb_text_2_tb_footer h1{font-weight:300;text-transform:uppercase}.et_pb_text_2_tb_footer{padding-bottom:0px!important;margin-bottom:15px!important}.et_pb_contact_field_6_tb_footer input[type=text],.et_pb_contact_field_6_tb_footer input[type=email],.et_pb_contact_field_6_tb_footer textarea,.et_pb_contact_field_6_tb_footer[data-type=checkbox],.et_pb_contact_field_6_tb_footer[data-type=radio],.et_pb_contact_field_6_tb_footer[data-type=select],.et_pb_contact_field_6_tb_footer[data-type=select] select{height:80px;min-height:80px;max-height:80px}.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input:-ms-input-placeholder{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif;text-transform:uppercase;font-size:11px}.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input::-moz-placeholder{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif;text-transform:uppercase;font-size:11px}.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input::-webkit-input-placeholder{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif;text-transform:uppercase;font-size:11px}.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input::placeholder,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type=checkbox]+label,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type=radio]+label{font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif;text-transform:uppercase;font-size:11px}.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type="checkbox"]+label i,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type="radio"]+label i{border-bottom-width:3px}.et_pb_contact_form_0_tb_footer .input::-ms-input-placeholder{color:#000000}.et_pb_contact_form_0_tb_footer .input,.et_pb_contact_form_0_tb_footer .input[type="checkbox"]+label,.et_pb_contact_form_0_tb_footer .input[type="radio"]+label,.et_pb_contact_form_0_tb_footer .input[type="checkbox"]:checked+label i:before,.et_pb_contact_form_0_tb_footer .input::placeholder{color:#000000}.et_pb_contact_form_0_tb_footer .input::-webkit-input-placeholder{color:#000000}.et_pb_contact_form_0_tb_footer .input::-moz-placeholder{color:#000000}.et_pb_contact_form_0_tb_footer .input[type="radio"]:checked+label i:before{background-color:#000000}.et_pb_section_1_tb_footer.et_pb_section{padding-top:89px;padding-right:0px;padding-bottom:30px;padding-left:0px;margin-top:-7%;background-color:#000000!important}.et_pb_text_3_tb_footer.et_pb_text{color:#FFFFFF!important}.et_pb_text_3_tb_footer p{line-height:1.8em}.et_pb_text_3_tb_footer{font-size:22px;line-height:1.8em}.et_pb_section_2_tb_footer{border-top-width:5px;border-top-color:#FFFFFF}.et_pb_section_2_tb_footer.et_pb_section{padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;background-color:#262626!important}.et_pb_row_2_tb_footer{background-color:rgba(0,0,0,0)}.et_pb_row_2_tb_footer.et_pb_row{padding-top:35px!important;padding-right:0px!important;padding-bottom:30px!important;padding-left:0px!important;padding-top:35px;padding-right:0px;padding-bottom:30px;padding-left:0px}.et_pb_image_0_tb_footer{margin-bottom:15px!important;max-width:8%;text-align:center}.et_pb_code_1_tb_footer{color:white}.et_pb_column_0_tb_footer{padding-top:30px;padding-right:5px;padding-bottom:30px;padding-left:5px}.et_pb_column_1_tb_footer{background-color:#ffffff;padding-top:30px;padding-right:50px;padding-bottom:30px;padding-left:50px}.et_pb_contact_field_0_tb_footer{background-color:#ffffff}.et_pb_contact_field_6_tb_footer{background-color:#ffffff}.et_pb_contact_form_container .et_pb_contact_field_6_tb_footer.et_pb_contact_field .input,.et_pb_contact_form_container .et_pb_contact_field_6_tb_footer.et_pb_contact_field .input[type="checkbox"]+label i,.et_pb_contact_form_container .et_pb_contact_field_6_tb_footer.et_pb_contact_field .input[type="radio"]+label i{border-width:3px;border-color:#000000}p.et_pb_contact_field_6_tb_footer{padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px}.et_pb_contact_form_container .et_pb_contact_field_6_tb_footer.et_pb_contact_field{margin-left:3%!important}@media only screen and (max-width:980px){.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type="checkbox"]+label i,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type="radio"]+label i{border-bottom-width:3px}body #page-container .et_pb_section .et_pb_contact_form_0_tb_footer.et_pb_contact_form_container.et_pb_module .et_pb_button:after{display:inline-block;opacity:0}body #page-container .et_pb_section .et_pb_contact_form_0_tb_footer.et_pb_contact_form_container.et_pb_module .et_pb_button:hover:after{opacity:1}.et_pb_section_2_tb_footer{border-top-width:5px;border-top-color:#FFFFFF}.et_pb_image_0_tb_footer{margin-left:auto;margin-right:auto}}@media only screen and (max-width:767px){.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type="checkbox"]+label i,.et_pb_contact_form_0_tb_footer.et_pb_contact_form_container .input[type="radio"]+label i{border-bottom-width:3px}body #page-container .et_pb_section .et_pb_contact_form_0_tb_footer.et_pb_contact_form_container.et_pb_module .et_pb_button:after{display:inline-block;opacity:0}body #page-container .et_pb_section .et_pb_contact_form_0_tb_footer.et_pb_contact_form_container.et_pb_module .et_pb_button:hover:after{opacity:1}.et_pb_section_2_tb_footer{border-top-width:5px;border-top-color:#FFFFFF}.et_pb_image_0_tb_footer{margin-left:auto;margin-right:auto}}.et_pb_section_0.et_pb_section{padding-top:80px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-right:0px;margin-left:0px}.et_pb_section_1.et_pb_section{padding-top:80px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-right:0px;margin-left:0px}div.et_pb_section.et_pb_section_1{background-size:initial;background-image:url(https://theslidefactory.com/wp-content/uploads/2019/04/head_bg_split_400.jpg)!important}.et_pb_row_0{background-image:url(https://theslidefactory.com/wp-content/uploads/2020/04/Download3DModelTut.jpg);height:400px}.et_pb_row_0,body #page-container .et-db #et-boc .et-l .et_pb_row_0.et_pb_row,body.et_pb_pagebuilder_layout.single #page-container #et-boc .et-l .et_pb_row_0.et_pb_row,body.et_pb_pagebuilder_layout.single.et_full_width_page #page-container #et-boc .et-l .et_pb_row_0.et_pb_row{width:100%;max-width:100%}.et_pb_column_0{padding-right:0px;padding-left:0px}.et_pb_row_0.et_pb_row{padding-top:0px!important;padding-right:0px!important;padding-left:0px!important;margin-left:auto!important;margin-right:auto!important;padding-top:0;padding-right:0px;padding-left:0px}</style>
+</body>
+</html>
