@@ -1,7 +1,7 @@
 \chapter{Public Methods}
 \label{cha:public_meth}
 %
-In diesem Kapitel werden alle public methods der wichtigsten Klassen genannt und ihre Funktion erläutert.
+In diesem Kapitel werden alle \emph{public methods} der wichtigsten Klassen genannt und ihre Funktion erläutert.
 %
 \section{\ssc}
 \label{sec:statemeth}
@@ -13,7 +13,7 @@ gibt die aktuell gewählte Sprache zurück\\
 aktualisiert die ausgewählte Sprache\\
 \\
 \textbf{public void SetCurScene()}\\
-ermittelt die aktuelle Scene auf Basis von Unitys Scene Index\\
+ermittelt die aktuelle Scene auf Basis des Unitys Scene Index\\
 \\
 \textbf{public int GetSelectedVehicle()}\\
 gibt den Listen Index des aktuell ausgewählten Fahrzeugs zurück\\
@@ -37,7 +37,7 @@ gibt die ausgewählte Seite als String (left | right) zurück\\
 %
 \textbf{public Vehicle(string name)}\\
 Constructor der \vhc:\\
-String Parameter wird als \enquote{name}-Attribute an die neu erzeugte \vhi übergeben\\
+String Parameter wird als \enquote{name}-Attribute an die neu erzeugte \vhi{} übergeben\\
 ABER: nicht verwechseln mit dem Titel des Fahrzeugs\\
 \\
 \textbf{public void LoadText(string jsonData)}\\
@@ -80,7 +80,7 @@ gibt das Titelbild des Fahrzeugs als Texture2D zurück\\
 \textbf{public void SetTitlePic(Texture2D titlePic, string titlePicName)}\\
 setzt bzw. überschreibt das Titelbild und dessen Bezeichnung\\
 \\
-\textbf{public void SetMagazine(Texture2D loadedGallery, string vehicleName)}\\
+\textbf{public void SetGallery(Texture2D loadedGallery, string vehicleName)}\\
 fügt der Galeriebilder-Liste einen Eintrag hinzu und weist diesem einen Namen zu\\
 \\
 \textbf{public List<Texture2D> GetGallery()}\\
@@ -173,23 +173,23 @@ toggelt die Animation der Beifahrertür des Phänomen 4RL Modells\\
 \section{\ars}
 %
 \textbf{public void disableInput()}\\
-deaktiviert das \ars\\
+deaktiviert die \ars\\
 \\
 \textbf{public void enableInput()}\\
-aktiviert das \ars\\
+aktiviert die \ars\\
 %
 \section{\srs}
 %
 \textbf{public void disableInput()}\\
-deaktiviert das \srs\\
+deaktiviert die \srs\\
 \\
 \textbf{public void enableInput()}\\
-aktiviert das \srs\\
+aktiviert die \srs\\
 %
 \section{\zcs}
 %
 \textbf{public void SliderZoom(float zoomValue)}\\
-verschiebt die Kameraposition entlang der ihrer lokalen Z-Achse und den FOV-Wert um den übergebenen Float-Wert\\
+verschiebt die Kameraposition entlang ihrer lokalen Z-Achse und den FOV-Wert um den übergebenen Float-Wert\\
 kommt beim Zoom-Slider zum Einsatz\\
 \\
 \textbf{public void ResetCam()}\\

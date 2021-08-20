@@ -225,7 +225,7 @@ public class DataLoader : MonoBehaviour
             else
             {
                 //ads image files in random order to list
-                vehicles[index].SetMagazine(DownloadHandlerTexture.GetContent(uwr), Path.GetFileNameWithoutExtension(file));
+                vehicles[index].SetGallery(DownloadHandlerTexture.GetContent(uwr), Path.GetFileNameWithoutExtension(file));
             }
         }
     }

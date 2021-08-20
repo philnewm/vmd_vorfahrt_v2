@@ -102,7 +102,7 @@ public class Vehicle
     }
 
 
-    public void SetMagazine(Texture2D loadedGallery, string vehicleName)
+    public void SetGallery(Texture2D loadedGallery, string vehicleName)
     {
         this.gallery.Add(loadedGallery);
         this.gallery[gallery.Count - 1].name = vehicleName;
