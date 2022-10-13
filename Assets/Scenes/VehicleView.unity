@@ -1111,9 +1111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ef746ae9f1b2aae9cf787ea121587d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
+  autoSpeed: 10
+  manSpeed: 1
   timer: {fileID: 9137597212488309488}
   vehicleScene: {fileID: 712727332}
+  timeLimit: 3
 --- !u!114 &452542717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,10 +1129,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 9137597212488309488}
-  speed: 70
   rotationMinAngle: -7
   rotationMaxAngle: 50
+  autoSpeed: 10
+  manSpeed: 1
   vehicleScene: {fileID: 712727332}
+  timeLimit: 3
 --- !u!114 &452542718
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,12 +4,15 @@ public class AdvancedRotation : MonoBehaviour
 {
 
     [SerializeField] Timer timer;
-    [SerializeField] private float speed;
     [SerializeField] private float rotationMinAngle;
     [SerializeField] private float rotationMaxAngle;
-    [SerializeField] private VehicleScene vehicleScene;
-    private float curRotY;
 
+    [SerializeField] float autoSpeed;
+    [SerializeField] float manSpeed;
+    [SerializeField] private VehicleScene vehicleScene;
+    [SerializeField] float timeLimit;
+    private float curRotY;
+    float elapsedTime;
     private float extractedXRotation;
     private float extractedYRotation;
     private Controls controls;
@@ -19,6 +22,7 @@ public class AdvancedRotation : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
+        elapsedTime = 0;
     }
 
     private void OnEnable()
@@ -35,12 +39,22 @@ public class AdvancedRotation : MonoBehaviour
 
     void Update()
     {
-        UpdateXYRotation();
+        if (controls.SceneController.RotationControl.ReadValue<Vector2>() != new Vector2(0, 0))
+        {
+            UpdateXYRotation();
+        }
+        else if (elapsedTime >= timeLimit)
+        {
+            autoRotate();
+        }
+
+        elapsedTime += Time.deltaTime;
+        // UpdateXYRotation();
     }
 
     public void UpdateXYRotation()
     {
-        Vector2 inputVector = controls.SceneController.RotationControl.ReadValue<Vector2>() * speed * Time.deltaTime;
+        Vector2 inputVector = controls.SceneController.RotationControl.ReadValue<Vector2>() * manSpeed * Time.deltaTime;
 
         if (inputVector != new Vector2(0, 0))
         {
@@ -50,6 +64,7 @@ public class AdvancedRotation : MonoBehaviour
             transform.rotation = Quaternion.Euler(extractedXRotation, extractedYRotation, 0);
 
             timer.ResetTimer();
+            elapsedTime = 0;
         }
     }
 
@@ -57,6 +72,12 @@ public class AdvancedRotation : MonoBehaviour
     {
         extractedXRotation = 0;
         transform.rotation = Quaternion.Euler(extractedXRotation, extractedYRotation, 0);
+    }
+
+    private void autoRotate()
+    {
+        extractedYRotation -= autoSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, extractedYRotation, 0);
     }
 
     public void disableInput()
